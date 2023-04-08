@@ -1,0 +1,36 @@
+/*modal*/
+.modal{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    position: fixed; /*hace que se quede en un mismo lugar*/
+    top:0;   /*estos dos van de la mano con fixed*/
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.41);
+}
+
+.modal-content{
+    width: 95%;
+    max-width: 500px;
+    padding: 20px;
+    position: relative;
+    background-color:#cbcaca;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+.modal-btn-closed{
+    
+    position: absolute;
+    top:5px;
+    right: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: none;
+    border: none;
+    outline: none; 
+}
+

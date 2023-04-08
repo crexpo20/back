@@ -1,0 +1,62 @@
+#borrar{
+
+    background-color:#A6A9B6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#guardar{
+
+    background-color: #7868E6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#fondo{
+  background-color: #FFFFFF;
+    
+}
+#mensaje{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ width: 500px;
+ min-height: 100px;
+ background-color: #D9D9D9;
+ position: relative;
+ border-radius: 5px;
+ padding: 20px;
+
+}
+
+#deleteImg{
+
+    height: 30;
+    width: 150;
+    color: #FFFFFF;
+    background-color:rgb(156, 156, 156);
+    border: 0ch;
+    cursor: pointer;
+}
+

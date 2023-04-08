@@ -1,0 +1,461 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: #FAF7F0;
+	font-family: 'Roboto', sans-serif;
+}
+
+main {
+    background: #FAF7F0;
+	max-width: 800px;
+	width: 90%;
+	margin: auto;
+	padding: 40px;
+}
+
+/*mueve todo el cuerpo de la pagina*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+/*para que sea responsive la pagina*/
+.responsive{
+    margin-top : 100px; 
+    margin-left: 500px; 
+    margin-right: 15px;
+    text-align:center;
+    background: #cbcaca;
+    box-sizing: border-box;
+}
+
+/*botones de la barra menu*/
+/*.boton{  
+    margin-top: 20px;
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color:#fffbf5;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}*/
+
+.cursor{
+    cursor: pointer;
+}
+/*barra lateral de seleccion*/
+.selectedInicio:before{
+    content: '';
+    width: 7px;
+    height: 80%;
+    background: #674188;
+    position: absolute;
+    top: 10%;
+    left: -30px;
+}
+
+
+.selectedRegistrar:before{
+    content: '';
+    width: 7px;
+    height: 80%;
+    background: #ffffff;
+    position: absolute;
+    top: 10%;
+    left: -30px;
+}
+
+.selectedEliminar:before{
+    content: '';
+    width: 7px;
+    height: 80%;
+    background: #ffffff;
+    position: absolute;
+    top: 10%;
+    left: -30px;
+}
+
+
+
+
+
+
+.boton{
+    text-decoration: none;
+    margin-left: 40px;
+    width: 100px;
+    height:auto;
+    background: rgb(69, 91, 128);
+    text-decoration: none;
+    outline:none;
+    color: #fffbf5;
+   /* border-style: none;*/
+    font-family:Arial;
+    font-size:large;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+
+
+/*para diseno de los botones, letra y color*/
+.nav-item{
+    margin-top: 0px;
+    color:#20bf15;
+    font-size:  18px;
+    font-family: 'Times New Roman', Times, serif; 
+
+}
+.nav-item:hover{
+    color:#ada43d;
+}
+
+.contenedorIcono{
+
+    background-color: #ff2f2f;
+    width: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+/*Formato para el header*/
+
+.icon__menu{
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(10px);
+    background-color: #D9D9D9;
+    margin-left: 210px;
+}
+
+.icon__menu i{
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+}
+
+header{
+    width: 100%;
+    height: 80px;
+    background: #D9D9D9;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 200;
+  }
+
+/*icono de la tienda, parte superior izquierda*/
+/*.name__page{
+    width:80px;
+    height: 100%;
+    background: #0000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #0000;
+    font-size: 18px;
+    z-index: 300;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-right: 20px solid #000000;
+    transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}*/
+
+/*borrar el scroll en navegadores: Chrome, Sfari, Opera*/
+div::-webkit-scrollbar{
+    display: none;
+}
+
+/*borrar el scroll en navegadores: Firefox, Edge*/
+div{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+a:hover.button{
+    cursor: pointer;
+}
+/**/
+button{
+    width: 100px;
+    height:auto;
+    background: #95db83;
+    text-decoration: none;
+    outline:none;
+    color: #102122;
+   /* border-style: none;*/
+    font-family:Arial;
+    font-size:large;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+
+.icon__menu{
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(10px);
+}
+
+.icon__menu i{
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.items a{
+    color: #3bc24b;
+    cursor: default;
+    display: block;
+    position: relative;
+    transition: color 300ms;
+}
+/*configuracion del icono*/
+.option i{
+    width: 50px;
+    margin-right: 20px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size:xx-large;
+
+}
+
+
+#botonBarra{
+    width: 50px;
+    margin-right: 20px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size:xx-large;
+    margin-left: -10px;
+}
+
+
+
+.option i:hover{
+    color: #bababa;
+}
+
+#tienda a{
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: color 300ms;
+    text-decoration-line: none;
+    top: 15px;
+    left: 8px;
+    background-color: #674188;
+    left: -10px;
+    font-family:Arial;
+    font-size:large;
+
+}
+
+#tienda i{
+    width: 50px;
+    margin-right: 20px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size:xx-large;
+    background-color: #674188;
+    margin-left: 27px;
+    margin-top: 15px;
+}
+
+
+
+/*Para separacion de los items*/
+.options__menu{
+    padding: 10px 30px;
+    position: absolute;
+    top: 80px;
+    
+}
+
+/*separacion de los items, no funciona sin el otro*/
+.options__menu .option{
+    padding: 8px 0px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+ #tienda{
+    padding: 8px 0px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+/*letra de la barra lateral letras*/ 
+.options__menu a{
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: color 300ms;
+    text-decoration-line: none;
+}
+.option a.selectedInicio:before{
+    color: #20bf15;
+}
+
+
+
+.options__menu a:hover{
+    color: #bababa;
+    
+}
+
+#botonBarra:hover{
+    color: #bababa;
+}
+
+.options__menu .option i{
+    width: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.name__page h4{
+    margin-top: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+
+
+a.selected{
+    color: #d62525;
+}
+
+
+/*barra donde van los iconos*/
+.items{
+
+    width: 220px;
+    height: 100%;
+    /*cmabia la barra lateral solo una parte*/
+    background: #684188;
+    /*para que sea responsive, aparece en toda la ventana*/
+    position:fixed;
+    top: 0;
+    left: 0;
+    color: #676cf3;
+    font-size: 18px;
+    z-index: 300;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-right: 20px solid #674188;
+    transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+body{
+    background-color:   #FAF7F0;
+    margin-left: 0px;
+    margin-top: 80px;
+    width: fit-content;
+    transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  
+}
+
+/*para el js*/
+.home{
+    background-color:#FAF7F0  ;
+    
+}
+.container{
+    background-color: #FAF7F0 ;
+}
+/*--------------------------------------------*/
+/*js*/
+
+.body_move{
+    margin-left: 50px;
+    margin-right: 2px;
+}
+
+
+
+.menu__side_move{
+    width: 250px;
+}
+
+@media screen and (max-width: 760px){
+    .responsive{
+        margin-left: 100px;
+    }
+    .body_move{
+        margin-left: 0px;
+    }
+
+    .menu__side_move{
+        width: 80px;
+        left: 0px;
+    }
+}
+/*------------------------------------------------*/
+
+/*botones oferta*/
+#titulo{
+    background-color: #faf7f0;
+    text-align: justify;
+    align-content: safe center;
+}
+#guardarP{
+    background-color: #7868E6;
+    border: none;
+    color: white;
+    height: 30px;
+	line-height: 5px;
+    width: 30%;
+    padding: 10px 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;;
+    border: none;
+    transition: .1s ease all;
+}
+
+#guardarP :hover {
+    box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+#borrarP{
+    background-color:#A6A9B6;
+    border: none;
+    color: white;
+    height: 30px;
+	line-height: 5px;
+    width: 30%;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    justify-content: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: .1s ease all;
+}
+
