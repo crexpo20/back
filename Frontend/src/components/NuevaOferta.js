@@ -106,9 +106,7 @@ export const NuevaOferta = () => {
       };
 
 	return (
-     <center>
-	 <div id='fondo' className='responsive'>
-	 			
+    <div class = "home">
         <br/>
 			
 			
@@ -216,7 +214,6 @@ export const NuevaOferta = () => {
 		</main>
            
         </div>
-		</center>
 	);
 }
  

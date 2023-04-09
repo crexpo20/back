@@ -10,7 +10,7 @@ export const ListaDeProducto = () => {
         <ModificarProducto />
       };
     return (
-        <center id='fondo' className='responsive '>
+      <section class = "home">
             <div id='lista' className='container'>
             <h1 id='titulo'>Lista de Productos</h1>
             </div>
@@ -36,7 +36,6 @@ export const ListaDeProducto = () => {
        </ul>
        </div>
        </div>
-
-        </center>
+       </section>
     )
 }

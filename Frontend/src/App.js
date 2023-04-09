@@ -1,5 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
+import { SideMenu } from './components/SideMenu';
 import { Header } from './components/Header';
 import { Home } from './components/Home';
 import { ErrorNotFound } from './components/ErrorNotFound';
@@ -16,11 +17,9 @@ import {NuevaOferta} from './components/NuevaOferta';
 import "./elementos/modal.js"
 function App() {
   return (
-    <div className="App">
 
       <BrowserRouter>
-        <Header/>
-         <center>
+      <SideMenu/>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/home" element={<Home/>}/>
@@ -31,10 +30,9 @@ function App() {
           <Route exact path="/registrarProductoN" element={<ProductoNuevo/>}/>
           <Route exact path="*" element={<ErrorNotFound/>}/>
         </Routes>
-        </center>
+    
       </BrowserRouter>
 
-    </div>
   );
 }
 

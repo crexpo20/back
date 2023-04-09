@@ -92,8 +92,7 @@ export const ModificarNegocio = () => {
 	  };
 
 	return (
-     <center>
-	 <div id='fondo' className='responsive'>
+	 <div class = "home">
 
         <br/>
 			
@@ -211,7 +210,6 @@ export const ModificarNegocio = () => {
 				</div>
 		</main>
         </div>
-		</center>
 	);
 }
  

@@ -55,7 +55,7 @@ export const EliminarProducto = () => {
   };
 
   return (
-    <div className='responsive'>
+    <div class = "home">
       {productoEliminado ? (
         <Modal show={productoEliminado} onHide={handleVolver}>
           <Modal.Header >

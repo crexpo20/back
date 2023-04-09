@@ -96,7 +96,7 @@ export const ProductoNuevo = () => {
 
 	return (
      <center>
-	 <div id='fondo' className='responsive'>
+	 <div class="home">
 	 
 	 			
         <br/>
