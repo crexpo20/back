@@ -170,25 +170,21 @@ export const ProductoNuevo = () => {
 					leyendaError="La marca solo debe tener caracteres numericos y letras, y entre 3 a 15 caracteres"
 					expresionRegular={expresiones.marca}
 				/>
-			
-             <center>
-			<div class = "drop-area">
-				<h4>Arrastra y suelta tu imagen </h4>
-				<span>O</span><br></br>
-				<button>Selecciona tu imagen</button>
-				<input
-				type='file'
-				
-				accept="image/png,image/jpg" 
 
-				name=""
-				id ="input-file"
-				hidden
-				></input>
-			<div id = "preview"></div>
+<div class="containerImg">
+        
+        <div class="card">
+            <img id="img-preview"></img>
+            <div class="card-footer">
+                <input type="file" id="img-uploader"></input>
+                <progress id="img-upload-bar" value="0" max="100"></progress>
+            </div>
+        </div>
+
+    </div>
 			
-				</div>
-				</center>
+        
+             
 
 				{formularioValido === false && <MensajeError>
 					<p>

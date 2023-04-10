@@ -476,3 +476,51 @@ body.dark .home .text{
     background-color:#c077ff;
 }
 /*----------imagen en formulario----------------------*/
+
+
+
+/*--------------IMAGEN 2-------- */
+
+.containerImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.containerImg img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    border: 1px solid #610567;
+    height: 20rem;
+    width: 25rem;
+    position: relative;
+}
+
+.card-footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 9px;
+    background: #e26cff;
+}
+
+.card-footer input {
+    text-align: center;
+}
+
+
+
+#img-upload-bar{
+    width: 100%;
+}
+/*--------------IMAGEN 2-------- */
+
