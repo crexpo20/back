@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/Input';
 import '../css/ventanaImagen.css';
-//import '../elementos/modal.js'
+import '../js/imagen.js'
 //import '../'
 //import '../css/OfertaNueva.css';
 import '../css/estilos.css';
@@ -170,32 +170,26 @@ export const ProductoNuevo = () => {
 					leyendaError="La marca solo debe tener caracteres numericos y letras, y entre 3 a 15 caracteres"
 					expresionRegular={expresiones.marca}
 				/>
+			
+             <center>
+			<div class = "drop-area">
+				<h4>Arrastra y suelta tu imagen </h4>
+				<span>O</span><br></br>
+				<button>Selecciona tu imagen</button>
+				<input
+				type='file'
+				
+				accept="image/png,image/jpg" 
 
-			<div>
-			<br></br> <center>
-            <b> Imagen*: </b>
-            <br></br>
-            <label htmlFor="inicio"></label>
-            <input
-             accept="image/png,image/jpg" 
-             type="file"
-             onChange={(e) => handleChange(e.target)}
-             ></input>
-            {images.map((row,index) =>
-            <div key={index}>
-              <br></br>
-              <img id="imgProd" src = {row} alt={row} >
-              </img> 
-              <div>
-              <br></br>
-              <button id = "deleteImg" 
-               onClick={() => deleteImage(row)}> Eliminar</button>
-			   
-              </div>
-            </div>
-            )}
-			</center>
+				name=""
+				id ="input-file"
+				hidden
+				></input>
+			<div id = "preview"></div>
+			
 				</div>
+				</center>
+
 				{formularioValido === false && <MensajeError>
 					<p>
 						<FontAwesomeIcon icon={faExclamationTriangle}/>

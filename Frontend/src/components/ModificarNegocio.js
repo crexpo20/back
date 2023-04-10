@@ -168,28 +168,7 @@ export const ModificarNegocio = () => {
 				/>
 
 			<div>
-			<br></br> <center>
-            <b> Imagen*: </b>
-            <br></br>
-            <label htmlFor="inicio"></label>
-            <input
-             accept="image/png,image/jpg" 
-             type="file"
-             onChange={(e) => handleChange(e.target)}
-             ></input>
-            {images.map((row,index) =>
-            <div key={index}>
-              <br></br>
-              <img id="imgProd" src = {row} alt={row} >
-              </img> 
-              <div>
-              <br></br>
-              <button id = "deleteImg" 
-               onClick={() => deleteImage(row)}> Eliminar</button>
-              </div>
-            </div>
-            )}
-			</center>
+			<br></br>
 				</div>
 				{formularioValido === false && <MensajeError>
 					<p>

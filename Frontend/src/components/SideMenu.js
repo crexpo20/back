@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../images/logo192.png'
+import logo from '../images/logo.png'
 import { NavLink } from 'react-router-dom'
 import { Fragment } from 'react'
 import {AiFillFileAdd} from "react-icons/ai"
@@ -30,10 +30,11 @@ export const SideMenu = () => {
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="logo.png" alt=""></img>
+                    <img src="../images/logo.png" alt=""></img>
                 </span>
 
                 <div class="text logo-text">
+                    <i src="../images/logo.png"></i>
                     <span class="name">TITA</span>
                     <span class="profession">SuperMarket</span>
                 </div>
@@ -45,17 +46,18 @@ export const SideMenu = () => {
         <div class="menu-bar">
             <div class="menu">
 
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search..."></input>
-                </li>
 
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="#">
                             <NavLink to="/home" >
-                              <i class='bx bx-home-alt icon' ></i>
-                              <span class="text nav-text">Inicio</span>
+                              <i id = "iconobarra"><BiHomeHeart/>
+                              <a id = "pie">inicio</a>
+                              </i>
+                              
+                              <span class="text nav-text">Inicio
+                              
+                              </span>
                             </NavLink>
                         </a>
                     </li>
@@ -63,8 +65,10 @@ export const SideMenu = () => {
                     <li class="nav-link">
                         <a href="#">
                             <NavLink to="/registrarProductoN">
-                                <i class='bx bx-bar-chart-alt-2 icon' ></i>
-                                <a class="text nav-text">Registrar producto</a>
+                                <i id = "iconobarra"><VscNotebook/>
+                                <a id = "pie">Productos</a>
+                                </i>
+                                <a class="text nav-text">Registrar  producto</a>
                             </NavLink>
                         </a>
                     </li>
@@ -72,7 +76,9 @@ export const SideMenu = () => {
                     <li class="nav-link">
                         <a href="#">
                              <NavLink to="/eliminarProducto">
-                                 <i class='bx bx-bell icon'></i>
+                                 <i id = "iconobarra"><BsFillTrash3Fill/>
+                                 <a id = "pie">Eliminar</a>
+                                 </i>
                                  <a class="text nav-text">Eliminar productos</a>
                             </NavLink>
                         </a>
@@ -81,7 +87,9 @@ export const SideMenu = () => {
                     <li class="nav-link">
                         <a href="#">
                         <NavLink to="/listaProducto">
-                                <i class='bx bx-pie-chart-alt icon'></i>
+                                <i id = "iconobarra"><HiClipboardDocumentList/>
+                                <a id = "pie">Lista</a>
+                                </i>
                                 <a class="text nav-text">Lista de productos</a>
                             </NavLink>
                         </a>
@@ -90,7 +98,9 @@ export const SideMenu = () => {
                     <li class="nav-link">
                         <a href="#">
                             < NavLink to="/modificarDatosN" >
-                                <i class='bx bx-heart icon' ></i>
+                                <i id = "iconobarra" ><BsShop/>
+                                <a id = "pie">Negocio</a>
+                                </i>
                                 <a class="text nav-text">Modificar datos del negocio</a>
                             </NavLink>
                         </a>
@@ -99,7 +109,9 @@ export const SideMenu = () => {
                     <li class="nav-link">
                         <a href="#">
                         <NavLink to="/ofertaNueva">
-                            <i class='bx bx-wallet icon' ></i>
+                            <i id = "iconobarra" > <MdSell/> 
+                            <a id = "pie">Oferta</a>
+                            </i>
                             <a class="text nav-text" >Registrar oferta nueva</a>
                             </NavLink>
                         </a>

@@ -37,7 +37,7 @@ toggle.addEventListener("click" , () =>{
     sidebar.classList.toggle("close");
 })
 
-searchBtn.addEventListener("click" , () =>{
+searchBtn?.addEventListener("click" , () =>{
     sidebar.classList.remove("close");
 })
 
@@ -52,3 +52,8 @@ modeSwitch.addEventListener("click" , () =>{
     }
 });
 /*----------------barra js-------------*/
+/*-----------------recibir imagenes-----------*/
+
+
+
+/*-----------------recibir imagenes-----------*/

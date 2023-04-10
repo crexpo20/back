@@ -17,7 +17,7 @@ import {NuevaOferta} from './components/NuevaOferta';
 import "./elementos/modal.js"
 function App() {
   return (
-
+    
       <BrowserRouter>
       <SideMenu/>
         <Routes>

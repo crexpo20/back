@@ -14,7 +14,7 @@ var side_menu = document.getElementById("menu_side");
     side_menu.classList.toggle("menu__side_move");
 }*/
 
-
+/*
 if (window.innerWidth < 760){
      if(side_menu){
     //body.classList.add("body_move");
@@ -38,4 +38,4 @@ window.addEventListener("resize", function(){
         side_menu.classList.add("menu__side_move");
     }
 
-});
+});*/

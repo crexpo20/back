@@ -120,8 +120,13 @@ body.dark{
     transition: var(--tran-05);
     z-index: 100;  
 }
+
+.sidebar #iconobarra,
+.sidebar #botonbarra{
+    
+}
 .sidebar.close{
-    width: 150px;
+    width: 200px;
 }
 
 /* ===== Reusable code - Here ===== */
@@ -151,10 +156,13 @@ body.dark{
 
 .sidebar .text,
 .sidebar #botonbarra,
+.sidebar #iconobarra,
 .sidebar .icon{
     color: var(--text-color);
     transition: var(--tran-03);
 }
+
+
 
 .sidebar .text,
 .sidebar #botonbarra{
@@ -163,13 +171,29 @@ body.dark{
     white-space: nowrap;
     opacity: 1;
 }
+.sidebar #pie{
+    opacity: 0;
+    font-size:x-small;
+    
+    }
+
+.sidebar.close #pie{
+opacity: 100;
+}
+.sidebar.close #botonbarra,
 .sidebar.close .text{
     opacity: 0;
 }
 /* =========================== */
-
+#iconobarra{
+    font-size: x-large;
+    margin-right: 20px;
+    align-items: center;
+   
+}
 .sidebar header{
     position: relative;
+
 }
 
 .sidebar header .image-text{
@@ -271,6 +295,7 @@ body.dark .sidebar header .toggle{
 /*---------------------------------------*/
 /*-------cambio de color de iconos y texto-----*/
 .sidebar li a:hover .icon,
+.sidebar li a:hover #iconobarra,
 .sidebar li a:hover .text{
     color: var(--sidebar-color);
 }
@@ -387,3 +412,67 @@ body.dark .home .text{
     color: var(--text-color);
 }
 /*------------------------------barra css--------------------------------*/
+/*----------imagen en formulario----------------------*/
+
+.drop-area{
+    border: 5px dashed #ddd;
+    height: 200px;
+    width: 200px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.drop-area.active{
+    background-color:  #b8d4fe;
+    color: black;
+    border: 2px dashed #618ac9;
+}
+
+.drop-area h4{
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+}
+
+.drop-area span{
+    font-size: 10px;
+    
+    font-weight: 500;
+    color: black;
+}
+
+.drop-area button{
+    padding: 0% 0%;
+    font-size: 15px; 
+    border: 0;
+    outline: none;
+    background-color: #c077ff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+ .file-container{
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    border: solid 1px #ddd;
+
+ }
+ #preview{
+    margin-top: 10px;
+ }
+ .status-text{
+    padding: 0% 10px;
+ }
+
+ .succes{
+    color:#52ad5a;
+ }
+ .failure{
+    color:#ff0000;
+ }
+#input-file{
+    background-color:#c077ff;
+}
+/*----------imagen en formulario----------------------*/
