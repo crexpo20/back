@@ -166,6 +166,7 @@ export const ModificarNegocio = () => {
 					leyendaError="El telefono solo puede tener 8 caracteres, y empezar con 6 o 7"
 					expresionRegular={expresiones.numero}
 				/>
+				
 
 			<div>
 			<br></br>

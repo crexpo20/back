@@ -35,7 +35,7 @@ dropArea?.addEventListener("drop",(e)=>{
 
 
 function processFile(files){
-    const docType = files?.type;
+    const docType = files
     const validExtensions = ['image/jpg','image/jpng'];
     if(validExtensions?.includes(docType)){
         alert("no es un archivo valido");
