@@ -3,10 +3,6 @@ import {Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, M
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/Input';
-import '../css/ventanaImagen.css';
-import '../js/imagen.js'
-//import '../'
-//import '../css/OfertaNueva.css';
 import '../css/estilos.css';
 import '../js/imagesLoad';
 import { Modal } from 'react-bootstrap';
@@ -98,7 +94,6 @@ export const ProductoNuevo = () => {
 	return (
      <center>
 		<head>
-		<meta http-equiv="Access-Control-Allow-Origin" content="*"/>
 		</head>
 	 <div class="home">
 	 
@@ -128,7 +123,7 @@ export const ProductoNuevo = () => {
 					estado={codigo}
 					cambiarEstado={cambiarCodigo}
 					tipo="text"
-					label="Codigo*:"
+					label="Código*:"
 					placeholder="283755"
 					name="codigo"
 					leyendaError="El codigo solo puede contener numeros."
@@ -138,7 +133,7 @@ export const ProductoNuevo = () => {
 					estado={categoria}
 					cambiarEstado={cambiarCategoria}
 					tipo="text"
-					label="Categoria*:"
+					label="Categoría*:"
 					name="categoria"
 					leyendaError="La categoria solo debe ser una de las propuestas"
 					expresionRegular={expresiones.categoria}
@@ -148,7 +143,7 @@ export const ProductoNuevo = () => {
 					estado={descripcion}
 					cambiarEstado={cambiarDescripcion}
 					tipo="text"
-					label="Descripcion*:"
+					label="Descripción*:"
 					name="descripcion"
 					placeholder="Di algo interesante de tu negocio"
 					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: _ - ! % ()"
@@ -176,20 +171,17 @@ export const ProductoNuevo = () => {
 				/>
 
 			     	
-<div class="container">
+				<div class="container">
         
-        <div class="card">
-            <img id="img-preview"/>
-            <div class="card-footer">
-                <input type="file" id="img-uploader"/>
-                <progress id="img-upload-bar" value="0" max="100"></progress>
-            </div>
-        </div>
+       				<div class="card">
+            			<img id="img-preview"/>
+            				<div class="card-footer">
+                				<input type="file" id="img-uploader"/>
+                				<progress id="img-upload-bar" value="0" max="100"></progress>
+           					</div>
+        			</div>
 
-    </div>
-
-        
-             
+    			</div>
 
 				{formularioValido === false && <MensajeError>
 					<p>
@@ -214,6 +206,7 @@ export const ProductoNuevo = () => {
 	
 		</main>
 		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+		<script src="imagesLoad.js"></script>
        </div>
 		</center>
 	);
