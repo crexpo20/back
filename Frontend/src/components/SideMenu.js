@@ -52,7 +52,7 @@ export const SideMenu = () => {
                         <a href="#">
                             <NavLink to="/home" >
                               <i id = "iconobarra"><BiHomeHeart/>
-                              <a id = "pie">inicio</a>
+                              <a id = "pie">Inicio</a>
                               </i>
                               
                               <span class="text nav-text">Inicio
@@ -68,7 +68,7 @@ export const SideMenu = () => {
                                 <i id = "iconobarra"><VscNotebook/>
                                 <a id = "pie">Productos</a>
                                 </i>
-                                <a class="text nav-text">Registrar  producto</a>
+                                <a class="text nav-text">Registrar producto</a>
                             </NavLink>
                         </a>
                     </li>
@@ -121,12 +121,7 @@ export const SideMenu = () => {
             </div>
 
             <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon' ></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
+                
 
                 <li class="mode">
                     <div class="sun-moon">

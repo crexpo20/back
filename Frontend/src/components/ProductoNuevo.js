@@ -8,6 +8,7 @@ import '../js/imagen.js'
 //import '../'
 //import '../css/OfertaNueva.css';
 import '../css/estilos.css';
+import '../js/imagesLoad';
 import { Modal } from 'react-bootstrap';
 export const ProductoNuevo = () => {
 	const [producto, cambiarProducto] = useState({campo: '', valido: null});
@@ -96,6 +97,9 @@ export const ProductoNuevo = () => {
 
 	return (
      <center>
+		<head>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+		</head>
 	 <div class="home">
 	 
 	 			
@@ -171,18 +175,19 @@ export const ProductoNuevo = () => {
 					expresionRegular={expresiones.marca}
 				/>
 
-<div class="containerImg">
+			     	
+<div class="container">
         
         <div class="card">
-            <img id="img-preview"></img>
+            <img id="img-preview"/>
             <div class="card-footer">
-                <input type="file" id="img-uploader"></input>
+                <input type="file" id="img-uploader"/>
                 <progress id="img-upload-bar" value="0" max="100"></progress>
             </div>
         </div>
 
     </div>
-			
+
         
              
 
@@ -191,6 +196,7 @@ export const ProductoNuevo = () => {
 						<FontAwesomeIcon icon={faExclamationTriangle}/>
 						<b>Error:</b> Por favor rellena el formulario correctamente.
 					</p>
+				
 				</MensajeError>}
 				<ContenedorBotonCentrado>
 					<Boton id= "guardarP" type="submit"> Guardar </Boton>
@@ -200,14 +206,15 @@ export const ProductoNuevo = () => {
 				</ContenedorBotonCentrado>
 				
 			</Formulario>
+			
 			<div>
 				
 				</div>
 
-		
+	
 		</main>
-           <script src='../elementos/modal.js'></script>
-        </div>
+		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+       </div>
 		</center>
 	);
 }

@@ -95,7 +95,9 @@ export const ModificarNegocio = () => {
 	 <div class = "home">
 
         <br/>
-			
+			<head>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
+		</head>
 			
 			<ContenedorBotonCentrado><h1>Modificar datos del negocio</h1></ContenedorBotonCentrado>
 			
@@ -167,22 +169,6 @@ export const ModificarNegocio = () => {
 					expresionRegular={expresiones.numero}
 				/>
 
-<div class="containerImg">
-        
-        <div class="card">
-            <img id="img-preview"></img>
-            <div class="card-footer">
-                <input type="file" id="img-uploader"></input>
-                <progress id="img-upload-bar" value="0" max="100"></progress>
-            </div>
-        </div>
-
-    </div>
-				
-
-			<div>
-			<br></br>
-				</div>
 				{formularioValido === false && <MensajeError>
 					<p>
 						<FontAwesomeIcon icon={faExclamationTriangle}/>
@@ -201,6 +187,8 @@ export const ModificarNegocio = () => {
 				
 				</div>
 		</main>
+		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+           <script src='../elementos/modal.js'></script>
         </div>
 	);
 }
