@@ -95,7 +95,9 @@ export const ModificarNegocio = () => {
 	 <div class = "home">
 
         <br/>
-			
+			<head>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
+		</head>
 			
 			<ContenedorBotonCentrado><h1>Modificar datos del negocio</h1></ContenedorBotonCentrado>
 			
@@ -119,7 +121,7 @@ export const ModificarNegocio = () => {
 					estado={direccion}
 					cambiarEstado={cambiarDireccion}
 					tipo="text"
-					label="Direccion del negocio*:"
+					label="Dirección del negocio*:"
 					placeholder="Av America N 290"
 					name="direccion"
 					leyendaError="La direccion solo puede contener numeros, letras y caracteres especiales como ser: # , . , y de 5 a 50 caracteres"
@@ -139,7 +141,7 @@ export const ModificarNegocio = () => {
 					estado={correo}
 					cambiarEstado={cambiarCorreo}
 					tipo="correo"
-					label="Correo electronico:*"
+					label="Correo electrónico:*"
 					name="correo"
 					placeholder="soyalguien1@gmail.com"
 					leyendaError="El correo solo puede tener el formato establecido: algo1@algo.com"
@@ -150,7 +152,7 @@ export const ModificarNegocio = () => {
 					estado={descripcion}
 					cambiarEstado={cambiarDescripcion}
 					tipo="text"
-					label="Descripcion*:"
+					label="Descripción*:"
 					name="descripcion"
 					placeholder="Di algo interesante de tu producto"
 					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: ! . , ( ) % #"
@@ -160,29 +162,13 @@ export const ModificarNegocio = () => {
 					estado={numero}
 					cambiarEstado={cambiarNumero}
 					tipo="text"
-					label="Telefono*:"
+					label="Teléfono*:"
 					placeholder="75982610"
 					name="numero"
 					leyendaError="El telefono solo puede tener 8 caracteres, y empezar con 6 o 7"
 					expresionRegular={expresiones.numero}
 				/>
 
-<div class="containerImg">
-        
-        <div class="card">
-            <img id="img-preview"></img>
-            <div class="card-footer">
-                <input type="file" id="img-uploader"></input>
-                <progress id="img-upload-bar" value="0" max="100"></progress>
-            </div>
-        </div>
-
-    </div>
-				
-
-			<div>
-			<br></br>
-				</div>
 				{formularioValido === false && <MensajeError>
 					<p>
 						<FontAwesomeIcon icon={faExclamationTriangle}/>
@@ -201,6 +187,8 @@ export const ModificarNegocio = () => {
 				
 				</div>
 		</main>
+		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+           <script src='../elementos/modal.js'></script>
         </div>
 	);
 }

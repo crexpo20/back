@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import axios from "axios";
 import {AiFillFileAdd} from "react-icons/ai"
 import {BiHomeHeart} from "react-icons/bi"
 import {VscNotebook} from "react-icons/vsc"
@@ -54,6 +54,3 @@ modeSwitch.addEventListener("click" , () =>{
 /*----------------barra js-------------*/
 /*-----------------recibir imagenes-----------*/
 
-
-
-/*-----------------recibir imagenes-----------*/
