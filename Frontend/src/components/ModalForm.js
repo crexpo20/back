@@ -16,7 +16,7 @@ function ModalForm({ isOpen, onClose }) {
   const [vencimiento, cambiarVencimiento] = useState({campo: '', valido: null});
 	const [images, setImages] = useState({campo: '', valido: null});
 	const [formularioValido, cambiarFormularioValido] = useState(null);
-
+ 
   const expresiones = {
 		descripcion: /^[a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{10,100}$/, // Letras, numeros, guion y guion_bajo.
 		producto: /^[a-zA-ZÀ-ÿ0-9\s]{2,20}$/, // Letras y espacios, pueden llevar acentos.
@@ -27,7 +27,7 @@ function ModalForm({ isOpen, onClose }) {
 
   const handleReset = () => {
   
-    if((precioCompra||producto||vencimiento||precioVenta||descripcion||images) != ""){
+    if((precioCompra||producto||vencimiento||precioVenta||descripcion||images||codigo) != ''){
       const confirmacion = window.confirm('¿Está seguro de que desea realizar esta acción?');
     if (confirmacion) {
     window.alert('Acción realizada exitosamente');
@@ -67,18 +67,21 @@ function ModalForm({ isOpen, onClose }) {
 			codigo.valido === 'true' &&
 			descripcion.valido === 'true' &&
 			precioCompra.valido === 'true' &&
-      precioVenta.valido === 'true' &&
-      images !='' && 
-      vencimiento != ''
+            precioVenta.valido === 'true' &&
+            images !='' && 
+            vencimiento != ''
 
 		){
-			cambiarFormularioValido(true);
+			cambiarFormularioValido("");
       
-			cambiarProducto({campo: '', valido: ''});
-			cambiarCodigo({campo: '', valido: null});
-			cambiarDescripcion({campo: '', valido: 'null'});
-			cambiarPrecioCompra({campo: '', valido: null});
-      window.alert('Producto modificado exitosamente');
+			cambiarProducto("");
+			cambiarPrecioCompra("");
+			cambiarCodigo("");
+			cambiarPrecioVenta("");
+			cambiarVencimiento("");
+			cambiarDescripcion("");
+			setImages("");
+           window.alert('Producto modificado exitosamente');
 			onClose()
 
 			// ... 
