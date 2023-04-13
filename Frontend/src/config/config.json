@@ -1,6 +1,6 @@
  {
     "CATEGORIA_API_URL":"127.0.0.1:8000/api/api_categoria",
-    "PRODUCTO_API_URL":"127.0.0.1:8000/api/api_producto",
+    "PRODUCTO_API_URL":"127.0.0.1:8000/api/api_productos",
     "TIENDA_API_URL":"127.0.0.1:8000/api/api_tienda",
     "OFERTA_API_URL":"127.0.0.1:8000/api/api_oferta",
     "LOTE_API_URL":"127.0.0.1:8000/api/api_lote"
