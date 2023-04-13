@@ -107,7 +107,7 @@ function ModalForm({ isOpen, onClose }) {
 					estado={producto}
 					cambiarEstado={cambiarProducto}
 					tipo="text"
-					label="Producto*:"
+					label="Nombre*:"
 					placeholder="Cereal en caja 500gr"
 					name="producto"
 					leyendaError="El nombre solo puede contener letras, numeros y espacios, y de 2 a 20 caracteres."
@@ -117,7 +117,7 @@ function ModalForm({ isOpen, onClose }) {
 					estado={codigo}
 					cambiarEstado={cambiarCodigo}
 					tipo="text"
-					label="Código*:"
+					label="Código de producto*:"
 					placeholder="283755"
 					name="codigo"
 					leyendaError="El codigo solo puede contener numeros."
@@ -130,15 +130,15 @@ function ModalForm({ isOpen, onClose }) {
 					tipo="text"
 					label="Descripción*:"
 					name="descripcion"
-					placeholder="Di algo interesante de tu negocio"
+					placeholder="Di algo interesante de tu producto"
 					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
 				<Input
-					estado={precioCompra}
-					cambiarEstado={cambiarPrecioCompra}
+					estado={precioVenta}
+					cambiarEstado={cambiarPrecioVenta}
 					tipo="text"
-					label="Precio de compra:*"
+					label="Precio de venta:*"
 					name="precio"
 					placeholder="23.00"
 					leyendaError="El precio solo puede contener numeros, un caracter especial (.) y dos decimales"
@@ -167,17 +167,17 @@ function ModalForm({ isOpen, onClose }) {
             <br />
 
         </div>
-				<Input
-					estado={precioVenta}
-					cambiarEstado={cambiarPrecioVenta}
+				
+                <Input
+					estado={precioCompra}
+					cambiarEstado={cambiarPrecioCompra}
 					tipo="text"
-					label="Precio de venta:*"
+					label="Precio de compra:*"
 					name="precio"
 					placeholder="23.00"
 					leyendaError="El precio solo puede contener numeros, un caracter especial (.) y dos decimales"
 					expresionRegular={expresiones.precio}
 				/>
-
 			     	
 				<div class="container">
         
