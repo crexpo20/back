@@ -16,18 +16,17 @@ function ModalForm({ isOpen, onClose }) {
   const [vencimiento, cambiarVencimiento] = useState({campo: '', valido: null});
 	const [images, setImages] = useState({campo: '', valido: null});
 	const [formularioValido, cambiarFormularioValido] = useState(null);
-
+ 
   const expresiones = {
 		descripcion: /^[a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{10,100}$/, // Letras, numeros, guion y guion_bajo.
-		producto: /^[a-zA-ZÀ-ÿ0-9\s]{2,20}$/, // Letras y espacios, pueden llevar acentos.
-		marca: /^[a-zA-Z0-9\s]{3,15}$/, //para numeros y letras
+		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
 		codigo: /^\d{1,10}$/, // 1 a 10 numeros.
 		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
 	}
 
   const handleReset = () => {
   
-    if((precioCompra||producto||vencimiento||precioVenta||descripcion||images) != ""){
+    if((precioCompra||producto||vencimiento||precioVenta||descripcion||images||codigo) != ''){
       const confirmacion = window.confirm('¿Está seguro de que desea realizar esta acción?');
     if (confirmacion) {
     window.alert('Acción realizada exitosamente');
@@ -67,18 +66,18 @@ function ModalForm({ isOpen, onClose }) {
 			codigo.valido === 'true' &&
 			descripcion.valido === 'true' &&
 			precioCompra.valido === 'true' &&
-      precioVenta.valido === 'true' &&
-      images !='' && 
-      vencimiento != ''
+            precioVenta.valido === 'true' &&
+            images !='' && 
+            vencimiento != ''
 
 		){
-			cambiarFormularioValido(true);
+			cambiarFormularioValido("");
       
 			cambiarProducto({campo: '', valido: ''});
 			cambiarCodigo({campo: '', valido: null});
 			cambiarDescripcion({campo: '', valido: 'null'});
 			cambiarPrecioCompra({campo: '', valido: null});
-      		window.alert('Producto modificado exitosamente');
+      window.alert('Producto modificado exitosamente');
 			onClose()
 
 			// ... 
@@ -105,7 +104,7 @@ function ModalForm({ isOpen, onClose }) {
 					estado={producto}
 					cambiarEstado={cambiarProducto}
 					tipo="text"
-					label="Producto*:"
+					label="Nombre*:"
 					placeholder="Cereal en caja 500gr"
 					name="producto"
 					leyendaError="El nombre solo puede contener letras, números y espacios, y un tamaño de 2 a 20 caracteres."
@@ -115,7 +114,7 @@ function ModalForm({ isOpen, onClose }) {
 					estado={codigo}
 					cambiarEstado={cambiarCodigo}
 					tipo="text"
-					label="Código*:"
+					label="Código de producto*:"
 					placeholder="283755"
 					name="codigo"
 					leyendaError="El código solo puede contener números."
@@ -129,14 +128,14 @@ function ModalForm({ isOpen, onClose }) {
 					label="Descripción*:"
 					name="descripcion"
 					placeholder="Di algo interesante de tu negocio"
-					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
+					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
 				<Input
-					estado={precioCompra}
-					cambiarEstado={cambiarPrecioCompra}
+					estado={precioVenta}
+					cambiarEstado={cambiarPrecioVenta}
 					tipo="text"
-					label="Precio de compra:*"
+					label="Precio de venta:*"
 					name="precio"
 					placeholder="23.00"
 					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
@@ -165,17 +164,17 @@ function ModalForm({ isOpen, onClose }) {
             <br />
 
         </div>
-				<Input
-					estado={precioVenta}
-					cambiarEstado={cambiarPrecioVenta}
+				
+                <Input
+					estado={precioCompra}
+					cambiarEstado={cambiarPrecioCompra}
 					tipo="text"
-					label="Precio de venta:*"
+					label="Precio de compra:*"
 					name="precio"
 					placeholder="23.00"
 					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
 					expresionRegular={expresiones.precio}
 				/>
-
 			     	
 				<div class="container">
         

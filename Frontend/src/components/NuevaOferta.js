@@ -79,14 +79,28 @@ export const NuevaOferta = () => {
 	}
 
 	const handleSubmit = (event) => {
-        event.preventDefault();
-        window.alert('Acción realizada exitosamente');
-        cambiarProducto("");
+    event.preventDefault();
+    if(
+			producto.valido === 'true' &&
+			inicio != '' &&
+			fin != '' &&
+			descripcion.valido === 'true' &&
+			precio.valido === 'true'
+
+		){
+			cambiarFormularioValido(true);
+			 cambiarProducto("");
         cambiarPrecio("");
         cambiarInicio("");
         cambiarFin("");
         cambiarDescripcion("");
+        window.alert('Acción realizada exitosamente');
         window.location.href = '/home';
+
+			// ... 
+		} else {
+			cambiarFormularioValido(false);
+		}
       };
       const handleReset = () => {
   
@@ -121,7 +135,7 @@ export const NuevaOferta = () => {
           <br/>
 
 		<main>
-			<Formulario action="" onSubmit={onSubmit}>
+			<Formulario action="" onSubmit={handleSubmit}>
 				<Input
 					estado={producto}
 					cambiarEstado={cambiarProducto}
