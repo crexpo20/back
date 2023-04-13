@@ -57,17 +57,18 @@ export const NuevaOferta = () => {
 
 		if(
 			producto.valido === 'true' &&
-			inicio.valido === 'true' &&
-			fin.valido === 'true' &&
-			descripcion.valido === 'true' &&
-			precio.valido === 'true'
+      descripcion.valido === 'true' &&
+			precio.valido === 'true' &&
+			inicio != null &&
+			fin != null
+			
 		){
 			cambiarFormularioValido(true);
 			cambiarProducto({campo: '', valido: ''});
-			cambiarInicio({campo: '', valido: null});
-			cambiarFin({campo: '', valido: null});
-			cambiarDescripcion({campo: '', valido: 'null'});
+      cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
+			
+      window.alert('Nueva oferta guardada exitosamente');
 
 			// ... 
 		} else {
@@ -128,18 +129,18 @@ export const NuevaOferta = () => {
 					label="Producto*:"
 					placeholder="Cereal en caja 500gr"
 					name="producto"
-					leyendaError="El nombre solo puede contener letras, numeros y espacios, y de 2 a 20 caracteres."
+					leyendaError="El nombre solo puede contener letras, números y espacios, y de 2 a 20 caracteres."
 					expresionRegular={expresiones.producto}
 				/>
 				
-                <Input
+        <Input
 					estado={precio}
 					cambiarEstado={cambiarPrecio}
 					tipo="text"
 					label="Precio de venta:*"
 					name="precio"
 					placeholder="23.00"
-					leyendaError="El precio solo puede contener numeros, un caracter especial (.) y dos decimales"
+					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
 					expresionRegular={expresiones.precio}
 				/>
 
@@ -150,11 +151,11 @@ export const NuevaOferta = () => {
 					label="Descripción*:"
 					name="descripcion"
 					placeholder="Di algo interesante de tu negocio"
-					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: _ - ! % ()"
+					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
 				
-				<div 
+				  <div 
               className='col' id= "calendar">
             <label 
               htmlFor="inicio">
@@ -190,28 +191,26 @@ export const NuevaOferta = () => {
               
               required 
               value={fin} 
-              onChange={(e) => cambiarFin(e.target.value)} />
+              onChange={(e) => cambiarFin(e.target.value)} 
+            />
             <br />
             
-            </div>
-            
-				{formularioValido === false && <MensajeError>
+          </div>
+          {formularioValido === false && <MensajeError>
 					<p>
 						<FontAwesomeIcon icon={faExclamationTriangle}/>
 						<b>Error:</b> Por favor rellena el formulario correctamente.
 					</p>
 				</MensajeError>}
+				
 				<ContenedorBotonCentrado>
 					<Boton id= "guardarP" type="submit"> Guardar </Boton>
-					{formularioValido === true && <MensajeExito>Nueva oferta guardada exitosamente!</MensajeExito>}
+					
 				
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
 				</ContenedorBotonCentrado>
 				
 			</Formulario>
-			<div>
-				
-				</div>
 
 		 
 		</main>

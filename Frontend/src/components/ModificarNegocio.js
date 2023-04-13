@@ -114,7 +114,7 @@ export const ModificarNegocio = () => {
 					label="Nombre del negocio*:"
 					placeholder="Super de todos"
 					name="nombre"
-					leyendaError="El nombre del negocio solo puede contener letras, numeros y espacios, y de 2 a 30 caracteres."
+					leyendaError="El nombre del negocio solo puede contener letras, números y espacios, y de 2 a 30 caracteres."
 					expresionRegular={expresiones.nombre}
 				/>
 				<Input
@@ -124,7 +124,7 @@ export const ModificarNegocio = () => {
 					label="Dirección del negocio*:"
 					placeholder="Av America N 290"
 					name="direccion"
-					leyendaError="La direccion solo puede contener numeros, letras y caracteres especiales como ser: # , . , y de 5 a 50 caracteres"
+					leyendaError="La dirección solo puede contener números, letras y caracteres especiales como ser: # , . , y un tamaño de 5 a 50 caracteres"
 					expresionRegular={expresiones.direccion}
 				/>
 				<Input
@@ -155,7 +155,7 @@ export const ModificarNegocio = () => {
 					label="Descripción*:"
 					name="descripcion"
 					placeholder="Di algo interesante de tu producto"
-					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: ! . , ( ) % #"
+					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: ! . , ( ) % #"
 					expresionRegular={expresiones.descripcion}
 				/>
 				<Input
@@ -165,7 +165,7 @@ export const ModificarNegocio = () => {
 					label="Teléfono*:"
 					placeholder="75982610"
 					name="numero"
-					leyendaError="El telefono solo puede tener 8 caracteres, y empezar con 6 o 7"
+					leyendaError="El telefono tiene un máximo de 8 caracteres, y empezar con 6 o 7"
 					expresionRegular={expresiones.numero}
 				/>
 

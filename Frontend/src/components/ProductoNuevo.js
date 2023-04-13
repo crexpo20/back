@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Component, useState} from 'react';
 import {Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError} from '../elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +10,8 @@ import configData from "../config/config.json";
 import axios from 'axios';
 import { useFormik, useField, useFormikContext } from "formik";
 
-
-export const ProductoNuevo = () => {
+export const ProductoNuevo = () =>{
+	
 
 	const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
 	const [open, setOpen] = React.useState(false);
@@ -26,10 +26,11 @@ export const ProductoNuevo = () => {
 	const [marca, cambiarMarca] = useState({campo: '', valido: null});
 	const [images, setImages] = useState([]);
 	const [formularioValido, cambiarFormularioValido] = useState(null);
-
+    
+	
 	const expresiones = {
 		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{9,98})$/, // Letras, numeros, guion y guion_bajo.
-		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
+		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,28})$/, // Letras y espacios, pueden llevar acentos.
 		marca: /^[a-zA-Z]{1,2}([a-zA-Z0-9\s]{1,13})$/, //para numeros y letras
 		codigo: /^\d{1,10}$/, // 1 a 10 numeros.
 		precio: /^[0-9]{1,4}(\.[0-9]{2})$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
@@ -76,10 +77,19 @@ export const ProductoNuevo = () => {
             }, 4000);
         },
     });*/
+	const state={
+		producto:'',
+		codigo:'',
+		marca:'',
+		descripcio:'',
+		categoria:'',
+		precio:'',
+	}
+
 	const onSubmit = async(e) => {
 		e.preventDefault();
 
-		/*if(
+		if(
 			producto.valido === 'true' &&
 			codigo.valido === 'true' &&
 			categoria.valido === 'true' &&
@@ -87,7 +97,7 @@ export const ProductoNuevo = () => {
 			precio.valido === 'true' &&
 			marca.valido === 'true'
 
-		){*/
+		){
 			const newProducto={
 				producto: this.state.producto,
 				codigo: this.state.codigo,
@@ -100,16 +110,17 @@ export const ProductoNuevo = () => {
 
 			await axios.post("http://127.0.0.1:8000/api/api_productos", newProducto);
 
-			/*cambiarFormularioValido(true);
+			cambiarFormularioValido(true);
 			cambiarProducto({campo: '', valido: ''});
 			cambiarCodigo({campo: '', valido: null});
 			cambiarCategoria({campo: '', valido: null});
-			cambiarDescripcion({campo: '', valido: 'null'});
+			cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
 			cambiarMarca({campo: '', valido: null});
+			window.alert('Producto modificado exitosamente');
 		} else {
 			cambiarFormularioValido(false);
-		}*/
+		}
 
 		
 	}
@@ -200,8 +211,9 @@ export const ProductoNuevo = () => {
 	 
 	 			
         <br/>
-			
-			
+		<head>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
+		</head>	
 			<ContenedorBotonCentrado><h1>Registro de Producto</h1></ContenedorBotonCentrado>
 			
 		
@@ -217,7 +229,7 @@ export const ProductoNuevo = () => {
 					label="Producto*:"
 					placeholder="Cereal en caja 500gr"
 					name="producto"
-					leyendaError="El nombre solo puede contener letras, numeros y espacios, y de 2 a 20 caracteres."
+					leyendaError="El nombre debe contener de 2 a 20 caracteres entre números letras y espacios,"
 					expresionRegular={expresiones.producto}
 				/>
 				<Input
@@ -227,7 +239,7 @@ export const ProductoNuevo = () => {
 					label="Código*:"
 					placeholder="283755"
 					name="codigo"
-					leyendaError="El codigo solo puede contener numeros."
+					leyendaError="El código solo puede contener números enteros positivos."
 					expresionRegular={expresiones.codigo}
 				/>
 				<Input
@@ -236,7 +248,7 @@ export const ProductoNuevo = () => {
 					tipo="text"
 					label="Categoría*:"
 					name="categoria"
-					leyendaError="La categoria solo debe ser una de las propuestas"
+					leyendaError="La categoría solo debe ser una de las propuestas"
 					expresionRegular={expresiones.categoria}
 				/>
 				
@@ -247,7 +259,7 @@ export const ProductoNuevo = () => {
 					label="Descripción*:"
 					name="descripcion"
 					placeholder="Di algo interesante de tu negocio"
-					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: _ - ! % ()"
+					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
 				<Input
@@ -257,7 +269,7 @@ export const ProductoNuevo = () => {
 					label="Precio de venta:*"
 					name="precio"
 					placeholder="23.00"
-					leyendaError="El precio solo puede contener numeros, un caracter especial (.) y dos decimales"
+					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
 					expresionRegular={expresiones.precio}
 				/>
 				<Input
@@ -267,7 +279,7 @@ export const ProductoNuevo = () => {
 					label="Marca*:"
 					placeholder="Pil andina"
 					name="marca"
-					leyendaError="La marca solo debe tener caracteres numericos y letras, y entre 3 a 15 caracteres"
+					leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 3 a 15 caracteres"
 					expresionRegular={expresiones.marca}
 				/>
 
@@ -277,7 +289,7 @@ export const ProductoNuevo = () => {
        				<div class="card">
             			<img id="img-preview"/>
             				<div class="card-footer">
-                				<input type="file" id="img-uploader" className='img-upload'></input>
+                				<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload' ></input>
                 				<progress id="img-upload-bar" value="0" max="100"></progress>
            					</div>
         			</div>
@@ -292,8 +304,7 @@ export const ProductoNuevo = () => {
 				
 				</MensajeError>}
 				<ContenedorBotonCentrado>
-					<Boton id= "guardarP" type="submit" onClick={onSubmit}> Guardar </Boton>
-					{formularioValido === true && <MensajeExito>Producto guardado exitosamente!</MensajeExito>}
+					<Boton id= "guardarP" type="submit"> Guardar </Boton>
 				
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
 				</ContenedorBotonCentrado>
