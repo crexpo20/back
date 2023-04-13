@@ -2,16 +2,23 @@ import React, { useState } from 'react'
 import '../css/ListaDeProducto.css';
 import iconoModificar from '../images/iconoModificar.png';
 import ModificarProducto from './ModificarProducto';
-
+import Button from '../elementos/Button';
+import ModalForm from './ModalForm';
 export const ListaDeProducto = () => {
     const items = ["Sprite 3L", "Pepsi 3L", "Fanta 3L","CocaCola 3L"];
     
-    const pulsarModificar = () => {
-        <ModificarProducto />
-      };
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpenModal = () => {
+      setIsOpen(true);
+    };
+  
+    const handleCloseModal = () => {
+      setIsOpen(false);
+    };
     return (
       <section class = "home">
-            <div id='lista' className='container'>
+            <div id='lista'>
             <h1 id='titulo'>Lista de Productos</h1>
             </div>
         <div className='row'>
@@ -25,9 +32,10 @@ export const ListaDeProducto = () => {
             <h3>{item}</h3>
             </div>
             <div className='col-4'>
-           <a onClick={pulsarModificar}>
-             <img id='icono' src={iconoModificar} alt="click aqui para modificar" />
-           </a>
+            
+            <Button onClick={handleOpenModal} className ='button'/>
+            <ModalForm isOpen={isOpen} onClose={handleCloseModal} />
+            
            </div>
            </div>
           </li>
