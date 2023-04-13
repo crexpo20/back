@@ -14,6 +14,8 @@ export const NuevaOferta = () => {
 	const [inicio, cambiarInicio] = useState({campo: '', valido: null});
 	const [fin, cambiarFin] = useState({campo: '', valido: null});
 	const [formularioValido, cambiarFormularioValido] = useState(null);
+
+  
     const today = new Date();
     const formattedDate = today.toISOString().slice(0, 10);
     const hoy = new Date();
@@ -27,7 +29,8 @@ export const NuevaOferta = () => {
 		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
 		//marca: /^[a-zA-Z0-9\s]{3,15}$/, //para numeros y letras
 		//codigo: /^\d{1,10}$/, // 1 a 10 numeros.
-		precio: /^[0-9]{1,4}(\.[0-9]{2})$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
+		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/
+    , // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
 	}
 
     /*const handleSubmit = (event) => {
