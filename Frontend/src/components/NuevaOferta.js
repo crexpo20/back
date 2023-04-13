@@ -14,6 +14,8 @@ export const NuevaOferta = () => {
 	const [inicio, cambiarInicio] = useState({campo: '', valido: null});
 	const [fin, cambiarFin] = useState({campo: '', valido: null});
 	const [formularioValido, cambiarFormularioValido] = useState(null);
+
+  
     const today = new Date();
     const formattedDate = today.toISOString().slice(0, 10);
     const hoy = new Date();
