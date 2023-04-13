@@ -16,12 +16,12 @@ export const ModificarNegocio = () => {
 	const [formularioValido, cambiarFormularioValido] = useState(null);
 
 	const expresiones = {
-		direccion: /^[a-zA-Z0-9.|,|#\s]{5,50}$/, // Letras, numeros, guion y guion_bajo.
-		propietario: /^[a-zA-ZÀ-ÿ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
-		descripcion: /^[a-zA-Z0-9!|.|,|(|)|%|#\s]{10,100}$/, //para numeros y letras
+		direccion: /^[a-zA-Z]{1,2}([a-zA-Z0-9.|,|#\s]{1,48})$/, // Letras, numeros, guion y guion_bajo.
+		propietario: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ\s]{1,28})$/, // Letras y espacios, pueden llevar acentos.
+		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9!|.|,|(|)|%|#\s]{9,98})$/, //para numeros y letras
 		numero: /^(\6|7)?[0-9]{8}$/, // numeros que inician con 6 o 7, y que son de 8 caracteres.
 		correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, //verificacion de correo
-        nombre: /^[a-zA-Z0-9\s]{2,20}$/, //para negocio
+        nombre: /^[a-zA-Z]{1,2}([a-zA-Z0-9\s]{1,28})$/, //para negocio
 	}
 
     /*const handleSubmit = (event) => {

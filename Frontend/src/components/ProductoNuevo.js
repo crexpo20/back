@@ -4,9 +4,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/Input';
 import '../css/estilos.css';
-import '../js/imagesLoad';
+//import 'imagesLoad';
 import { Modal } from 'react-bootstrap';
+import configData from "../config/config.json";
+import axios from 'axios';
+import { useFormik, useField, useFormikContext } from "formik";
+
+
 export const ProductoNuevo = () => {
+
+	const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
+	const [open, setOpen] = React.useState(false);
+	const [alertColor, setAlertColor] = useState('');
+	const [alertContent, setAlertContent] = useState('');
+
 	const [producto, cambiarProducto] = useState({campo: '', valido: null});
 	const [codigo, cambiarCodigo] = useState({campo: '', valido: null});
 	const [categoria, cambiarCategoria] = useState({campo: '', valido: null});
@@ -17,11 +28,12 @@ export const ProductoNuevo = () => {
 	const [formularioValido, cambiarFormularioValido] = useState(null);
 
 	const expresiones = {
-		descripcion: /^[a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{10,100}$/, // Letras, numeros, guion y guion_bajo.
-		producto: /^[a-zA-ZÀ-ÿ0-9\s]{2,20}$/, // Letras y espacios, pueden llevar acentos.
-		marca: /^[a-zA-Z0-9\s]{3,15}$/, //para numeros y letras
+		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{9,98})$/, // Letras, numeros, guion y guion_bajo.
+		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
+		marca: /^[a-zA-Z]{1,2}([a-zA-Z0-9\s]{1,13})$/, //para numeros y letras
 		codigo: /^\d{1,10}$/, // 1 a 10 numeros.
 		precio: /^[0-9]{1,4}(\.[0-9]{2})$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
+		categoria: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
 	}
 
     /*const handleSubmit = (event) => {
@@ -42,11 +54,32 @@ export const ProductoNuevo = () => {
         
         window.location.href = '/home';
       };*/
-      
-	const onSubmit = (e) => {
+	 /* const { handleSubmit, resetForm, values, touched} = useFormik({
+        initialValues: {
+            producto: '',
+            codigo: '',
+            categoria: '',
+            descripcion: '',
+            precio: '',
+			marca: '',
+        },
+
+        //validationSchema: formValidationSchema,
+
+        onSubmit: (values, { setSubmitting, resetForm }) => {
+            registrarProducto();
+
+            setSubmitting(true);
+            setTimeout(() => {
+                //resetForm();
+                setSubmitting(false);
+            }, 4000);
+        },
+    });*/
+	const onSubmit = async(e) => {
 		e.preventDefault();
 
-		if(
+		/*if(
 			producto.valido === 'true' &&
 			codigo.valido === 'true' &&
 			categoria.valido === 'true' &&
@@ -54,19 +87,29 @@ export const ProductoNuevo = () => {
 			precio.valido === 'true' &&
 			marca.valido === 'true'
 
-		){
-			cambiarFormularioValido(true);
+		){*/
+			const newProducto={
+				producto: this.state.producto,
+				codigo: this.state.codigo,
+				categoria: this.state.categoria,
+				descripcion: this.state.descripcion,
+				precio: this.state.precio,
+				marca: this.sate.marca
+				
+			}
+
+			await axios.post("http://127.0.0.1:8000/api/api_productos", newProducto);
+
+			/*cambiarFormularioValido(true);
 			cambiarProducto({campo: '', valido: ''});
 			cambiarCodigo({campo: '', valido: null});
 			cambiarCategoria({campo: '', valido: null});
 			cambiarDescripcion({campo: '', valido: 'null'});
 			cambiarPrecio({campo: '', valido: null});
 			cambiarMarca({campo: '', valido: null});
-
-			// ... 
 		} else {
 			cambiarFormularioValido(false);
-		}
+		}*/
 
 		
 	}
@@ -90,6 +133,64 @@ export const ProductoNuevo = () => {
 		cambiarMarca("");
 		window.location.href = '/home';
 	  };
+
+	  //Realizamos un POST a la API de productos en backend
+	/*const postProducto = async (url, datos) => {
+		const response = await fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(datos),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		return response;
+	}*/
+
+	//construimos una boleta con los datos introducidos
+
+	/*const registrarProducto = async () => {
+		const datos = {
+			"nombrepr": producto,
+			"marca": marca,
+			"descripcion": descripcion,
+			"precioVenta": precio,
+
+		}
+
+		console.log("Producto: ------> " + JSON.stringify(datos));
+
+		const respuestaJson = await postProducto(PRODUCTOS_URL, datos);
+		borrar();
+		//Validadando si se envio correctamente o hubo algun fallo
+		console.log("Response:------> " + respuestaJson.status);
+		if (respuestaJson.status === 200) {
+			setAlertColor("success");
+			setAlertContent(configData.MENSAJE_CREACION_DE_PRODUCTO_CON_EXITO);
+			setOpen(true);
+		}
+
+		if (respuestaJson.status === 400) {
+			var errorRes = await respuestaJson.json();
+			console.log("Error Response---" + JSON.stringify(errorRes));
+
+			if (errorRes.errorCode === "23505") {
+				setAlertColor("error");
+				setAlertContent(configData.MENSAJE_CREACION_DE_PRODUCTO_CON_CODIGO_TRANS_DUPLICADA);
+				setOpen(true);
+			}
+		}
+	}*/
+
+	function borrar() {
+        //document.getElementById("comprobantePago").value = "";
+        cambiarProducto("");
+		cambiarCodigo("");
+		cambiarCategoria("");
+		cambiarDescripcion("");
+		cambiarPrecio("");
+		cambiarMarca("");
+    }
 
 	return (
      <center>
@@ -171,12 +272,12 @@ export const ProductoNuevo = () => {
 				/>
 
 			     	
-				<div class="container">
+			    <div class="container">
         
        				<div class="card">
             			<img id="img-preview"/>
             				<div class="card-footer">
-                				<input type="file" id="img-uploader"/>
+                				<input type="file" id="img-uploader" className='img-upload'></input>
                 				<progress id="img-upload-bar" value="0" max="100"></progress>
            					</div>
         			</div>
@@ -191,7 +292,7 @@ export const ProductoNuevo = () => {
 				
 				</MensajeError>}
 				<ContenedorBotonCentrado>
-					<Boton id= "guardarP" type="submit"> Guardar </Boton>
+					<Boton id= "guardarP" type="submit" onClick={onSubmit}> Guardar </Boton>
 					{formularioValido === true && <MensajeExito>Producto guardado exitosamente!</MensajeExito>}
 				
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
