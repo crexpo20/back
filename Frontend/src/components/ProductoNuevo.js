@@ -33,7 +33,7 @@ export const ProductoNuevo = () =>{
 		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,28})$/, // Letras y espacios, pueden llevar acentos.
 		marca: /^[a-zA-Z]{1,2}([a-zA-Z0-9\s]{1,13})$/, //para numeros y letras
 		codigo: /^\d{1,10}$/, // 1 a 10 numeros.
-		precio: /^[0-9]{1,4}(\.[0-9]{2})$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
+		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
 		categoria: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
 	}
 
@@ -229,7 +229,7 @@ export const ProductoNuevo = () =>{
 					label="Producto*:"
 					placeholder="Cereal en caja 500gr"
 					name="producto"
-					leyendaError="El nombre debe contener de 2 a 20 caracteres entre números letras y espacios,"
+					leyendaError="El nombre debe contener de 2 a 20 caracteres entre números, letras y espacios."
 					expresionRegular={expresiones.producto}
 				/>
 				<Input
@@ -239,7 +239,7 @@ export const ProductoNuevo = () =>{
 					label="Código*:"
 					placeholder="283755"
 					name="codigo"
-					leyendaError="El código solo puede contener números enteros positivos."
+					leyendaError="El código solo puede contener números enteros positivos y un máximo de 10 dígitos."
 					expresionRegular={expresiones.codigo}
 				/>
 				<Input
@@ -248,7 +248,7 @@ export const ProductoNuevo = () =>{
 					tipo="text"
 					label="Categoría*:"
 					name="categoria"
-					leyendaError="La categoría solo debe ser una de las propuestas"
+					leyendaError="La categoría solo debe ser una de las propuestas."
 					expresionRegular={expresiones.categoria}
 				/>
 				
@@ -258,7 +258,7 @@ export const ProductoNuevo = () =>{
 					tipo="text"
 					label="Descripción*:"
 					name="descripcion"
-					placeholder="Di algo interesante de tu negocio"
+					placeholder="Di algo interesante de tu producto"
 					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
@@ -269,7 +269,7 @@ export const ProductoNuevo = () =>{
 					label="Precio de venta:*"
 					name="precio"
 					placeholder="23.00"
-					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
+					leyendaError="El precio solo puede contener números enteros o si se quiere ingresar un número decimal se puede poner un carácter especial (.) y dos decimales."
 					expresionRegular={expresiones.precio}
 				/>
 				<Input
@@ -279,7 +279,7 @@ export const ProductoNuevo = () =>{
 					label="Marca*:"
 					placeholder="Pil andina"
 					name="marca"
-					leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 3 a 15 caracteres"
+					leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
 					expresionRegular={expresiones.marca}
 				/>
 
@@ -289,7 +289,7 @@ export const ProductoNuevo = () =>{
        				<div class="card">
             			<img id="img-preview"/>
             				<div class="card-footer">
-                				<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload' ></input>
+                				<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload' required ></input>
                 				<progress id="img-upload-bar" value="0" max="100"></progress>
            					</div>
         			</div>

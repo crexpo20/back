@@ -26,7 +26,7 @@ export const NuevaOferta = () => {
 
 	const expresiones = {
 		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{9,98})$/, // Letras, numeros, guion y guion_bajo.
-		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
+		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,28})$/, // Letras y espacios, pueden llevar acentos.
 		//marca: /^[a-zA-Z0-9\s]{3,15}$/, //para numeros y letras
 		//codigo: /^\d{1,10}$/, // 1 a 10 numeros.
 		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/
@@ -94,10 +94,10 @@ export const NuevaOferta = () => {
         cambiarInicio("");
         cambiarFin("");
         cambiarDescripcion("");
-        window.alert('Acción realizada exitosamente');
+        window.alert('La oferta se registró con éxito');
         window.location.href = '/home';
 
-			// ... 
+			// ... //*ñiiñíñíñíñíñíñíñíñíñíñíñííññiñíñíñíñíñíñíñíñíñíníiññíñíñíñííñiññíñíñíñíñíñíiniññíiñíñiñiñiñiñiñiñiññíñí*/ */
 		} else {
 			cambiarFormularioValido(false);
 		}
@@ -143,7 +143,7 @@ export const NuevaOferta = () => {
 					label="Producto*:"
 					placeholder="Cereal en caja 500gr"
 					name="producto"
-					leyendaError="El nombre solo puede contener letras, números y espacios, y de 2 a 20 caracteres."
+					leyendaError="El producto solo puede contener letras, números y espacios, y de 2 a 30 caracteres."
 					expresionRegular={expresiones.producto}
 				/>
 				
@@ -154,7 +154,7 @@ export const NuevaOferta = () => {
 					label="Precio de venta:*"
 					name="precio"
 					placeholder="23.00"
-					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
+					leyendaError="El precio solo puede contener números enteros o si se quiere ingresar un número decimal se puede poner un carácter especial (.) y dos decimales."
 					expresionRegular={expresiones.precio}
 				/>
 
