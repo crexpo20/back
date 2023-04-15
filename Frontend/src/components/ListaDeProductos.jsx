@@ -23,9 +23,9 @@ export const ListaDeProducto = () => {
             <div id='lista'>
             <h1 id='titulo'>Lista de Productos</h1>
             </div>
-        <div className='row'>
-         <div className='col-2'></div>   
-         <div className='col-4' >
+        <div className='row' id='listap'>
+            
+         <div className='col' >
          
         <ul>
         {items.map((item, index) => (
@@ -45,9 +45,10 @@ export const ListaDeProducto = () => {
 
          ))}
        </ul> 
-       <button id="volverHome" onClick={Volver}>Volver</button>
+       
        </div>
-       </div>
+      
+       </div> <button id="volverHome" class="btn" onClick={Volver}>Volver</button>
        </section>
     )
 }
