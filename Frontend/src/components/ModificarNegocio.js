@@ -16,8 +16,8 @@ export const ModificarNegocio = () => {
 	const [formularioValido, cambiarFormularioValido] = useState(null);
 
 	const expresiones = {
-		direccion: /^[a-zA-Z]{1,2}([a-zA-Z0-9.|,|#\s]{1,48})$/, // Letras, numeros, guion y guion_bajo.
-		propietario: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ\s]{1,28})$/, // Letras y espacios, pueden llevar acentos.
+		direccion: /^[a-zA-Z]{1,2}([a-zA-Z0-9.|,|#\s]{14,48})$/, // Letras, numeros, guion y guion_bajo.
+		propietario: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ\s]{9,48})$/, // Letras y espacios, pueden llevar acentos.
 		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9!|.|,|(|)|%|#\s]{9,98})$/, //para numeros y letras
 		numero: /^(\6|7)?[0-9]{8}$/, // numeros que inician con 6 o 7, y que son de 8 caracteres.
 		correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, //verificacion de correo
@@ -114,7 +114,7 @@ export const ModificarNegocio = () => {
 					label="Nombre del negocio*:"
 					placeholder="Super de todos"
 					name="nombre"
-					leyendaError="El nombre del negocio solo puede contener letras, numeros y espacios, y de 2 a 30 caracteres."
+					leyendaError="El nombre del negocio solo puede contener letras, números y espacios, y de 2 a 30 caracteres."
 					expresionRegular={expresiones.nombre}
 				/>
 				<Input
@@ -124,7 +124,7 @@ export const ModificarNegocio = () => {
 					label="Dirección del negocio*:"
 					placeholder="Av America N 290"
 					name="direccion"
-					leyendaError="La direccion solo puede contener numeros, letras y caracteres especiales como ser: # , . , y de 5 a 50 caracteres"
+					leyendaError="La dirección solo puede contener números, letras y caracteres especiales como ser: # , . , y un tamaño de 15 a 50 caracteres."
 					expresionRegular={expresiones.direccion}
 				/>
 				<Input
@@ -133,7 +133,7 @@ export const ModificarNegocio = () => {
 					tipo="text"
 					label="Nombre del propietario*:"
 					name="propietario"
-					leyendaError="El nombre del propietario solo puede contener caracteres alfabeticos y un tamaño de 2 a 30 caracteres"
+					leyendaError="El nombre del propietario solo puede contener caracteres alfabéticos  y un tamaño de 10 a 50 caracteres."
 					expresionRegular={expresiones.propietario}
 				/>
 				
@@ -154,8 +154,8 @@ export const ModificarNegocio = () => {
 					tipo="text"
 					label="Descripción*:"
 					name="descripcion"
-					placeholder="Di algo interesante de tu producto"
-					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: ! . , ( ) % #"
+					placeholder="Di algo interesante de tu negocio"
+					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: ! . , ( ) % #"
 					expresionRegular={expresiones.descripcion}
 				/>
 				<Input
@@ -165,7 +165,7 @@ export const ModificarNegocio = () => {
 					label="Teléfono*:"
 					placeholder="75982610"
 					name="numero"
-					leyendaError="El telefono solo puede tener 8 caracteres, y empezar con 6 o 7"
+					leyendaError="El telefono tiene un máximo de 8 caracteres, y empezar con 6 o 7."
 					expresionRegular={expresiones.numero}
 				/>
 
@@ -177,7 +177,7 @@ export const ModificarNegocio = () => {
 				</MensajeError>}
 				<ContenedorBotonCentrado>
 					<Boton id= "guardarP" type="submit"> Guardar </Boton>
-					{formularioValido === true && <MensajeExito>Datos modificados exitosamente!</MensajeExito>}
+					{formularioValido === true && <MensajeExito>“La información del negocio se ha modificado de forma correctamente.</MensajeExito>}
 				
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
 				</ContenedorBotonCentrado>

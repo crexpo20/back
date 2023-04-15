@@ -26,7 +26,7 @@ export const NuevaOferta = () => {
 
 	const expresiones = {
 		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{9,98})$/, // Letras, numeros, guion y guion_bajo.
-		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
+		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,28})$/, // Letras y espacios, pueden llevar acentos.
 		//marca: /^[a-zA-Z0-9\s]{3,15}$/, //para numeros y letras
 		//codigo: /^\d{1,10}$/, // 1 a 10 numeros.
 		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/
@@ -57,17 +57,18 @@ export const NuevaOferta = () => {
 
 		if(
 			producto.valido === 'true' &&
-			inicio.valido === 'true' &&
-			fin.valido === 'true' &&
-			descripcion.valido === 'true' &&
-			precio.valido === 'true'
+      descripcion.valido === 'true' &&
+			precio.valido === 'true' &&
+			inicio != null &&
+			fin != null
+			
 		){
 			cambiarFormularioValido(true);
 			cambiarProducto({campo: '', valido: ''});
-			cambiarInicio({campo: '', valido: null});
-			cambiarFin({campo: '', valido: null});
-			cambiarDescripcion({campo: '', valido: 'null'});
+      cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
+			
+      window.alert('Nueva oferta guardada exitosamente');
 
 			// ... 
 		} else {
@@ -93,10 +94,10 @@ export const NuevaOferta = () => {
         cambiarInicio("");
         cambiarFin("");
         cambiarDescripcion("");
-        window.alert('Acción realizada exitosamente');
+        window.alert('La oferta se registró con éxito');
         window.location.href = '/home';
 
-			// ... 
+			// ... //*ñiiñíñíñíñíñíñíñíñíñíñíñííññiñíñíñíñíñíñíñíñíñíníiññíñíñíñííñiññíñíñíñíñíñíiniññíiñíñiñiñiñiñiñiñiññíñí*/ */
 		} else {
 			cambiarFormularioValido(false);
 		}
@@ -142,18 +143,18 @@ export const NuevaOferta = () => {
 					label="Producto*:"
 					placeholder="Cereal en caja 500gr"
 					name="producto"
-					leyendaError="El nombre solo puede contener letras, numeros y espacios, y de 2 a 20 caracteres."
+					leyendaError="El producto solo puede contener letras, números y espacios, y de 2 a 30 caracteres."
 					expresionRegular={expresiones.producto}
 				/>
 				
-                <Input
+        <Input
 					estado={precio}
 					cambiarEstado={cambiarPrecio}
 					tipo="text"
 					label="Precio de venta:*"
 					name="precio"
 					placeholder="23.00"
-					leyendaError="El precio solo puede contener numeros, un caracter especial (.) y dos decimales"
+					leyendaError="El precio solo puede contener números enteros o si se quiere ingresar un número decimal se puede poner un carácter especial (.) y dos decimales."
 					expresionRegular={expresiones.precio}
 				/>
 
@@ -164,11 +165,11 @@ export const NuevaOferta = () => {
 					label="Descripción*:"
 					name="descripcion"
 					placeholder="Di algo interesante de tu negocio"
-					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: _ - ! % ()"
+					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
 				
-				<div 
+				  <div 
               className='col' id= "calendar">
             <label 
               htmlFor="inicio">
@@ -204,28 +205,26 @@ export const NuevaOferta = () => {
               
               required 
               value={fin} 
-              onChange={(e) => cambiarFin(e.target.value)} />
+              onChange={(e) => cambiarFin(e.target.value)} 
+            />
             <br />
             
-            </div>
-            
-				{formularioValido === false && <MensajeError>
+          </div>
+          {formularioValido === false && <MensajeError>
 					<p>
 						<FontAwesomeIcon icon={faExclamationTriangle}/>
 						<b>Error:</b> Por favor rellena el formulario correctamente.
 					</p>
 				</MensajeError>}
+				
 				<ContenedorBotonCentrado>
+					<Boton id= "guardarP" type="submit"> Guardar </Boton>
 					
-					{formularioValido === true && <MensajeExito>Nueva oferta guardada exitosamente!</MensajeExito>}
-          <Boton id= "guardarP" type="submit"> Guardar </Boton>
+				
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
 				</ContenedorBotonCentrado>
 				
 			</Formulario>
-			<div>
-				
-				</div>
 
 		 
 		</main>

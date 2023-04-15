@@ -73,14 +73,11 @@ function ModalForm({ isOpen, onClose }) {
 		){
 			cambiarFormularioValido("");
       
-			cambiarProducto("");
-			cambiarPrecioCompra("");
-			cambiarCodigo("");
-			cambiarPrecioVenta("");
-			cambiarVencimiento("");
-			cambiarDescripcion("");
-			setImages("");
-           window.alert('Producto modificado exitosamente');
+			cambiarProducto({campo: '', valido: ''});
+			cambiarCodigo({campo: '', valido: null});
+			cambiarDescripcion({campo: '', valido: 'null'});
+			cambiarPrecioCompra({campo: '', valido: null});
+      window.alert('Producto modificado exitosamente');
 			onClose()
 
 			// ... 
@@ -110,7 +107,7 @@ function ModalForm({ isOpen, onClose }) {
 					label="Nombre*:"
 					placeholder="Cereal en caja 500gr"
 					name="producto"
-					leyendaError="El nombre solo puede contener letras, numeros y espacios, y de 2 a 20 caracteres."
+					leyendaError="El nombre solo puede contener letras, números y espacios, y un tamaño de 2 a 20 caracteres."
 					expresionRegular={expresiones.producto}
 				/>
 				<Input
@@ -120,7 +117,7 @@ function ModalForm({ isOpen, onClose }) {
 					label="Código de producto*:"
 					placeholder="283755"
 					name="codigo"
-					leyendaError="El codigo solo puede contener numeros."
+					leyendaError="El código solo puede contener números."
 					expresionRegular={expresiones.codigo}
 				/>
 				
@@ -130,7 +127,7 @@ function ModalForm({ isOpen, onClose }) {
 					tipo="text"
 					label="Descripción*:"
 					name="descripcion"
-					placeholder="Di algo interesante de tu producto"
+					placeholder="Di algo interesante de tu negocio"
 					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
@@ -141,7 +138,7 @@ function ModalForm({ isOpen, onClose }) {
 					label="Precio de venta:*"
 					name="precio"
 					placeholder="23.00"
-					leyendaError="El precio solo puede contener numeros, un caracter especial (.) y dos decimales"
+					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
 					expresionRegular={expresiones.precio}
 				/>
         <div  className='col' id= "calendar">
@@ -175,7 +172,7 @@ function ModalForm({ isOpen, onClose }) {
 					label="Precio de compra:*"
 					name="precio"
 					placeholder="23.00"
-					leyendaError="El precio solo puede contener numeros, un caracter especial (.) y dos decimales"
+					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
 					expresionRegular={expresiones.precio}
 				/>
 			     	
@@ -187,7 +184,7 @@ function ModalForm({ isOpen, onClose }) {
 					tipo="file"
 					label="Imagen:*"
 					name="imagen"
-					leyendaError="El precio solo puede contener numeros, un caracter especial (.) y dos decimales"
+					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
 					
 				/>
     			</div>
