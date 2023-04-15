@@ -16,6 +16,8 @@ export const ListaDeProducto = () => {
     const handleCloseModal = () => {
       setIsOpen(false);
     };
+    const Volver = () => {      window.location.href = '/home';
+  };
     return (
       <section class = "home">
             <div id='lista'>
@@ -24,6 +26,7 @@ export const ListaDeProducto = () => {
         <div className='row'>
          <div className='col-2'></div>   
          <div className='col-4' >
+         
         <ul>
         {items.map((item, index) => (
           <li id='elemento' key={index}>
@@ -41,7 +44,8 @@ export const ListaDeProducto = () => {
           </li>
 
          ))}
-       </ul>
+       </ul> 
+       <button id="volverHome" onClick={Volver}>Volver</button>
        </div>
        </div>
        </section>
