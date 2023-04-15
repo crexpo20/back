@@ -11,7 +11,7 @@ console.log("cuarta linea");
 const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/dymazwyut/image/upload`;
 const CLOUDINARY_UPLOAD_PRESET = `xsutmw9e`;
 console.log("cuarta linea");
-if(!imageUploader){
+if(imageUploader){
     console.log("adiosssss");
 imageUploader?.addEventListener('change', async (e) => {
     console.log("adiosssss");
@@ -41,7 +41,7 @@ imageUploader?.addEventListener('change', async (e) => {
 });
 }else{
     
-
+const imageUploader = document.getElementById('img-uploader');
     console.log("asdfgfhdgfh,");
 imageUploader?.addEventListener('change', async (e) => {
     console.log("cusbai");
