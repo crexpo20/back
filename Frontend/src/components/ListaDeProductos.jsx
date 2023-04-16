@@ -16,14 +16,17 @@ export const ListaDeProducto = () => {
     const handleCloseModal = () => {
       setIsOpen(false);
     };
+    const Volver = () => {      window.location.href = '/home';
+  };
     return (
       <section class = "home">
             <div id='lista'>
             <h1 id='titulo'>Lista de Productos</h1>
             </div>
-        <div className='row'>
-         <div className='col-2'></div>   
-         <div className='col-4' >
+        <div className='row' id='listap'>
+            
+         <div className='col' >
+         
         <ul>
         {items.map((item, index) => (
           <li id='elemento' key={index}>
@@ -41,9 +44,11 @@ export const ListaDeProducto = () => {
           </li>
 
          ))}
-       </ul>
+       </ul> 
+       
        </div>
-       </div>
+      
+       </div> <button id="volverHome" class="btn" onClick={Volver}>Volver</button>
        </section>
     )
 }
