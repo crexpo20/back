@@ -88,7 +88,7 @@ export const ProductoNuevo = () =>{
 
 	const onSubmit = async(e) => {
 		e.preventDefault();
-
+        console.log("sirvo");
 		if(
 			producto.valido === 'true' &&
 			codigo.valido === 'true' &&
@@ -97,10 +97,10 @@ export const ProductoNuevo = () =>{
 			precio.valido === 'true' &&
 			marca.valido === 'true'
 
-		){
+		){ /*mismo del controller*/
 			const newProducto={
 				producto: this.state.producto,
-				codigo: this.state.codigo,
+				codprod: this.state.codigo,
 				categoria: this.state.categoria,
 				descripcion: this.state.descripcion,
 				precio: this.state.precio,
@@ -318,10 +318,9 @@ export const ProductoNuevo = () =>{
 	
 		</main>
 		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-		<script src="imagesLoad.js"></script>
+		
        </div>
 		</center>
 	);
 }
  
-//export default ProductoNuevo;
