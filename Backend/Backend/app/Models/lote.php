@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class modeloLote extends Model
+class lote extends Model
 {
     use HasFactory;
     protected $table = 'lote';

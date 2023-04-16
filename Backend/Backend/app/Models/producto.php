@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class modeloProducto extends Model
+class producto extends Model
 {
     use HasFactory;
     protected $table = 'producto';
     protected $primaryKey = 'codprod';
-    protected $fillable = ['codcat','nombrepr','marca','descripcion','precioventa','cantidadtotal','image_path'];
+    protected $fillable = ['producto','marca','descripcion','precio','image'];
        
 
         public function categoria(){
-            return $this->hasOne(categoria::class,'codcat');
+            return $this->hasOne(categorias::class,'codcat');
         }
 }

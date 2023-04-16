@@ -11,9 +11,14 @@ class categoriaController extends Controller
    
     public function index()
     {
-        $sql = 'SELECT * FROM categoria';
-        $categoria = DB::select($sql);
-        return $categoria;
+        //$sql = 'SELECT * FROM categoria';
+       // $categoria = DB::select($sql);
+        //return $categoria;
+         // Obtener todos los productos de la base de datos
+         $categoria = categoria::all();
+
+         // Retornar los productos como respuesta
+         return response()->json(['productos' => $productos], 200);
     }
     /**
      * Store  
@@ -50,7 +55,19 @@ class categoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        $categoria = categoria::find($id);
+        // Encuentra la categoría por su ID
+        $categoria = categorias::find($id);
+         // Verifica si la categoría existe
+         if (!$categoria) {
+            return response()->json(['mensaje' => 'Categoría no encontrada'], 404);
+        }
+
+        // Realiza la eliminación
         $categoria->delete();
+
+        // Retorna una respuesta
+        return response()->json(['mensaje' => 'Categoría eliminada'], 200);
+        $categoria->delete();
+
     }
 }

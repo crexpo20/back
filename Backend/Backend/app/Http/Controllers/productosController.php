@@ -8,93 +8,148 @@ use Illuminate\Support\Facades\DB;
 
 class productosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        $sql = 'SELECT * FROM producto';
-        $producto = DB::select($sql);
-        return $producto;
+        // Obtener todos los productos de la base de datos
+        $productos = Productos::all();
+
+        // Retornar los productos como respuesta
+        return response()->json(['productos' => $productos], 200);
     }
 
-   
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        $rules = [
-            'Nombre de producto' => 'required|min:6|max:20',
-            'Código de producto' => 'required|min:1|max:6',
-            'Categoria' => 'required|min:1|max:6',
-            'Descripción' => 'required|min:25|max:100',
-            'Precio de Venta(bs)'=>'required|numeric|money',
-          //  'Precio de Compra(bs)'=>'required|numeric|money',
-            'Marca' => 'required|min:3|max:20',
-            'Imagen' => 'required|max:25',
-            //'Cantidad Total'=>'required|numeric',
+        // Validar los datos del formulario de creación
+        $rules=[
+            'producto' => 'required|min:2|max:30',
+            'marca'=>'required|min:2|max:15',
+            'descripcion'=>'required|min:25|max:100',
+            'precio'=>'required|max:7',
+            'image'=>'required|max:255',
+            'codcat'=>'required | exists:categorias,codcat'
         ];
-    
-        $validatedData = $request->validate($rules);
-    
-        $producto = new producto;
-        
-        $producto->nombre = $request->input( 'Nombre de producto');
-        $producto->codprod = $request->input('Código de producto');
-        $producto->categoria = $request->input('Categoria');
-        $producto->descripcion = $request->input('Descripción');
-        $producto->precioventa = $request->input('Precio de Venta(bs)');
-        //$producto->perciocompra= $request->input('Precio de Compra(bs)');
-        $producto->marca = $request->input('Marca');
-        // $producto->catidadtotal = $request->input('cantidad');
+        $request->validate($rules);
+        // Crear una nueva instancia del modelo Productos con los datos del formulario
+        $producto = new Productos([
+            'producto' => $request->input('producto'),
+            'marca' => $request->input('marca'),
+            'descripcion' => $request->input('descripcion'),
+            'precio' => $request->input('precio'),
+            'image' => $request->input('image'),
+            'codcat' => $request->input('codcat')
+        ]);
+
+        // Guardar el nuevo producto en la base de datos
         $producto->save();
+
+        // Retornar una respuesta de éxito
+        return response()->json(['mensaje' => 'Producto creado con éxito'], 201);
+    }
+
+
+    public function store(Request $request)
+{
+    // Validar los datos del formulario de creación
+    $rules=[
+        'producto' => 'required|min:2|max:30',
+        'marca'=>'required|min:2|max:15',
+        'descripcion'=>'required|min:25|max:100',
+        'precio'=>'required|max:7',
+        'image'=>'required|max:255',
+        'codcat'=>'required | exists:categorias,codcat'
+    ];
+    $request->validate($rules);
+    // Crear una nueva instancia del modelo Productos con los datos del formulario
+    $producto = new Productos([
+        'producto' => $request->input('producto'),
+        'marca' => $request->input('marca'),
+        'descripcion' => $request->input('descripcion'),
+        'precio' => $request->input('precio'),
+        'image' => $request->input('image'),
+        'codcat' => $request->input('codcat')
+    ]);
+
+    // Guardar el nuevo producto en la base de datos
+    $producto->save();
+
+    // Retornar una respuesta de éxito
+    return response()->json(['mensaje' => 'Producto creado con éxito'], 201);
+}
+
+public function update(Request $request, $id)
+{
+    // Validar los datos del formulario de actualización
+    $rules=[
+        'producto' => 'required|min:2|max:30',
+        'marca'=>'required|min:2|max:15',
+        'descripcion'=>'required|min:25|max:100',
+        'precio'=>'required|max:7',
+        'image'=>'required|max:255',
+        'codcat'=>'required | exists:categorias,codcat'
+    ];
+    $request->validate($rules);
+
+    // Buscar el producto existente en la base de datos por su ID
+    $producto = Productos::find($id);
+
+    if (!is_null($producto)) {
+
+     //$producto->update($request->all());
+
+    // Actualizar los datos del producto con los datos del formulario
+    $producto->producto = $request->input('producto');
+    $producto->marca = $request->input('marca');
+    $producto->descripcion = $request->input('descripcion');
+    $producto->precio = $request->input('precio');
+    $producto->image = $request->input('image');
+    $producto->codcat = $request->input('codcat');
+
+    // Guardar los cambios en la base de datos
+    $producto->save();
+
+    // Retornar una respuesta de éxito
+    return response()->json(['mensaje' => 'Producto actualizado con éxito'], 200);
+       
+    }
+    else{
+        return response()->json(['mensaje' => 'Producto no encontrado'], 404);
+    }
+
+    //$producto->update($request->all());
+
+    // Actualizar los datos del producto con los datos del formulario
+    $producto->producto = $request->input('producto');
+    $producto->marca = $request->input('marca');
+    $producto->descripcion = $request->input('descripcion');
+    $producto->precio = $request->input('precio');
+    $producto->image = $request->input('image');
+    $producto->codcat = $request->input('codcat');
+
+    // Guardar los cambios en la base de datos
+    $producto->save();
+
+    // Retornar una respuesta de éxito
+    return response()->json(['mensaje' => 'Producto actualizado con éxito'], 200);
+    }
+
     
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+        public function destroy(string $id)
     {
-        $sql = 'SELECT * FROM producto WHERE codprod = $id';
-        $producto = DB::select($sql);
-        return $producto;
+          // Encuentra la categoría por su ID
+        $productos = productos::find($id);
+         // Verifica si la categoría existe
+         if (!$productos) {
+            return response()->json(['mensaje' => 'Producto no encontrado'], 404);
+        }
+
+        // Realiza la eliminación
+        $productos->delete();
+
+        // Retorna una respuesta
+        return response()->json(['mensaje' => 'producto eliminado'], 200);
+        $productos->delete();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $nombrepr)
-    {
-        $prod = producto::findOrFail($nombrepr); // encontrar el usuario por el ID
-
-        $prod->nombre = $request->input( 'Nombre de producto');
-        $prod->codprod = $request->input('Código de producto');
-        $prod->categoria = $request->input('Categoria');
-        $prod->descripcion = $request->input('Descripción');
-        $prod->precioventa = $request->input('Precio de Venta(bs)');
-        $prod->perciocompra= $request->input('Precio de Compra(bs)');
-        $prod->marca = $request->input('Marca');
-    
-        $prod->save(); // guardar los cambios en la base de datos
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $prod = producto::find($id);
-        $prod->delete();
-    }
 }

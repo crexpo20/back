@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ofertas', function (Blueprint $table) {
             $table->string('codOferta', 5)->primary();
-            $table->string('codprod');
+            $table->integer('codprod');
             $table->foreign('codprod')->references('codprod')->on('producto');
             $table->string('descripcion');
             $table->date('fechaentrada');
