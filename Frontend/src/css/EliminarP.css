@@ -1,0 +1,39 @@
+#Eliminar{
+    background-color: #7868E6;
+    color: white;
+    height: 30px;
+	line-height: 5px;
+    width: 30%;
+    padding: 10px 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top:2.5%;
+    margin-left: 35%;
+    cursor: pointer;;
+    transition: .1s ease all;
+}
+
+  #Eliminar :hover {
+    box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+#borrar{
+    background-color:#A6A9B6;
+    border: none;
+    color: white;
+    height: 30px;
+	line-height: 5px;
+    width: 30%;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    justify-content: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: .1s ease all;
+}
