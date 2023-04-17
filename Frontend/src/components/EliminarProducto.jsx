@@ -57,9 +57,8 @@ export const EliminarProducto = () => {
   };
 
   return (
-    <center>
-    <head>
-		</head>
+    <center >
+    
     <div class = "home">
       {productoEliminado ? (
         <Modal show={productoEliminado} onHide={handleVolver}>
@@ -77,7 +76,7 @@ export const EliminarProducto = () => {
         </Modal>
       ) : (
         
-        <form className='container text-center' onSubmit={handleSubmit}>
+        <form className=' text-center' onSubmit={handleSubmit}>
           <br/>
 
 

@@ -145,6 +145,7 @@ export const NuevaOferta = () => {
 					name="producto"
 					leyendaError="El producto solo puede contener letras, números y espacios, y de 2 a 30 caracteres."
 					expresionRegular={expresiones.producto}
+          
 				/>
 				
         <Input
