@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import React, { useState } from 'react';
+import Modal from '@material-ui/core/Modal';
 const colores = {
 	borde: "#0075FF",
 	error: "#bb2929",
@@ -177,6 +178,27 @@ const MensajeError = styled.div`
 	}
 `;
 
+const ImageModal = ({ image , isOpen, onClose}) => {
+	const [open, setOpen] = useState(false);
+  
+	const handleOpen = () => {
+	  setOpen(true);
+	};
+  
+	const handleClose = () => {
+	  setOpen(false);
+	};
+  
+	return (
+	  <div>
+		<img src={image} alt="Imagen" onClick={handleOpen} />
+		<Modal open={open} onClose={handleClose}>
+		  <img src={image} alt="Imagen" />
+		</Modal>
+	  </div>
+	);
+  };
+  
 export {
 	Formulario,
 	Label,
