@@ -14,9 +14,10 @@ class categoria extends Model
     protected $table = 'categoria';
     protected $primaryKey = 'codcat';
     protected $fillable = ['nombrecat'];
+    public $timestamps = false;
 
     public function productos(){
-        return $this->belongsTo(productos::class,'codcat');
+        return $this->hasMany(productos::class,'codcat');
     }
     
 }

@@ -11,11 +11,11 @@ class productosController extends Controller
 
     public function index()
     {
-        // Obtener todos los productos de la base de datos
-        $productos = Productos::all();
+        // Obtener todos los producto de la base de datos
+        $producto = producto::all();
 
-        // Retornar los productos como respuesta
-        return response()->json(['productos' => $productos], 200);
+        // Retornar los producto como respuesta
+        return response()->json(['producto' => $producto], 200);
     }
 
     public function create(Request $request)
@@ -30,8 +30,8 @@ class productosController extends Controller
             'codcat'=>'required | exists:categorias,codcat'
         ];
         $request->validate($rules);
-        // Crear una nueva instancia del modelo Productos con los datos del formulario
-        $producto = new Productos([
+        // Crear una nueva instancia del modelo producto con los datos del formulario
+        $producto = new producto([
             'producto' => $request->input('producto'),
             'marca' => $request->input('marca'),
             'descripcion' => $request->input('descripcion'),
@@ -50,8 +50,11 @@ class productosController extends Controller
 
     public function store(Request $request)
 {
+    // el problema esta en tus reglas, solo controlas con las reglas, 
+    //no le mandas ni una respuesta y por eso hay un error 500, tinene que mandar algo si o si
+    //utiliza return response
     // Validar los datos del formulario de creación
-    $rules=[
+    /*$rules=[
         'producto' => 'required|min:2|max:30',
         'marca'=>'required|min:2|max:15',
         'descripcion'=>'required|min:25|max:100',
@@ -60,8 +63,11 @@ class productosController extends Controller
         'codcat'=>'required | exists:categorias,codcat'
     ];
     $request->validate($rules);
-    // Crear una nueva instancia del modelo Productos con los datos del formulario
-    $producto = new Productos([
+    */
+    //
+    // Crear una nueva instancia del modelo producto con los datos del formulario
+    //sin las reglas se pudo hacer el insert de datos
+    $producto = new producto([
         'producto' => $request->input('producto'),
         'marca' => $request->input('marca'),
         'descripcion' => $request->input('descripcion'),
@@ -91,7 +97,7 @@ public function update(Request $request, $id)
     $request->validate($rules);
 
     // Buscar el producto existente en la base de datos por su ID
-    $producto = Productos::find($id);
+    $producto = producto::find($id);
 
     if (!is_null($producto)) {
 
@@ -137,18 +143,18 @@ public function update(Request $request, $id)
         public function destroy(string $id)
     {
           // Encuentra la categoría por su ID
-        $productos = productos::find($id);
+        $producto = producto::find($id);
          // Verifica si la categoría existe
-         if (!$productos) {
+         if (!$producto) {
             return response()->json(['mensaje' => 'Producto no encontrado'], 404);
         }
 
         // Realiza la eliminación
-        $productos->delete();
+        $producto->delete();
 
         // Retorna una respuesta
         return response()->json(['mensaje' => 'producto eliminado'], 200);
-        $productos->delete();
+        $producto->delete();
     }
 
 

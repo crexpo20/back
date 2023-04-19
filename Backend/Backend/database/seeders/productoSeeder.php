@@ -15,7 +15,6 @@ class productoSeeder extends Seeder
     public function run(): void
     {
         DB::table('producto')->insert([
-            'codprod'=>'1',
             'codcat' =>'1',
             'nombrepr'=>'leche entera',
             'marca'=>'pil',

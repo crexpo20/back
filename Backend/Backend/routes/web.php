@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\categoriaController;
+use App\Http\Controllers\productosController;
+use App\Http\Controllers\lotesController;
+use App\Http\Controllers\tiendasController;
+use App\Http\Controllers\inventarioController;
+use App\Http\Controllers\ofertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +24,13 @@ use Illuminate\Support\Facades\Route;
     return view('vistaTienda',['Nombre'=>'Tita']);
 });
 */
+
 //RUTAS PARA INGRESAR, MODIFICAR, ELIMINAR TIENDA DESDE FORMULARIO
-Route::get('tienda', 'tiendasController@index');
-Route::post('tienda', 'tiendasController@store');
-Route::delete('tiendas/{codTienda}', 'tiendasController@destroy');
-Route::put('tiendas/{codTienda}', 'tiendasController@update');
+//Route::get('tienda', 'tiendasController@index');
+//Route::post('tienda', 'tiendasController@store');
+//Route::delete('tiendas/{codTienda}', 'tiendasController@destroy');
+//Route::put('tiendas/{codTienda}', 'tiendasController@update');
+/*
 //RUTAS PARA INGRESAR, MODIFICAR, ELIMINAR PRODUCTOS DESDE FORMULARIO
 Route::get('producto', 'productoController@index');
 Route::post('producto', 'productoController@store');
@@ -34,11 +42,11 @@ Route::get('categoria', 'categoriaController@index');
 Route::post('categoria', 'categoriaController@store');
 Route::delete('categoria/{id}', 'categoriaController@destroy');
 Route::put('categoria/{id}', 'categoriaController@update');
-
+/*
 //RUTAS PARA INGRESAR, MODIFICAR, ELIMINAR OFERTA DESDE FORMULAR
 Route::get('oferta','ofertaController@index');
 Route::post('oferta', 'ofertaController@store');
-Route::delete('oferta/{id}', 'ofertaontroller@destroy');
+Route::delete('oferta/{id}', 'ofertaController@destroy');
 Route::put('oferta/{id}', 'ofertaController@update');
 
 Route::get('lote', 'lotesController@index');
@@ -59,3 +67,4 @@ Route::put('/productos/{id}', 'ProductosController@update')->name('productos.upd
 
 // Ruta para eliminar un producto
 Route::delete('/productos/{id}', 'ProductosController@destroy')->name('productos.destroy');
+*/

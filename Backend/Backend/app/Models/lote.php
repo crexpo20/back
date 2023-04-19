@@ -12,6 +12,7 @@ class lote extends Model
     protected $table = 'lote';
     protected $primaryKey = 'codlote';
     protected $fillable = ['codprod','fechaentrada','fechavencimiento','cantidad',];
+    public $timestamps = false;
 
     public function lote(){
         return $this->hasOne(producto::class,'codprod');

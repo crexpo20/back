@@ -11,7 +11,7 @@ class tienda extends Model
     protected $table = 'tienda';
     protected $primaryKey = 'codtienda';
     protected $fillable = ['nombre','dirección','Numero','propietario','Descripcion','correo',];
-       
+    public $timestamps = false;
 
        
    

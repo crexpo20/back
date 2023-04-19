@@ -13,7 +13,8 @@ class oferta extends Model
     protected $table = 'oferta';
     protected $primaryKey = 'codoferta';
     protected $fillable = ['codprod','descripcion','fechaIni','fechaFin','precioVenta'];
-
+    public $timestamps = false;
+    
     public function oferta(){
         return $this->hasOne(producto::class,'codprod');
     }

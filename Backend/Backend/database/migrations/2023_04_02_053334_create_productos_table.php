@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('codcat');
             $table->foreign('codcat')->references('codcat')->on('categoria');
 
+
         });
     }
 

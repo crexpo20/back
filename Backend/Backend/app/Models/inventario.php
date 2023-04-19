@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class inventario extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $fillable = [
         'codInventario',
     ];

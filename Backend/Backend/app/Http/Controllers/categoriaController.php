@@ -18,7 +18,7 @@ class categoriaController extends Controller
          $categoria = categoria::all();
 
          // Retornar los productos como respuesta
-         return response()->json(['productos' => $productos], 200);
+         return $categoria;
     }
     /**
      * Store  
@@ -30,6 +30,19 @@ class categoriaController extends Controller
         return $categoria;
     }
 
+    public function create(Request $request)
+    {
+        
+        // Crear una nueva instancia del modelo producto con los datos del formulario
+        $categoria = new categoria([
+            'nombrecat' => $request->input('nombrecat'),
+            
+        ]);
+
+        // Guardar el nuevo producto en la base de datos
+        $categoria->save();
+        return $categoria; 
+    }
     /**
      * Display 
      */
@@ -56,7 +69,7 @@ class categoriaController extends Controller
     public function destroy(string $id)
     {
         // Encuentra la categoría por su ID
-        $categoria = categorias::find($id);
+        $categoria = categoria::find($id);
          // Verifica si la categoría existe
          if (!$categoria) {
             return response()->json(['mensaje' => 'Categoría no encontrada'], 404);
