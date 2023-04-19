@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import {ContenedorBotonCentrado} from '../elementos/Formularios';
 import '../css/EliminarP.css';
 //dentro de la funcion return va el codigo que se va a ejecutar
 export const EliminarProducto = () => {
@@ -59,12 +58,7 @@ export const EliminarProducto = () => {
   return (
     <center >
     
-    <div class = "home">
-   <section> <h1>Eliminar Producto</h1>
-    <br />
-    <p style={{textAlign:"justify"}} >Seleccione los productos que desea eliminar</p>
-     </section>
-     
+    <div class = "home">    
      <section>
       {productoEliminado ? (
         <Modal show={productoEliminado} onHide={handleVolver}>
@@ -84,13 +78,9 @@ export const EliminarProducto = () => {
         
         <form className=' text-center' onSubmit={handleSubmit}>
           <br/>
-
-
-          <ContenedorBotonCentrado><h1>Eliminar Producto</h1></ContenedorBotonCentrado>
-
+          <h1>Eliminar Producto</h1>
           <br/>
-
-          
+          <p style={{textAlign:"justify"}} >Seleccione los productos que desea eliminar</p>
           <div className='row align-items-start'>
             <div className='col'>
               <ul className='list-group'>
