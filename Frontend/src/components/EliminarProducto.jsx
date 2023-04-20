@@ -60,7 +60,8 @@ export const EliminarProducto = () => {
     <center >
     
     <div class = "home">
-   <section> <h1>Eliminar Producto</h1>
+   <section> 
+    <h1>Eliminar Producto</h1>
     <br />
     <p style={{textAlign:"justify"}} >Seleccione los productos que desea eliminar</p>
      </section>
@@ -86,9 +87,6 @@ export const EliminarProducto = () => {
           <br/>
 
 
-          <ContenedorBotonCentrado><h1>Eliminar Producto</h1></ContenedorBotonCentrado>
-
-          <br/>
 
           
           <div className='row align-items-start'>
