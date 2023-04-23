@@ -11,9 +11,7 @@ class inventarioController extends Controller
    
     public function index()
     {
-        $sql = 'SELECT * FROM inventario';
-        $inventario = DB::select($sql);
-        return $inventario;
+      
     }
     /**
      * Store a newly created resource in storage.

@@ -10,9 +10,7 @@ class tiendasController extends Controller
     
     public function index()
     {
-        $sql = 'SELECT * FROM tienda';
-        $tienda = DB::select($sql);
-        return $tienda;
+     
     }
 
     /**

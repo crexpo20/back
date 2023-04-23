@@ -86,7 +86,7 @@ export const ProductoNuevo = () =>{
 		descripcion: descripcion.campo,
 		precio: precio.campo,
 		image: "htts.sadfdgw.com",
-		codcat: categoria.campo,
+		codcat: 12,
 		
 	}
 
@@ -95,8 +95,10 @@ export const ProductoNuevo = () =>{
             method: 'POST',
             body: JSON.stringify(newProducto),
             headers: {
+				
                 'Content-Type': 'application/json'
             }
+			
         });
 
         return response;
@@ -115,18 +117,19 @@ export const ProductoNuevo = () =>{
 
 		){ /*mismo del controller*/
 			const newProducto={
+				//consul log
 				producto: producto.campo,
 				marca: marca.campo,
 				descripcion: descripcion.campo,
 				precio: precio.campo,
 				image: "htts.sadfdgw.com",
-				codcat: categoria.campo,
+				codcat: 2,
 				
 			}
 			/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
-			console.log("Response:------> " + respuestaJson.status);*/
-         
-			/*await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);*/
+			console.log("Response:------> " + respuestaJson.status);
+         */
+			await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);
 
 
 			cambiarFormularioValido(true);
@@ -227,6 +230,7 @@ export const ProductoNuevo = () =>{
      <center>
 		<head>
 		<meta http-equiv="Access-Control-Allow-Origin" content="http://localhost:3000/"/>
+		
 		</head>
 	 <div class="home">
 	 

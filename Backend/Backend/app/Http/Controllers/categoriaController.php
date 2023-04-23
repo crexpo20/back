@@ -11,9 +11,6 @@ class categoriaController extends Controller
    
     public function index()
     {
-        //$sql = 'SELECT * FROM categoria';
-       // $categoria = DB::select($sql);
-        //return $categoria;
          // Obtener todos los productos de la base de datos
          $categoria = categoria::all();
 
@@ -27,7 +24,7 @@ class categoriaController extends Controller
     {
         $categoria = new categoria ($request->all());
         $categoria->save();
-        return $categoria;
+        return redirect()->action([categoriaController::class, 'index']);
     }
 
     public function create(Request $request)
@@ -48,8 +45,7 @@ class categoriaController extends Controller
      */
     public function show(string $id)
     {
-        $sql = 'SELECT * FROM categoria WHERE codcat = $id';
-        $categoria = DB::select($sql);
+        $categoria =  categoria::find($id);
         return $categoria;
     }
 

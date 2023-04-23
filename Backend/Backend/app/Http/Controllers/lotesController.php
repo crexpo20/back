@@ -11,9 +11,7 @@ class lotesController extends Controller
 
     public function index()
     {
-        $sql = 'SELECT * FROM lote';
-        $lote = DB::select($sql);
-        return $lote;
+    
     }
     
     /**

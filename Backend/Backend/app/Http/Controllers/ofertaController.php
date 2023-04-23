@@ -53,7 +53,8 @@ class ofertaController extends Controller
      */
     public function show(string $id)
     {
-        return oferta::find($id);
+        $oferta = $this->oferta->obtenerAlumnoPorId($id);
+        return view('alumnos.ver', ['alumno' => $alumno]);
     }
 
     /**
