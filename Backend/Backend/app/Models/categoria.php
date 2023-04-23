@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\DB;
 class categoria extends Model
 {
     use HasFactory;
-
-    
     protected $table = 'categoria';
     protected $primaryKey = 'codcat';
     protected $fillable = ['nombrecat'];

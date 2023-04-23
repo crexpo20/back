@@ -43,8 +43,8 @@ Route::resource('api_inventarios',inventarioController::class);
 //RUTAS PARA INGRESAR, MODIFICAR, ELIMINAR TIENDA DESDE FORMULARIO
 Route::get('/getTiendas', [tiendasController::class,'index']);
 Route::post('/postTiendas', [tiendasController::class,'store']);
-Route::delete('/delTiendas/{codTienda}', [tiendasController::class,'destroy']);
-Route::put('/putTiendas/{codTienda}', [tiendasController::class,'update']);
+Route::delete('/delTiendas/{codtienda}', [tiendasController::class,'destroy']);
+Route::put('/putTiendas/{codtienda}', [tiendasController::class,'update']);
 
 //RUTAS PARA INGRESAR, MODIFICAR, ELIMINAR PRODUCTOS DESDE FORMULARIO
 Route::get('getProductos',[productosController::class,'index']);
