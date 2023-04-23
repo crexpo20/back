@@ -86,7 +86,7 @@ class productosController extends Controller
 public function update(Request $request, $id)
 {
     // Validar los datos del formulario de actualización
-   /* $rules=[
+    $rules=[
         'producto' => 'required|min:2|max:30',
         'marca'=>'required|min:2|max:15',
         'descripcion'=>'required|min:25|max:100',
@@ -94,7 +94,7 @@ public function update(Request $request, $id)
         'image'=>'required|max:255',
         'codcat'=>'required | exists:categorias,codcat'
     ];
-    $request->validate($rules);*/
+    $request->validate($rules);
 
     // Buscar el producto existente en la base de datos por su ID
     $producto = producto::find($id);
@@ -125,7 +125,19 @@ public function update(Request $request, $id)
     //$producto->update($request->all());
 
     // Actualizar los datos del producto con los datos del formulario
- }
+    $producto->producto = $request->input('producto');
+    $producto->marca = $request->input('marca');
+    $producto->descripcion = $request->input('descripcion');
+    $producto->precio = $request->input('precio');
+    $producto->image = $request->input('image');
+    $producto->codcat = $request->input('codcat');
+
+    // Guardar los cambios en la base de datos
+    $producto->save();
+
+    // Retornar una respuesta de éxito
+    return response()->json(['mensaje' => 'Producto actualizado con éxito'], 200);
+    }
 
     
         public function destroy(string $id)
@@ -142,7 +154,6 @@ public function update(Request $request, $id)
 
         // Retorna una respuesta
         return response()->json(['mensaje' => 'producto eliminado'], 200);
-        $producto->delete();
     }
 
 

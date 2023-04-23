@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ofertas', function (Blueprint $table) {
-            $table->string('codOferta', 5)->primary();
-            $table->integer('codprod');
+        Schema::create('oferta', function (Blueprint $table) {
+            $table->id();
+            $table->string('producto');
+            $table->unsignedBigInteger('codprod');
             $table->foreign('codprod')->references('codprod')->on('producto');
-            $table->string('descripcion');
-            $table->date('fechaentrada');
-            $table->date('fechavencimiento');
-            $table->unsignedInteger('precioVenta');
+            $table->string('precioferta');
+            $table->string('descripción');
+            $table->date('fechainicio');
+            $table->date('fechafin');
+
+
+
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ofertas');
+        Schema::dropIfExists('oferta');
     }
 };
