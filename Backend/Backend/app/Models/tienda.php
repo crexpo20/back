@@ -10,7 +10,7 @@ class tienda extends Model
     use HasFactory;
     protected $table = 'tienda';
     protected $primaryKey = 'codtienda';
-    protected $fillable = ['nombre','dirección','Numero','propietario','Descripcion','correo'];
+    protected $fillable = ['nombre','dirección','Numero','propietario','Descripcion','correo',];
     public $timestamps = false;
 
        

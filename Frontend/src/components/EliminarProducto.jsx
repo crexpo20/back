@@ -58,7 +58,13 @@ export const EliminarProducto = () => {
   return (
     <center >
     
-    <div class = "home">    
+    <div class = "home">
+   <section> 
+    <h1>Eliminar Producto</h1>
+    <br />
+    <p style={{textAlign:"justify"}} >Seleccione los productos que desea eliminar</p>
+     </section>
+     
      <section>
       {productoEliminado ? (
         <Modal show={productoEliminado} onHide={handleVolver}>
@@ -78,9 +84,10 @@ export const EliminarProducto = () => {
         
         <form className=' text-center' onSubmit={handleSubmit}>
           <br/>
-          <h1>Eliminar Producto</h1>
-          <br/>
-          <p style={{textAlign:"justify"}} >Seleccione los productos que desea eliminar</p>
+
+
+
+          
           <div className='row align-items-start'>
             <div className='col'>
               <ul className='list-group'>

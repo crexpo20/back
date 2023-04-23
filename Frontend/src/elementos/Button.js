@@ -1,9 +1,25 @@
-import React from "react";
+import {React,  useState } from "react";
 import iconoModificar from '../images/iconoModificar.png';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import NoteAltIcon from '@mui/icons-material/NoteAlt';
+
 function Button({ onClick }) {
   return (
     <a onClick={onClick}>
-    <img id='icono' src={iconoModificar} alt="click aqui para modificar" />
+      <NoteAltIcon/>
+   
+    </a>
+    
+  );
+}
+
+function ButtonStock({ onClick}) {
+  
+  
+  return (
+    <a onClick={onClick}>
+      <AddCircleOutlineIcon/>
+     
     </a>
     
   );

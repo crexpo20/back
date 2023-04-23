@@ -4,9 +4,16 @@ import iconoModificar from '../images/iconoModificar.png';
 import ModificarProducto from './ModificarProducto';
 import Button from '../elementos/Button';
 import ModalForm from './ModalForm';
+import Stock from './Stock';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 export const ListaDeProducto = () => {
     const items = ["Sprite 3L", "Pepsi 3L", "Fanta 3L","CocaCola 3L"];
-    
+    const [showModal, setShowModal] = useState(false);
+
+    const OpenModal = () => {
+       setShowModal(true);
+      };
+
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenModal = () => {
@@ -18,6 +25,7 @@ export const ListaDeProducto = () => {
     };
     const Volver = () => {      window.location.href = '/home';
   };
+  
     return (
       <section class = "home">
             <div id='lista'>
@@ -38,7 +46,8 @@ export const ListaDeProducto = () => {
             
             <Button onClick={handleOpenModal} className ='button'/>
             <ModalForm isOpen={isOpen} onClose={handleCloseModal} />
-            
+            <a onClick={OpenModal} > <AddCircleOutlineIcon/> </a>
+              {showModal && <Stock onClose={() => setShowModal(false)} />}
            </div>
            </div>
           </li>

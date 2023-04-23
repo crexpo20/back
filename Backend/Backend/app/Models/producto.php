@@ -10,7 +10,7 @@ class producto extends Model
     use HasFactory;
     protected $table = 'producto';
     protected $primaryKey = 'codprod';
-    protected $fillable = ['producto','marca','descripcion','precio','image','codcat'];
+    protected $fillable = ['producto','marca','descripcion','precio','imagen','codcat'];
     public $timestamps = false;
 
         public function categoria(){
