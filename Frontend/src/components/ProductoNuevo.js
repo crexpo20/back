@@ -10,14 +10,15 @@ import configData from "../config/config.json";
 import axios from 'axios';
 import { useFormik, useField, useFormikContext } from "formik";
 
+
 export const ProductoNuevo = () =>{
 	
 
-	const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
+	//const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
 	const [open, setOpen] = React.useState(false);
 	const [alertColor, setAlertColor] = useState('');
 	const [alertContent, setAlertContent] = useState('');
-
+    //variables de entrada: campo: "valor" , null "validacion de formulario"
 	const [producto, cambiarProducto] = useState({campo: '', valido: null});
 	const [codigo, cambiarCodigo] = useState({campo: '', valido: null});
 	const [categoria, cambiarCategoria] = useState({campo: '', valido: null});
@@ -26,7 +27,8 @@ export const ProductoNuevo = () =>{
 	const [marca, cambiarMarca] = useState({campo: '', valido: null});
 	const [images, setImages] = useState([]);
 	const [formularioValido, cambiarFormularioValido] = useState(null);
-    
+	
+    const URL_PRODUCTO = "http://127.0.0.1:8000/api/postProductos";
 	
 	const expresiones = {
 		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{9,98})$/, // Letras, numeros, guion y guion_bajo.
@@ -77,18 +79,32 @@ export const ProductoNuevo = () =>{
             }, 4000);
         },
     });*/
-	const state={
-		producto:'',
-		codigo:'',
-		marca:'',
-		descripcio:'',
-		categoria:'',
-		precio:'',
+	// asignacion de variables de entrada a variable de BD
+	const newProducto={
+		producto: producto.campo,
+		marca: marca.campo,
+		descripcion: descripcion.campo,
+		precio: precio.campo,
+		image: "htts.sadfdgw.com",
+		codcat: categoria.campo,
+		
 	}
 
+	const postProducto = async (url, newProducto) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(newProducto),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response;
+    }
+
+	
 	const onSubmit = async(e) => {
 		e.preventDefault();
-        console.log("sirvo");
 		if(
 			producto.valido === 'true' &&
 			codigo.valido === 'true' &&
@@ -99,16 +115,19 @@ export const ProductoNuevo = () =>{
 
 		){ /*mismo del controller*/
 			const newProducto={
-				producto: this.state.producto,
-				codprod: this.state.codigo,
-				categoria: this.state.categoria,
-				descripcion: this.state.descripcion,
-				precio: this.state.precio,
-				marca: this.sate.marca
+				producto: producto.campo,
+				marca: marca.campo,
+				descripcion: descripcion.campo,
+				precio: precio.campo,
+				image: "htts.sadfdgw.com",
+				codcat: categoria.campo,
 				
 			}
+			/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
+			console.log("Response:------> " + respuestaJson.status);*/
+         
+			/*await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);*/
 
-			await axios.post("http://127.0.0.1:8000/api/api_productos", newProducto);
 
 			cambiarFormularioValido(true);
 			cambiarProducto({campo: '', valido: ''});
@@ -117,7 +136,8 @@ export const ProductoNuevo = () =>{
 			cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
 			cambiarMarca({campo: '', valido: null});
-			window.alert('Producto modificado exitosamente');
+            
+			window.alert('¡Producto guardado exitosamente!');
 		} else {
 			cambiarFormularioValido(false);
 		}
@@ -206,6 +226,7 @@ export const ProductoNuevo = () =>{
 	return (
      <center>
 		<head>
+		<meta http-equiv="Access-Control-Allow-Origin" content="http://localhost:3000/"/>
 		</head>
 	 <div class="home">
 	 
@@ -304,7 +325,7 @@ export const ProductoNuevo = () =>{
 				
 				</MensajeError>}
 				<ContenedorBotonCentrado>
-					<Boton id= "guardarP" type="submit"> Guardar </Boton>
+					<Boton id= "guardarP" type="submit" onClick={onSubmit}> Guardar </Boton>
 				
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
 				</ContenedorBotonCentrado>
