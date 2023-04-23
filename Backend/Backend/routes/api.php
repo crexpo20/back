@@ -48,7 +48,7 @@ Route::put('/putTiendas/{codTienda}', [tiendasController::class,'update']);
 
 //RUTAS PARA INGRESAR, MODIFICAR, ELIMINAR PRODUCTOS DESDE FORMULARIO
 Route::get('getProductos',[productosController::class,'index']);
-Route::post('PostProductos', [productosController::class,'store']);
+Route::post('postProductos', [productosController::class,'store']);
 Route::delete('delProductos/{codprod}', [productosController::class,'destroy']);
 Route::put('putProductos/{codprod}', [productosController::class,'update']);
 
