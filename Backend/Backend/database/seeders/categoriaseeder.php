@@ -15,7 +15,7 @@ class categoriaseeder extends Seeder
     public function run(): void
     {
         DB::table('categoria')->insert([
-           'nombrecat' =>'lacteos',        
+           'nombrecat' =>'abarrotes',        
         ]);
 
         DB::table('categoria')->insert([
@@ -39,15 +39,11 @@ class categoriaseeder extends Seeder
          ]);
 
          DB::table('categoria')->insert([
-            'nombrecat' =>'snacks',        
+            'nombrecat' =>'farmacos',        
          ]);
 
          DB::table('categoria')->insert([
-            'nombrecat' =>'Farmacos',        
-         ]);
-
-         DB::table('categoria')->insert([
-            'nombrecat' =>'Fiambres y embutidos',        
+            'nombrecat' =>'fiambres y embutidos',        
          ]);
 
          DB::table('categoria')->insert([
@@ -59,7 +55,15 @@ class categoriaseeder extends Seeder
          ]);
 
          DB::table('categoria')->insert([
+            'nombrecat' =>'lacteos',        
+         ]);
+
+         DB::table('categoria')->insert([
             'nombrecat' =>'panaderia',        
+         ]);
+
+         DB::table('categoria')->insert([
+            'nombrecat' =>'snaks',        
          ]);
 
          DB::table('categoria')->insert([
