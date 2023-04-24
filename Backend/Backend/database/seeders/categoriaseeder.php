@@ -15,44 +15,49 @@ class categoriaseeder extends Seeder
     public function run(): void
     {
         DB::table('categoria')->insert([
-            
-            'codcat' => '1',
-           'nombrecat' =>'lacteo',        
+           'nombrecat' =>'lacteos',        
         ]);
 
         DB::table('categoria')->insert([
-            
-            'codcat' => '2',
-            'nombrecat' =>'bebida',
+        
+            'nombrecat' =>'bebidas',
        
         ]);
 
         DB::table('categoria')->insert([
             
-            'codcat' => '3',
-            'nombrecat' =>'snack',        
+            'nombrecat' =>'Bebidas alcoholicas',        
         ]);
 
         DB::table('categoria')->insert([
             
-            'codcat' => '4',
-            'nombrecat' =>'embutido',     
-        ]);           
+            'nombrecat' =>'Cuidado personal',     
+        ]);    
+        
+        DB::table('categoria')->insert([
+            'nombrecat' =>'Enlatados',        
+         ]);
+
+         DB::table('categoria')->insert([
+            'nombrecat' =>'Enlatados',        
+         ]);
+
+         DB::table('categoria')->insert([
+            'nombrecat' =>'Farmacos',        
+         ]);
+
+         DB::table('categoria')->insert([
+            'nombrecat' =>'Fiambres y embutidos',        
+         ]);
+
+         DB::table('categoria')->insert([
+            'nombrecat' =>'golosinas',        
+         ]);
+
+         DB::table('categoria')->insert([
+            'nombrecat' =>'Limpieza del hogar',        
+         ]);
     }
 }
-/*
-  $categoria1 = new categoria();
-            $categoria1 -> codcat = '2';
-            $categoria1 -> nombrecat = 'bebida';
-            $categoria1 -> save();
-    
-            $categoria2 = new categoria();
-            $categoria2 -> codcat = '3';
-            $categoria2 -> nombrecat = 'snack';
-            $categoria2 -> save();
-    
-            $categoria3 = new categoria();
-            $categoria3 -> codcat = '4';
-            $categoria3 -> nombrecat = 'embutido';
-            $categoria3 -> save();
-            */
+
+  

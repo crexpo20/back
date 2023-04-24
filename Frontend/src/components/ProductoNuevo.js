@@ -123,7 +123,7 @@ export const ProductoNuevo = () =>{
 				descripcion: descripcion.campo,
 				precio: precio.campo,
 				image: "htts.sadfdgw.com",
-				codcat: 2,
+				codcat: 2285,
 				
 			}
 			/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);

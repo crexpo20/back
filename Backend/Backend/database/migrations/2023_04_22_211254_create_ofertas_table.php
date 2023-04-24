@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('oferta', function (Blueprint $table) {
-            $table->id();
-            $table->string('producto');
+            $table->id('codoferta');
+           // $table->string('producto');
             $table->unsignedBigInteger('codprod');
             $table->foreign('codprod')->references('codprod')->on('producto');
-            $table->string('precioferta');
-            $table->string('descripción');
-            $table->date('fechainicio');
+            $table->string('descripcion');
+            $table->date('fechaini');
             $table->date('fechafin');
-
+            $table->string('precioventa');
 
 
         });
