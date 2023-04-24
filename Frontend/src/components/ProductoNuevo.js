@@ -28,6 +28,7 @@ export const ProductoNuevo = () =>{
 	const [images, setImages] = useState([]);
 	const [formularioValido, cambiarFormularioValido] = useState(null);
 	const imagePreview = document.getElementById('img-preview');
+	const select_cat = document.getElementById("select_categorias");
 	
     const URL_PRODUCTO = "http://127.0.0.1:8000/api/postProductos";
 	
@@ -104,7 +105,62 @@ export const ProductoNuevo = () =>{
 
         return response;
     }
-
+	
+	function cod_cat(){
+		if(select_cat.value == "2"){
+			return 2;
+		}else{
+			if(select_cat.value == "3"){
+				return 3;
+			}else{
+				if(select_cat.value == "4"){
+					return 4;
+				}else{
+					if(select_cat.value == "5"){
+						return 5;
+					}else{
+						if(select_cat.value == "6"){
+							return 6;
+						}else{
+							if(select_cat.value == "7"){
+								return 7;
+							}else{
+								if(select_cat.value == "8"){
+									return 8;
+								}else{
+									if(select_cat.value == "9"){
+										return 9;
+									}else{
+										if(select_cat.value == "10"){
+											return 10;
+										}else{
+											if(select_cat.value == "11"){
+												return 11;
+											}else{
+												if(select_cat.value == "12"){
+													return 12;
+												}else{
+													if(select_cat.value == "13"){
+														return 13;
+													}else{
+														if(select_cat.value == "1"){
+															return 1;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}	
+		}
+	}
+	
+	
 	
 	const onSubmit = async(e) => {
 		e.preventDefault();
@@ -112,7 +168,7 @@ export const ProductoNuevo = () =>{
 		if(
 			producto.valido === 'true' &&
 			codigo.valido === 'true' &&
-			categoria.valido === 'true' &&
+			//categoria.valido === 'true' &&
 			descripcion.valido === 'true' &&
 			precio.valido === 'true' &&
 			marca.valido === 'true'
@@ -125,7 +181,8 @@ export const ProductoNuevo = () =>{
 				descripcion: descripcion.campo,
 				precio: precio.campo,
 				image: imagePreview.src,
-				codcat: 1,
+				
+				codcat: cod_cat(),
 				
 			}
 			/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
@@ -137,7 +194,7 @@ export const ProductoNuevo = () =>{
 			cambiarFormularioValido(true);
 			cambiarProducto({campo: '', valido: ''});
 			cambiarCodigo({campo: '', valido: null});
-			cambiarCategoria({campo: '', valido: null});
+           
 			cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
 			cambiarMarca({campo: '', valido: null});
@@ -221,7 +278,7 @@ export const ProductoNuevo = () =>{
 	function borrar() {
         //document.getElementById("comprobantePago").value = "";
         cambiarProducto("");
-		cambiarCodigo("");
+		//cambiarCodigo("");
 		cambiarCategoria("");
 		cambiarDescripcion("");
 		cambiarPrecio("");
@@ -246,7 +303,7 @@ export const ProductoNuevo = () =>{
 		
 			
           <br/>
-
+        
 		<main>
 			<Formulario action="" onSubmit={onSubmit}>
 				<Input
@@ -269,15 +326,32 @@ export const ProductoNuevo = () =>{
 					leyendaError="El código solo puede contener números enteros positivos y un máximo de 10 dígitos."
 					expresionRegular={expresiones.codigo}
 				/>
-				<Input
-					estado={categoria}
-					cambiarEstado={cambiarCategoria}
-					tipo="text"
-					label="Categoría*:"
-					name="categoria"
-					leyendaError="La categoría solo debe ser una de las propuestas."
-					expresionRegular={expresiones.categoria}
-				/>
+				<div>
+					<label id = "label_cat"><b>
+						Categoría*:
+	   				</b></label>
+
+					<select name="select" id = "select_categorias"
+
+					>
+						<option  id = "valor_inicial" value="" disabled selected>Seleccione la categoría:</option>
+
+  						<option value="1">Abarrotes</option>
+ 						<option value="2">Bebidas</option>
+						<option value="3">Bebidas Alcoholicas</option>
+  						<option value="4">Cuidado personal</option>
+  						<option value="5">Enlatados</option>
+  						<option value= "6">Farmacos</option>
+  						<option value="7">Fiambres y embutidos</option>
+  						<option value="8">Golosinas</option>
+  						<option value="9">Limpieza del hogar</option>
+  						<option value="10">Lacteos</option>
+  						<option value="11">Panaderia</option>
+  						<option value="12">Snacks</option>
+  						<option value="13">Varios</option>
+					</select>
+				</div>
+
 				
 				<Input
 					estado={descripcion}
@@ -309,10 +383,10 @@ export const ProductoNuevo = () =>{
 					leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
 					expresionRegular={expresiones.marca}
 				/>
-
-			     	
+		
+			    	
 			    <div class="container">
-        
+				<center>
        				<div class="card">
             			<img id="img-preview"/>
             				<div class="card-footer">
@@ -320,8 +394,9 @@ export const ProductoNuevo = () =>{
                 				<progress id="img-upload-bar" value="0" max="100"></progress>
            					</div>
         			</div>
-
+				</center>
     			</div>
+				 
 
 				{formularioValido === false && <MensajeError>
 					<p>
