@@ -1,24 +1,17 @@
 import React, { useState } from "react";
-import {FormularioModificarProducto,} from '../elementos/MiniForm';
-
 
 function Stock({ onClose, producto }) {
   const [cantidad, setCantidad] = useState(1);
   const [precioCompra, setPrecioCompra] = useState(0);
   const [fechaVencimiento, setFechaVencimiento] = useState('');
 
-
-
   const today = new Date();
   const formattedDate = today.toISOString().slice(0, 10);
   const hoy = new Date();
-
-  // Agregar un año a la fecha actual
   const maxFecha = new Date(hoy.getFullYear() + 1, hoy.getMonth(), hoy.getDate()).toISOString().split('T')[0];
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Lógica para enviar el formulario
     onClose();
   };
 
@@ -40,7 +33,7 @@ function Stock({ onClose, producto }) {
         <header>
           <h4>{producto}</h4>
         </header>
-        <FormularioModificarProducto action="" onSubmit={handleSubmit}>
+        <form action="" onSubmit={handleSubmit}>
             
             <label 
               htmlFor="cantidad">
@@ -108,7 +101,7 @@ function Stock({ onClose, producto }) {
               <button type="submit">Enviar</button>
               <button onClick={onClose}>Cerrar</button>
             </div>
-        </FormularioModificarProducto>
+        </form>
       </div>
     </div>
   );
