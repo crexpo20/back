@@ -27,6 +27,7 @@ export const ProductoNuevo = () =>{
 	const [marca, cambiarMarca] = useState({campo: '', valido: null});
 	const [images, setImages] = useState([]);
 	const [formularioValido, cambiarFormularioValido] = useState(null);
+	const imagePreview = document.getElementById('img-preview');
 	
     const URL_PRODUCTO = "http://127.0.0.1:8000/api/postProductos";
 	
@@ -80,15 +81,15 @@ export const ProductoNuevo = () =>{
         },
     });*/
 	// asignacion de variables de entrada a variable de BD
-	const newProducto={
+	/*const newProducto={
 		producto: producto.campo,
 		marca: marca.campo,
 		descripcion: descripcion.campo,
 		precio: precio.campo,
-		image: "htts.sadfdgw.com",
+		image: images.values,
 		codcat: 12,
 		
-	}
+	}*/
 
 	const postProducto = async (url, newProducto) => {
         const response = await fetch(url, {
@@ -107,6 +108,7 @@ export const ProductoNuevo = () =>{
 	
 	const onSubmit = async(e) => {
 		e.preventDefault();
+		console.log(imagePreview.src);
 		if(
 			producto.valido === 'true' &&
 			codigo.valido === 'true' &&
@@ -122,13 +124,13 @@ export const ProductoNuevo = () =>{
 				marca: marca.campo,
 				descripcion: descripcion.campo,
 				precio: precio.campo,
-				image: "htts.sadfdgw.com",
-				codcat: 2,
+				image: imagePreview.src,
+				codcat: 1,
 				
 			}
 			/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
-			console.log("Response:------> " + respuestaJson.status);
-         */
+			console.log("Response:------> " + respuestaJson.status);*/
+         
 			await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);
 
 

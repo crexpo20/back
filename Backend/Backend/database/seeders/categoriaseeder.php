@@ -15,29 +15,60 @@ class categoriaseeder extends Seeder
     public function run(): void
     {
         DB::table('categoria')->insert([
-            
-            'codcat' => '1',
-           'nombrecat' =>'lacteo',        
-        ]);
-
-        DB::table('categoria')->insert([
-            
-            'codcat' => '2',
-            'nombrecat' =>'bebida',
-       
-        ]);
-
-        DB::table('categoria')->insert([
-            
-            'codcat' => '3',
-            'nombrecat' =>'snack',        
-        ]);
-
-        DB::table('categoria')->insert([
-            
-            'codcat' => '4',
-            'nombrecat' =>'embutido',     
-        ]);           
+            'nombrecat' =>'abarrotes',        
+         ]);
+ 
+         DB::table('categoria')->insert([
+         
+             'nombrecat' =>'bebidas',
+        
+         ]);
+ 
+         DB::table('categoria')->insert([
+             
+             'nombrecat' =>'bebidas alcoholicas',        
+         ]);
+ 
+         DB::table('categoria')->insert([
+             
+             'nombrecat' =>'cuidado personal',     
+         ]);    
+         
+         DB::table('categoria')->insert([
+             'nombrecat' =>'enlatados',        
+          ]);
+ 
+          DB::table('categoria')->insert([
+             'nombrecat' =>'farmacos',        
+          ]);
+ 
+          DB::table('categoria')->insert([
+             'nombrecat' =>'fiambres y embutidos',        
+          ]);
+ 
+          DB::table('categoria')->insert([
+             'nombrecat' =>'golosinas',        
+          ]);
+ 
+          DB::table('categoria')->insert([
+             'nombrecat' =>'limpieza del hogar',        
+          ]);
+ 
+          DB::table('categoria')->insert([
+             'nombrecat' =>'lacteos',        
+          ]);
+ 
+          DB::table('categoria')->insert([
+             'nombrecat' =>'panaderia',        
+          ]);
+ 
+          DB::table('categoria')->insert([
+             'nombrecat' =>'snaks',        
+          ]);
+ 
+          DB::table('categoria')->insert([
+             'nombrecat' =>'varios',        
+          ]);
     }
 }
 /*
