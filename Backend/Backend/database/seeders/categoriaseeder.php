@@ -26,20 +26,20 @@ class categoriaseeder extends Seeder
 
         DB::table('categoria')->insert([
             
-            'nombrecat' =>'Bebidas alcoholicas',        
+            'nombrecat' =>'bebidas alcoholicas',        
         ]);
 
         DB::table('categoria')->insert([
             
-            'nombrecat' =>'Cuidado personal',     
+            'nombrecat' =>'cuidado personal',     
         ]);    
         
         DB::table('categoria')->insert([
-            'nombrecat' =>'Enlatados',        
+            'nombrecat' =>'enlatados',        
          ]);
 
          DB::table('categoria')->insert([
-            'nombrecat' =>'Enlatados',        
+            'nombrecat' =>'snacks',        
          ]);
 
          DB::table('categoria')->insert([
@@ -55,8 +55,17 @@ class categoriaseeder extends Seeder
          ]);
 
          DB::table('categoria')->insert([
-            'nombrecat' =>'Limpieza del hogar',        
+            'nombrecat' =>'limpieza del hogar',        
          ]);
+
+         DB::table('categoria')->insert([
+            'nombrecat' =>'panaderia',        
+         ]);
+
+         DB::table('categoria')->insert([
+            'nombrecat' =>'varios',        
+         ]);
+
     }
 }
 
