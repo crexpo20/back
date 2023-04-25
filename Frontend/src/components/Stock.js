@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Boton, ContenedorBotonCentrado} from '../elementos/MiniForm';
 
 function Stock({ onClose, producto }) {
   const [cantidad, setCantidad] = useState(1);
@@ -98,8 +99,10 @@ function Stock({ onClose, producto }) {
             <br/>
             <br/>
             <div className="button-container">
-              <button type="submit">Enviar</button>
-              <button onClick={onClose}>Cerrar</button>
+              <ContenedorBotonCentrado>
+                <Boton id= "guardarP" type="submit"> Guardar </Boton>
+                <Boton id= "borrarP" type="button" onClick={onClose} className="btn mx-5"> Cerrar </Boton>
+              </ContenedorBotonCentrado>
             </div>
         </form>
       </div>
