@@ -6,22 +6,25 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/Input';
 import '../css/estilos.css';
 import '../js/imagesLoad';
-
+import Swal from 'sweetalert2';
 
 function ModalForm({ isOpen, onClose }) {
-  const [producto, cambiarProducto] = useState({campo: '', valido: null});
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  	const [producto, cambiarProducto] = useState({campo: '', valido: null});
 	const [codigo, cambiarCodigo] = useState({campo: '', valido: null});
 	const [descripcion, cambiarDescripcion] = useState({campo: '', valido: null});
 	const [precioCompra, cambiarPrecioCompra] = useState({campo: '', valido: null});
-  const [precioVenta, cambiarPrecioVenta] = useState({campo: '', valido: null});
-  const [vencimiento, cambiarVencimiento] = useState({campo: '', valido: null});
+  	const [precioVenta, cambiarPrecioVenta] = useState({campo: '', valido: null});
+  	const [vencimiento, cambiarVencimiento] = useState({campo: '', valido: null});
 	const [images, setImages] = useState({campo: '', valido: null});
 	const [formularioValido, cambiarFormularioValido] = useState(null);
+	const [marca, cambiarMarca] = useState({campo: '', valido: null});
  
   const expresiones = {
 		descripcion: /^[a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{10,100}$/, // Letras, numeros, guion y guion_bajo.
 		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
 		codigo: /^\d{1,10}$/, // 1 a 10 numeros.
+		marca: /^[a-zA-Z]{1,2}([a-zA-Z0-9\s]{1,13})$/, //para numeros y letras
 		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
 	}
 
@@ -32,7 +35,7 @@ function ModalForm({ isOpen, onClose }) {
     if (confirmacion) {
     window.alert('Acción realizada exitosamente');
     cambiarProducto("");
-    cambiarPrecioCompra("");
+    cambiarMarca("");
     cambiarCodigo("");
     cambiarPrecioVenta("");
     cambiarVencimiento("");
@@ -66,7 +69,7 @@ function ModalForm({ isOpen, onClose }) {
 			producto.valido === 'true' &&
 			codigo.valido === 'true' &&
 			descripcion.valido === 'true' &&
-			precioCompra.valido === 'true' &&
+			marca.valido === 'true' &&
             precioVenta.valido === 'true' &&
             images !='' && 
             vencimiento != ''
@@ -77,8 +80,13 @@ function ModalForm({ isOpen, onClose }) {
 			cambiarProducto({campo: '', valido: ''});
 			cambiarCodigo({campo: '', valido: null});
 			cambiarDescripcion({campo: '', valido: 'null'});
-			cambiarPrecioCompra({campo: '', valido: null});
-      window.alert('Producto modificado exitosamente');
+			cambiarMarca({campo: '', valido: null});
+			Swal.fire({
+				icon: 'success',
+				title: '¡Genial!',
+				text: '¡Datos guardados exitosamente!',
+				//footer: '<a href="">Why do I have this issue?</a>'
+			})
 			onClose()
 
 			// ... 
@@ -142,43 +150,42 @@ function ModalForm({ isOpen, onClose }) {
 					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
 					expresionRegular={expresiones.precio}
 				/>
-        <div  className='col' id= "calendar">
-        
-            <label 
-              htmlFor="vencimiento" id = "label_cat">
-               <b> Fecha de vencimiento*: </b>
-            </label>
-            <input 
-              type="date" 
-              className="form-control " 
-              name="ini" 
-              min={formattedDate} 
-              max={maxFecha} 
-              id="vencimiento" 
-              placeholder='fecha-inicio*'
-              required 
-              value={vencimiento} 
-              onChange={(e) => cambiarVencimiento(e.target.value)} />
-            <br />
+				<div>
+						<label id = "label_cat"><b>
+							Categoría*:
+						</b></label>
 
-        </div>
+						<select name="select" id = "select_categorias"
+
+						>
+							<option  id = "valor_inicial" value="0" disabled selected>Seleccione la categoría:</option>
+
+							<option value="1">Abarrotes</option>
+							<option value="2">Bebidas</option>
+							<option value="3">Bebidas alcoholicas</option>
+							<option value="4">Cuidado personal</option>
+							<option value="5">Enlatados</option>
+							<option value= "6">Farmacos</option>
+							<option value="7">Fiambres y embutidos</option>
+							<option value="8">Golosinas</option>
+							<option value="9">Limpieza del hogar</option>
+							<option value="10">Lacteos</option>
+							<option value="11">Panaderia</option>
+							<option value="12">Snacks</option>
+							<option value="13">Varios</option>
+						</select>
+					</div>
 				
-                <Input
-					estado={precioCompra}
-					cambiarEstado={cambiarPrecioCompra}
-					tipo="text"
-					label="Precio de compra:*"
-					name="precio"
-					placeholder="23.00"
-					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
-					expresionRegular={expresiones.precio}
-				/>
-			     	
-					<br>
-					</br>
-					<br>
-					</br>
-
+					<Input
+						estado={marca}
+						cambiarEstado={cambiarMarca}
+						tipo="text"
+						label="Marca*:"
+						placeholder="Pil andina"
+						name="marca"
+						leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
+						expresionRegular={expresiones.marca}
+					/>
 					<ContenedorBotonCentrado>
 					<label >Imagen*:</label>
 					 <div class="container">
@@ -204,8 +211,9 @@ function ModalForm({ isOpen, onClose }) {
 
 					
 					{formularioValido === true && <MensajeExito>Producto guardado exitosamente!</MensajeExito>}
+				
 				  <center>
-				  <Boton id= "guardarP" type="submit"> Guardar </Boton>
+				  <Boton id= "guardarP" type="submit" > Guardar </Boton>
 				  </center>
 				  <center>
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cerrar </Boton>

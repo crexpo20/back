@@ -9,11 +9,12 @@ import { Modal } from 'react-bootstrap';
 import configData from "../config/config.json";
 import axios from 'axios';
 import { useFormik, useField, useFormikContext } from "formik";
+import Swal from 'sweetalert2';
 
 
 export const ProductoNuevo = () =>{
 	
-
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	//const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
 	const [open, setOpen] = React.useState(false);
 	const [alertColor, setAlertColor] = useState('');
@@ -29,7 +30,7 @@ export const ProductoNuevo = () =>{
 	const [formularioValido, cambiarFormularioValido] = useState(null);
 	const imagePreview = document.getElementById('img-preview');
 	const select_cat = document.getElementById("select_categorias");
-	
+	const img_up = document.getElementById('img-uploader');
     const URL_PRODUCTO = "http://127.0.0.1:8000/api/postProductos";
 	
 	const expresiones = {
@@ -163,16 +164,43 @@ export const ProductoNuevo = () =>{
 	
 	
 	const onSubmit = async(e) => {
-		document.getElementById("img-uploader").enctype = "multipart/form-data";
 		e.preventDefault();
 		console.log(imagePreview.src);
+
+		document.getElementById("img-uploader").enctype = "multipart/form-data";
+		if(imagePreview.src==""){
+			if(
+				producto.valido === 'true' &&
+				codigo.valido === 'true' &&
+				//categoria.valido === 'true' &&
+				descripcion.valido === 'true' &&
+				precio.valido === 'true' &&
+				marca.valido === 'true'
+			){
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'No subiste ninguna imagen...',
+				//footer: '<a href="">Why do I have this issue?</a>'
+			  })
+			}else{
+				if(onSubmit){
+					cambiarFormularioValido(false);
+				}
+			}
+		}else{
+
+		
+		//e.preventDefault();
+		//console.log(imagePreview.src);
 		if(
 			producto.valido === 'true' &&
 			codigo.valido === 'true' &&
 			//categoria.valido === 'true' &&
 			descripcion.valido === 'true' &&
 			precio.valido === 'true' &&
-			marca.valido === 'true'
+			marca.valido === 'true' &&
+			document.getElementById("select_categorias").value != '0'
 			
 
 		){ /*mismo del controller*/
@@ -183,7 +211,6 @@ export const ProductoNuevo = () =>{
 				descripcion: descripcion.campo,
 				precio: precio.campo,
 				image: imagePreview.src,
-				
 				codcat: cod_cat(),
 				
 			}
@@ -200,13 +227,26 @@ export const ProductoNuevo = () =>{
 			cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
 			cambiarMarca({campo: '', valido: null});
+			imagePreview.src= '';
+			document.ready = document.getElementById("img-uploader").value = "";
+			document.ready = document.getElementById("img-upload-bar").value = '0';
+			document.ready = document.getElementById("img-preview").value = "";
+			document.ready = document.getElementsByClassName("card").item = '';
+			//document.ready = document.getElementsById("contenedorImagen").value = 'null';
+			
             
-			window.alert('¡Producto guardado exitosamente!');
+			Swal.fire({
+				icon: 'success',
+				title: '¡Genial!',
+				text: '¡Producto nuevo guardado exitosamente!',
+				//footer: '<a href="">Why do I have this issue?</a>'
+			})
+
 		} else {
 			cambiarFormularioValido(false);
 		}
 
-		
+	}
 	}
 
 	const handleChange = (e) => {
@@ -226,6 +266,7 @@ export const ProductoNuevo = () =>{
 		cambiarDescripcion("");
 		cambiarPrecio("");
 		cambiarMarca("");
+		document.ready = document.getElementById("select_categorias").value = '0';
 		window.location.href = '/home';
 	  };
 
@@ -391,7 +432,7 @@ export const ProductoNuevo = () =>{
 								<div class="card" id = "contenedorImagen"  >
 									<img id="img-preview"/>
 										<div class="card-footer" id = "contenedorImagen">
-											<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload' required  = "true"></input>
+											<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload'></input>
 											<progress id="img-upload-bar" value="0" max="100" ></progress>
 										</div>
 								</div>
@@ -417,7 +458,7 @@ export const ProductoNuevo = () =>{
 				
 			</main>
 			<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-		
+			
    		</div>
 	</center>
 	);

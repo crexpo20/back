@@ -5,7 +5,10 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/Input';
 //import '../css/OfertaNueva.css';
 import '../css/estilos.css';
+import Swal from 'sweetalert2';
+
 export const ModificarNegocio = () => {
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	const [nombre, cambiarNombre] = useState({campo: '', valido: null});
 	const [direccion, cambiarDireccion] = useState({campo: '', valido: null});
 	const [propietario, cambiarPropietario] = useState({campo: '', valido: null});
@@ -63,6 +66,13 @@ export const ModificarNegocio = () => {
 			cambiarDescripcion({campo: '', valido: null});
 			cambiarNumero({campo: '', valido: null});
 
+
+			Swal.fire({
+				icon: 'success',
+				title: '¡Genial!',
+				text: '¡Datos guardados exitosamente!',
+				//footer: '<a href="">Why do I have this issue?</a>'
+			})
 			// ... 
 		} else {
 			cambiarFormularioValido(false);
@@ -168,6 +178,19 @@ export const ModificarNegocio = () => {
 					leyendaError="El telefono tiene un máximo de 8 caracteres, y empezar con 6 o 7."
 					expresionRegular={expresiones.numero}
 				/>
+				<ContenedorBotonCentrado>	
+						<div class="container">
+							<center>
+								<div class="card" id = "contenedorImagen"  >
+									<img id="img-preview"/>
+										<div class="card-footer" id = "contenedorImagen">
+											<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload'></input>
+											<progress id="img-upload-bar" value="0" max="100" ></progress>
+										</div>
+								</div>
+							</center>
+						</div>
+					</ContenedorBotonCentrado>
 
 				{formularioValido === false && <MensajeError>
 					<p>

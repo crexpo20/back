@@ -58,6 +58,9 @@ export const SideMenu = () => {
                               <span class="text nav-text">Inicio
                               
                               </span>
+                              
+                                
+
                             </NavLink>
                         </a>
                     </li>

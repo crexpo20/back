@@ -7,7 +7,10 @@ import '../css/ventanaImagen.css';
 //import '../'
 import '../css/OfertaNueva.css';
 import '../css/estilos.css';
+import Swal from 'sweetalert2';
+
 export const NuevaOferta = () => {
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	const [producto, cambiarProducto] = useState({campo: '', valido: null});
 	const [descripcion, cambiarDescripcion] = useState({campo: '', valido: null});
 	const [precio, cambiarPrecio] = useState({campo: '', valido: null});
@@ -68,7 +71,12 @@ export const NuevaOferta = () => {
       cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
 			
-      window.alert('Nueva oferta guardada exitosamente');
+      Swal.fire({
+				icon: 'success',
+				title: '¡Genial!',
+				text: '¡Oferta guardada exitosamente!',
+				//footer: '<a href="">Why do I have this issue?</a>'
+			})
 
 			// ... 
 		} else {
