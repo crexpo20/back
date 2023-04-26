@@ -236,6 +236,7 @@ function ModalForm({ isOpen, onClose }) {
             width: 100%;
             height: 100%;
             background-color: rgba(85, 85, 85, 0.3);
+			font-size: 20px;
             display: flex;
             justify-content: center;
             align-items: center;

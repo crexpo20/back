@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import {Boton, ContenedorBotonCentrado} from '../elementos/MiniForm';
+import { Boton, ContenedorBotonCentrado } from '../elementos/MiniForm';
+import '../css/Stock.css';
 
-function Stock({ onClose, producto }) {
+function Stock({ isClose, producto, actualizarProducto }) {
   const [cantidad, setCantidad] = useState(1);
   const [precioCompra, setPrecioCompra] = useState(0);
   const [fechaVencimiento, setFechaVencimiento] = useState('');
@@ -13,13 +14,14 @@ function Stock({ onClose, producto }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onClose();
+    actualizarProducto(producto, cantidad);
+    isClose();
   };
 
   const handleCantidadChange = (event) => {
     setCantidad(parseInt(event.target.value));
   };
-
+  
   const handlePrecioCompraChange = (event) => {
     setPrecioCompra(parseFloat(event.target.value));
   };
@@ -27,34 +29,31 @@ function Stock({ onClose, producto }) {
   const handleFechaVencimientoChange = (event) => {
     setFechaVencimiento(event.target.value);
   };
-
   return (
     <div className="modal">
       <div className="modal-content">
-        <header>
-          <h4>{producto}</h4>
+        <header className="modal-header">
+          <h4 className="modal-title">{producto.nombre}</h4>
         </header>
         <form action="" onSubmit={handleSubmit}>
-            
-            <label 
-              htmlFor="cantidad">
-              <b> Cantidad*: </b>
-            </label>
-            <input
-              type="number"
-              className="form-control " 
-              id="cantidad"
-              name="cantidad"
-              min="1"
-              required 
-              value={cantidad}
-              color= "transparent"
-              margin = "1"
-              border-bottom-color = "#000000"
-              onChange={handleCantidadChange}
-            />
-          
-        <div  className='col' id= "calendar">
+        <label htmlFor="cantidad actual">
+            <b>Cantidad actual: </b>
+          </label>
+          <div>{producto.cantidad}</div>
+          <label htmlFor="cantidad">
+            <b>Cantidad*: </b>
+          </label>
+          <input
+            type="number"
+            className="form-control "
+            id="cantidad"
+            name="cantidad"
+            min="1"
+            required
+            value={cantidad}
+            onChange={handleCantidadChange}
+          />
+          <div  className='col' id= "calendar">
         
         <label 
           htmlFor="fechaVencimiento">
@@ -96,14 +95,13 @@ function Stock({ onClose, producto }) {
               border-bottom-color = "#000000"
               onChange={handlePrecioCompraChange}
             />
-            <br/>
-            <br/>
-            <div className="button-container">
-              <ContenedorBotonCentrado>
-                <Boton id= "guardarP" type="submit"> Guardar </Boton>
-                <Boton id= "borrarP" type="button" onClick={onClose} className="btn mx-5"> Cerrar </Boton>
-              </ContenedorBotonCentrado>
-            </div>
+
+          <div className="button-container">
+            <ContenedorBotonCentrado>
+              <Boton id="guardarP" type="submit">Guardar</Boton>
+              <Boton id="borrarP" type="button" onClick={isClose} className="btn mx-5">Cerrar</Boton>
+            </ContenedorBotonCentrado>
+          </div>
         </form>
       </div>
     </div>

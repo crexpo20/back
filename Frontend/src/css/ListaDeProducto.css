@@ -51,3 +51,14 @@ ul{
   #volverHome :hover {
     box-shadow: 3px 0px 30px rgba(163,163,163, 1);
 }
+table {
+    width: 100%;
+  }
+
+  th {
+    font-size: 35px;
+  }
+  tbody{
+    font-size: 30px;
+  }
+  
