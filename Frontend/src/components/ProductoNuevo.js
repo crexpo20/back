@@ -163,6 +163,7 @@ export const ProductoNuevo = () =>{
 	
 	
 	const onSubmit = async(e) => {
+		document.getElementById("img-uploader").enctype = "multipart/form-data";
 		e.preventDefault();
 		console.log(imagePreview.src);
 		if(
@@ -172,6 +173,7 @@ export const ProductoNuevo = () =>{
 			descripcion.valido === 'true' &&
 			precio.valido === 'true' &&
 			marca.valido === 'true'
+			
 
 		){ /*mismo del controller*/
 			const newProducto={
@@ -194,7 +196,7 @@ export const ProductoNuevo = () =>{
 			cambiarFormularioValido(true);
 			cambiarProducto({campo: '', valido: ''});
 			cambiarCodigo({campo: '', valido: null});
-           
+			document.ready = document.getElementById("select_categorias").value = '0';
 			cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
 			cambiarMarca({campo: '', valido: null});
@@ -285,144 +287,139 @@ export const ProductoNuevo = () =>{
 		cambiarMarca("");
     }
 
+	function myFunction(){
+		document.getElementById("img-uploader").enctype = "multipart/form-data";
+	}
 	return (
-     <center>
+    <center>
 		<head>
 		<meta http-equiv="Access-Control-Allow-Origin" content="http://localhost:3000/"/>
 		
 		</head>
-	 <div class="home">
+		<div class="home">
 	 
-	 			
-        <br/>
-		<head>
-		<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
-		</head>	
+			<head>
+			<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
+			</head>	
 			<ContenedorBotonCentrado><h1>Registro de Producto</h1></ContenedorBotonCentrado>
 			
-		
-			
-          <br/>
+          	<br/>
         
-		<main>
-			<Formulario action="" onSubmit={onSubmit}>
-				<Input
-					estado={producto}
-					cambiarEstado={cambiarProducto}
-					tipo="text"
-					label="Producto*:"
-					placeholder="Cereal en caja 500gr"
-					name="producto"
-					leyendaError="El nombre debe contener de 2 a 20 caracteres entre números, letras y espacios."
-					expresionRegular={expresiones.producto}
-				/>
-				<Input
-					estado={codigo}
-					cambiarEstado={cambiarCodigo}
-					tipo="text"
-					label="Código*:"
-					placeholder="283755"
-					name="codigo"
-					leyendaError="El código solo puede contener números enteros positivos y un máximo de 10 dígitos."
-					expresionRegular={expresiones.codigo}
-				/>
-				<div>
-					<label id = "label_cat"><b>
-						Categoría*:
-	   				</b></label>
+			<main>
+				<Formulario action="" onSubmit={onSubmit}>
+					<Input
+						estado={producto}
+						cambiarEstado={cambiarProducto}
+						tipo="text"
+						label="Producto*:"
+						placeholder="Cereal en caja 500gr"
+						name="producto"
+						leyendaError="El nombre debe contener de 2 a 20 caracteres entre números, letras y espacios."
+						expresionRegular={expresiones.producto}
+					/>
+					<Input
+						estado={codigo}
+						cambiarEstado={cambiarCodigo}
+						tipo="text"
+						label="Código*:"
+						placeholder="283755"
+						name="codigo"
+						leyendaError="El código solo puede contener números enteros positivos y un máximo de 10 dígitos."
+						expresionRegular={expresiones.codigo}
+					/>
+					<div>
+						<label id = "label_cat"><b>
+							Categoría*:
+						</b></label>
 
-					<select name="select" id = "select_categorias"
+						<select name="select" id = "select_categorias"
 
-					>
-						<option  id = "valor_inicial" value="" disabled selected>Seleccione la categoría:</option>
+						>
+							<option  id = "valor_inicial" value="0" disabled selected>Seleccione la categoría:</option>
 
-  						<option value="1">Abarrotes</option>
- 						<option value="2">Bebidas</option>
-						<option value="3">Bebidas Alcoholicas</option>
-  						<option value="4">Cuidado personal</option>
-  						<option value="5">Enlatados</option>
-  						<option value= "6">Farmacos</option>
-  						<option value="7">Fiambres y embutidos</option>
-  						<option value="8">Golosinas</option>
-  						<option value="9">Limpieza del hogar</option>
-  						<option value="10">Lacteos</option>
-  						<option value="11">Panaderia</option>
-  						<option value="12">Snacks</option>
-  						<option value="13">Varios</option>
-					</select>
-				</div>
+							<option value="1">Abarrotes</option>
+							<option value="2">Bebidas</option>
+							<option value="3">Bebidas Alcoholicas</option>
+							<option value="4">Cuidado personal</option>
+							<option value="5">Enlatados</option>
+							<option value= "6">Farmacos</option>
+							<option value="7">Fiambres y embutidos</option>
+							<option value="8">Golosinas</option>
+							<option value="9">Limpieza del hogar</option>
+							<option value="10">Lacteos</option>
+							<option value="11">Panaderia</option>
+							<option value="12">Snacks</option>
+							<option value="13">Varios</option>
+						</select>
+					</div>
 
-				
-				<Input
-					estado={descripcion}
-					cambiarEstado={cambiarDescripcion}
-					tipo="text"
-					label="Descripción*:"
-					name="descripcion"
-					placeholder="Di algo interesante de tu producto"
-					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
-					expresionRegular={expresiones.descripcion}
-				/>
-				<Input
-					estado={precio}
-					cambiarEstado={cambiarPrecio}
-					tipo="text"
-					label="Precio de venta:*"
-					name="precio"
-					placeholder="23.00"
-					leyendaError="El precio solo puede contener números enteros o si se quiere ingresar un número decimal se puede poner un carácter especial (.) y dos decimales."
-					expresionRegular={expresiones.precio}
-				/>
-				<Input
-					estado={marca}
-					cambiarEstado={cambiarMarca}
-					tipo="text"
-					label="Marca*:"
-					placeholder="Pil andina"
-					name="marca"
-					leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
-					expresionRegular={expresiones.marca}
-				/>
-		
-			    	
-			    <div class="container">
-				<center>
-       				<div class="card">
-            			<img id="img-preview"/>
-            				<div class="card-footer">
-                				<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload' required ></input>
-                				<progress id="img-upload-bar" value="0" max="100"></progress>
-           					</div>
-        			</div>
-				</center>
-    			</div>
-				 
-
-				{formularioValido === false && <MensajeError>
-					<p>
-						<FontAwesomeIcon icon={faExclamationTriangle}/>
-						<b>Error:</b> Por favor rellena el formulario correctamente.
-					</p>
-				
-				</MensajeError>}
-				<ContenedorBotonCentrado>
-					<Boton id= "guardarP" type="submit" onClick={onSubmit}> Guardar </Boton>
-				
-					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
-				</ContenedorBotonCentrado>
-				
-			</Formulario>
+					
+					<Input
+						estado={descripcion}
+						cambiarEstado={cambiarDescripcion}
+						tipo="text"
+						label="Descripción*:"
+						name="descripcion"
+						placeholder="Di algo interesante de tu producto"
+						leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
+						expresionRegular={expresiones.descripcion}
+					/>
+					<Input
+						estado={precio}
+						cambiarEstado={cambiarPrecio}
+						tipo="text"
+						label="Precio de venta:*"
+						name="precio"
+						placeholder="23.00"
+						leyendaError="El precio solo puede contener números enteros o si se quiere ingresar un número decimal se puede poner un carácter especial (.) y dos decimales."
+						expresionRegular={expresiones.precio}
+					/>
+					<Input
+						estado={marca}
+						cambiarEstado={cambiarMarca}
+						tipo="text"
+						label="Marca*:"
+						placeholder="Pil andina"
+						name="marca"
+						leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
+						expresionRegular={expresiones.marca}
+					/>
 			
-			<div>
-				
-				</div>
+					<ContenedorBotonCentrado>	
+						<div class="container">
+							<center>
+								<div class="card" id = "contenedorImagen"  >
+									<img id="img-preview"/>
+										<div class="card-footer" id = "contenedorImagen">
+											<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload' required  = "true"></input>
+											<progress id="img-upload-bar" value="0" max="100" ></progress>
+										</div>
+								</div>
+							</center>
+						</div>
+					</ContenedorBotonCentrado>
 
-	
-		</main>
-		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+					{formularioValido === false && <MensajeError>
+						<p>
+							<FontAwesomeIcon icon={faExclamationTriangle}/>
+							<b>Error:</b> Por favor rellena el formulario correctamente.
+						</p>
+					
+					</MensajeError>}
+						<center>
+						<Boton id= "guardarP" type="submit" onClick={onSubmit} s> Guardar </Boton>
+						</center>
+						<center>
+						<Boton id= "borrarP"  type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
+						</center>
+					
+				</Formulario>
+				
+			</main>
+			<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 		
-       </div>
-		</center>
+   		</div>
+	</center>
 	);
 }
  

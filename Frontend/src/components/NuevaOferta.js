@@ -182,7 +182,7 @@ export const NuevaOferta = () => {
               name="ini" 
               min={formattedDate} 
               max={maxFecha} 
-              id="inicio" 
+              id="vencimiento" 
               placeholder='fecha-inicio*'
               required 
               value={inicio} 
@@ -201,7 +201,7 @@ export const NuevaOferta = () => {
               className="form-control "  
               min={inicio} 
               max={maxFecha} 
-              id="fin" 
+              id="vencimiento" 
               placeholder='fecha-fin*'
               
               required 
@@ -218,12 +218,12 @@ export const NuevaOferta = () => {
 					</p>
 				</MensajeError>}
 				
-				<ContenedorBotonCentrado>
+				<center>
 					<Boton id= "guardarP" type="submit"> Guardar </Boton>
-					
-				
+					</center>
+          <center>
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
-				</ContenedorBotonCentrado>
+          </center>
 				
 			</Formulario>
 

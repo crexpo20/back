@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-
-import {FormularioModificarProducto, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError} from '../elementos/MiniForm';
+import {Formulario,ContenedorBotonCentrado} from '../elementos/Formularios';
+import {FormularioModificarProducto, Label, ContenedorTerminos, Boton, MensajeExito, MensajeError} from '../elementos/MiniForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/Input';
 import '../css/estilos.css';
 import '../js/imagesLoad';
+
 
 function ModalForm({ isOpen, onClose }) {
   const [producto, cambiarProducto] = useState({campo: '', valido: null});
@@ -98,8 +99,8 @@ function ModalForm({ isOpen, onClose }) {
       {isOpen && (
         <div className="modal">
           <div className="modal-content">
-            <h2>Modificar datos</h2>
-        <FormularioModificarProducto action="" onSubmit={onSubmit}>
+		  <ContenedorBotonCentrado> <h2>Modificar datos</h2></ContenedorBotonCentrado>
+        <Formulario action="" onSubmit={onSubmit}>
 				<Input
 					estado={producto}
 					cambiarEstado={cambiarProducto}
@@ -144,7 +145,7 @@ function ModalForm({ isOpen, onClose }) {
         <div  className='col' id= "calendar">
         
             <label 
-              htmlFor="vencimiento">
+              htmlFor="vencimiento" id = "label_cat">
                <b> Fecha de vencimiento*: </b>
             </label>
             <input 
@@ -157,9 +158,6 @@ function ModalForm({ isOpen, onClose }) {
               placeholder='fecha-inicio*'
               required 
               value={vencimiento} 
-              color= "transparent"
-              margin = "1"
-              border-bottom-color = "#000000"
               onChange={(e) => cambiarVencimiento(e.target.value)} />
             <br />
 
@@ -176,19 +174,25 @@ function ModalForm({ isOpen, onClose }) {
 					expresionRegular={expresiones.precio}
 				/>
 			     	
-				<div class="container">
-        
-        <Input
-					estado={images}
-					cambiarEstado={setImages}
-					tipo="file"
-					label="Imagen:*"
-					name="imagen"
-					leyendaError="El precio solo puede contener números, un carácter especial (.) y dos decimales"
-					
-				/>
-    			</div>
+					<br>
+					</br>
+					<br>
+					</br>
 
+					<ContenedorBotonCentrado>
+					<label >Imagen*:</label>
+					 <div class="container">
+							<center >
+								<div class="card" id = "contenedorImagen"  >
+									<img id="img-preview"/>
+										<div class="card-footer" id = "contenedorImagen">
+											<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload' required  = "true"></input>
+											<progress id="img-upload-bar" value="0" max="100" ></progress>
+										</div>
+								</div>
+							</center>
+						</div>
+						</ContenedorBotonCentrado>
 				{formularioValido === false && <MensajeError>
 					<p>
 						<FontAwesomeIcon icon={faExclamationTriangle}/>
@@ -196,15 +200,18 @@ function ModalForm({ isOpen, onClose }) {
 					</p>
 				
 				</MensajeError>}
-				<ContenedorBotonCentrado>
 					
 
+					
 					{formularioValido === true && <MensajeExito>Producto guardado exitosamente!</MensajeExito>}
+				  <center>
 				  <Boton id= "guardarP" type="submit"> Guardar </Boton>
+				  </center>
+				  <center>
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cerrar </Boton>
-				</ContenedorBotonCentrado>
+					</center>
 				
-			</FormularioModificarProducto>
+			</Formulario>
            
           </div>
           
@@ -220,7 +227,7 @@ function ModalForm({ isOpen, onClose }) {
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(85, 85, 85, 0.3);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -230,7 +237,7 @@ function ModalForm({ isOpen, onClose }) {
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
           }
         `}
       </style>

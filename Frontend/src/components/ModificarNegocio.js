@@ -175,12 +175,13 @@ export const ModificarNegocio = () => {
 						<b>Error:</b> Por favor rellena el formulario correctamente.
 					</p>
 				</MensajeError>}
-				<ContenedorBotonCentrado>
+				<center>
 					<Boton id= "guardarP" type="submit"> Guardar </Boton>
 					{formularioValido === true && <MensajeExito>“La información del negocio se ha modificado de forma correctamente.</MensajeExito>}
-				
+					</center>
+					<center>
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
-				</ContenedorBotonCentrado>
+					</center>
 				
 			</Formulario>
 			<div>
