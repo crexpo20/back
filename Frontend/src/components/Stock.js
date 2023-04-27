@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Boton, ContenedorBotonCentrado } from '../elementos/MiniForm';
+import { Boton} from '../elementos/MiniForm';
 import '../css/Stock.css';
 
 function Stock({ isClose, producto, actualizarProducto }) {
@@ -21,7 +21,7 @@ function Stock({ isClose, producto, actualizarProducto }) {
   const handleCantidadChange = (event) => {
     setCantidad(parseInt(event.target.value));
   };
-  
+
   const handlePrecioCompraChange = (event) => {
     setPrecioCompra(parseFloat(event.target.value));
   };
@@ -41,7 +41,7 @@ function Stock({ isClose, producto, actualizarProducto }) {
           </label>
           <div>{producto.cantidad}</div>
           <label htmlFor="cantidad">
-            <b>Cantidad*: </b>
+            <b>Agregar Cantidad: </b>
           </label>
           <input
             type="number"
@@ -49,6 +49,7 @@ function Stock({ isClose, producto, actualizarProducto }) {
             id="cantidad"
             name="cantidad"
             min="1"
+            max="999"
             required
             value={cantidad}
             onChange={handleCantidadChange}
@@ -73,10 +74,8 @@ function Stock({ isClose, producto, actualizarProducto }) {
           margin = "1"
           border-bottom-color = "#000000"
           onChange={handleFechaVencimientoChange} />
-        <br />
-
         </div>
-    
+
             <label 
               htmlFor="precioCompra">
               <b> Precio de compra*: </b>
@@ -86,7 +85,7 @@ function Stock({ isClose, producto, actualizarProducto }) {
               className="form-control " 
               id="precioCompra"
               name="precioCompra"
-              min="0"
+              min="1.00"
               step="0.01"
               required 
               value={precioCompra}
@@ -97,10 +96,10 @@ function Stock({ isClose, producto, actualizarProducto }) {
             />
 
           <div className="button-container">
-            <ContenedorBotonCentrado>
+            
               <Boton id="guardarP" type="submit">Guardar</Boton>
-              <Boton id="borrarP" type="button" onClick={isClose} className="btn mx-5">Cerrar</Boton>
-            </ContenedorBotonCentrado>
+              <Boton id="borrarP" type="button" onClick={isClose} className="btn mx-5">Cancelar</Boton>
+            
           </div>
         </form>
       </div>
