@@ -86,7 +86,7 @@ export const ProductoNuevo = () =>{
 		descripcion: descripcion.campo,
 		precio: precio.campo,
 		image: "htts.sadfdgw.com",
-		codcat: 12,
+		codcat: 5,
 		
 	}
 
