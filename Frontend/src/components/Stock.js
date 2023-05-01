@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Boton} from '../elementos/MiniForm';
 import '../css/Stock.css';
+import {Modal} from 'react-bootstrap';
 
 function Stock({ isClose, producto, actualizarProducto }) {
   const [cantidad, setCantidad] = useState(1);
@@ -32,9 +33,9 @@ function Stock({ isClose, producto, actualizarProducto }) {
   return (
     <div className="modal">
       <div className="modal-content">
-        <header className="modal-header">
+      <Modal.Header closeButton onClick={isClose}>
           <h4 className="modal-title">{producto.nombre}</h4>
-        </header>
+        </Modal.Header>
         <form action="" onSubmit={handleSubmit}>
         <label htmlFor="cantidad actual">Cantidad actual:     {producto.cantidad}</label>
           <label htmlFor="cantidad">Agregar Cantidad: </label>

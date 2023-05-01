@@ -7,6 +7,7 @@ import Input from '../components/Input';
 import '../css/estilos.css';
 import '../js/imagesLoad';
 import Swal from 'sweetalert2';
+import {Modal} from 'react-bootstrap';
 
 function ModalForm({ isOpen, onClose }) {
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -107,7 +108,9 @@ function ModalForm({ isOpen, onClose }) {
       {isOpen && (
         <div className="modal">
           <div className="modal-content">
-		  <ContenedorBotonCentrado> <h2>Modificar datos</h2></ContenedorBotonCentrado>
+		  <Modal.Header closeButton onClick={handleReset}>
+          <h4 className="modal-title">Modificar datos</h4>
+          </Modal.Header>
         <Formulario action="" onSubmit={onSubmit}>
 				<Input
 					estado={producto}
