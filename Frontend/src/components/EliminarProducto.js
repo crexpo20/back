@@ -67,7 +67,7 @@ export const EliminarProducto = () => {
      
      <section>
       {productoEliminado ? (
-        <Modal show={productoEliminado} onHide={handleVolver}>
+        <Modal show={productoEliminado} onHide={handleVolver} style={{width:2000}}>
           <Modal.Header >
             
           </Modal.Header>

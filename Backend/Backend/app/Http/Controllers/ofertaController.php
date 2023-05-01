@@ -35,18 +35,26 @@ class ofertaController extends Controller
         $oferta->precioventa = $request->input('precioventa');
         $oferta->save();
          // Retornar una respuesta de éxito
+<<<<<<< HEAD
          return response()->json(['mensaje' => 'oferta creado con éxito'], 201);
+=======
+         return response()->json(['mensaje' => 'oferta creada con éxito'], 201);
+>>>>>>> ece22e156a7a56eaf6da18ffa7dc255babd698e9
     }
 
     /**
      * Display the specified resource.
      */
+<<<<<<< HEAD
     public function show(string $id)
     {
         $oferta =  oferta::find($id);
         return $oferta;
     }
 
+=======
+    
+>>>>>>> ece22e156a7a56eaf6da18ffa7dc255babd698e9
     /**
      * Update the specified resource in storage.
      */

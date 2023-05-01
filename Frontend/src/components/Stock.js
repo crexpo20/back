@@ -36,16 +36,11 @@ function Stock({ isClose, producto, actualizarProducto }) {
           <h4 className="modal-title">{producto.nombre}</h4>
         </header>
         <form action="" onSubmit={handleSubmit}>
-        <label htmlFor="cantidad actual">
-            <b>Cantidad actual: </b>
-          </label>
-          <div>{producto.cantidad}</div>
-          <label htmlFor="cantidad">
-            <b>Agregar Cantidad: </b>
-          </label>
+        <label htmlFor="cantidad actual">Cantidad actual:     {producto.cantidad}</label>
+          <label htmlFor="cantidad">Agregar Cantidad: </label>
           <input
             type="number"
-            className="form-control "
+            className="form-control"
             id="cantidad"
             name="cantidad"
             min="1"
@@ -56,30 +51,24 @@ function Stock({ isClose, producto, actualizarProducto }) {
           />
           <div  className='col' id= "calendar">
         
-        <label 
-          htmlFor="fechaVencimiento">
-           <b> Fecha de vencimiento*: </b>
-        </label>
-        <input 
-          type="date" 
-          className="form-control " 
-          name="fechaVencimiento" 
-          min={formattedDate} 
-          max={maxFecha} 
-          id="fechaVencimiento" 
-          placeholder='fecha-inicio*'
-          required 
-          value={fechaVencimiento} 
-          color= "transparent"
-          margin = "1"
-          border-bottom-color = "#000000"
-          onChange={handleFechaVencimientoChange} />
+            <label htmlFor="fechaVencimiento">Fecha de vencimiento*: </label>
+            <input 
+              type="date" 
+              className="form-control " 
+              name="fechaVencimiento" 
+              min={formattedDate} 
+              max={maxFecha} 
+              id="fechaVencimiento" 
+              placeholder='fecha-inicio*'
+              required 
+              value={fechaVencimiento} 
+              color= "transparent"
+              margin = "1"
+              border-bottom-color = "#000000"
+              onChange={handleFechaVencimientoChange} />
         </div>
 
-            <label 
-              htmlFor="precioCompra">
-              <b> Precio de compra*: </b>
-            </label>
+            <label htmlFor="precioCompra">Precio de compra*: </label>
             <input
               type="number"
               className="form-control " 
@@ -96,10 +85,8 @@ function Stock({ isClose, producto, actualizarProducto }) {
             />
 
           <div className="button-container">
-            
               <Boton id="guardarP" type="submit">Guardar</Boton>
               <Boton id="borrarP" type="button" onClick={isClose} className="btn mx-5">Cancelar</Boton>
-            
           </div>
         </form>
       </div>

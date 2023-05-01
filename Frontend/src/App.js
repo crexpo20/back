@@ -15,6 +15,7 @@ import {ProductoNuevo} from './components/ProductoNuevo';
 import { ModificarNegocio } from './components/ModificarNegocio';
 import {NuevaOferta} from './components/NuevaOferta';
 import {ProductosPrueba} from './components/ProductoNuevo copy';
+import {Eliminar} from './components/Eliminar';
 import "./elementos/modal.js"
 function App() {
   return (
