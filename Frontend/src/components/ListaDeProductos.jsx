@@ -59,7 +59,7 @@ export const ListaDeProducto = () => {
                   <td>
                     <Button onClick={handleOpenModal} className ='button'/>
                     <ModalForm isOpen={isOpen} onClose={handleCloseModal} />
-                    <a onClick={() => openModal(producto)}> <AddCircleOutlineIcon/> </a>
+                    <a type="button" onClick={() => openModal(producto)}> <AddCircleOutlineIcon/> </a>
                   </td>
                 </tr>
               ))}
