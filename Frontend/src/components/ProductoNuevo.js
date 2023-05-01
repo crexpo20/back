@@ -169,84 +169,83 @@ export const ProductoNuevo = () =>{
 
 		document.getElementById("img-uploader").enctype = "multipart/form-data";
 		if(imagePreview.src==""){
+				if(
+					producto.valido === 'true' &&
+					codigo.valido === 'true' &&
+					//categoria.valido === 'true' &&
+					descripcion.valido === 'true' &&
+					precio.valido === 'true' &&
+					marca.valido === 'true'
+				){
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'No subiste ninguna imagen...',
+					//footer: '<a href="">Why do I have this issue?</a>'
+				})
+				}else{
+					if(onSubmit){
+						cambiarFormularioValido(false);
+					}
+				}
+			}else{
+
+			
+			//e.preventDefault();
+			//console.log(imagePreview.src);
 			if(
 				producto.valido === 'true' &&
 				codigo.valido === 'true' &&
 				//categoria.valido === 'true' &&
 				descripcion.valido === 'true' &&
 				precio.valido === 'true' &&
-				marca.valido === 'true'
-			){
-			Swal.fire({
-				icon: 'error',
-				title: 'Oops...',
-				text: 'No subiste ninguna imagen...',
-				//footer: '<a href="">Why do I have this issue?</a>'
-			  })
-			}else{
-				if(onSubmit){
-					cambiarFormularioValido(false);
-				}
-			}
-		}else{
-
-		
-		//e.preventDefault();
-		//console.log(imagePreview.src);
-		if(
-			producto.valido === 'true' &&
-			codigo.valido === 'true' &&
-			//categoria.valido === 'true' &&
-			descripcion.valido === 'true' &&
-			precio.valido === 'true' &&
-			marca.valido === 'true' &&
-			document.getElementById("select_categorias").value != '0'
-			
-
-		){ /*mismo del controller*/
-			const newProducto={
-				//consul log
-				producto: producto.campo,
-				marca: marca.campo,
-				descripcion: descripcion.campo,
-				precio: precio.campo,
-				image: imagePreview.src,
-				codcat: cod_cat(),
+				marca.valido === 'true' &&
+				document.getElementById("select_categorias").value != '0'
 				
-			}
-			/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
-			console.log("Response:------> " + respuestaJson.status);*/
-         
-			await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);
 
-
-			cambiarFormularioValido(true);
-			cambiarProducto({campo: '', valido: ''});
-			cambiarCodigo({campo: '', valido: null});
-			document.ready = document.getElementById("select_categorias").value = '0';
-			cambiarDescripcion({campo: '', valido: null});
-			cambiarPrecio({campo: '', valido: null});
-			cambiarMarca({campo: '', valido: null});
-			imagePreview.src= '';
-			document.ready = document.getElementById("img-uploader").value = "";
-			document.ready = document.getElementById("img-upload-bar").value = '0';
-			document.ready = document.getElementById("img-preview").value = "";
-			document.ready = document.getElementsByClassName("card").item = '';
-			//document.ready = document.getElementsById("contenedorImagen").value = 'null';
+			){ /*mismo del controller*/
+				const newProducto={
+					//consul log
+					producto: producto.campo,
+					marca: marca.campo,
+					descripcion: descripcion.campo,
+					precio: precio.campo,
+					image: imagePreview.src,
+					codcat: cod_cat(),
+					
+				}
+				/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
+				console.log("Response:------> " + respuestaJson.status);*/
 			
-            
-			Swal.fire({
-				icon: 'success',
-				title: '¡Genial!',
-				text: '¡Producto nuevo guardado exitosamente!',
-				//footer: '<a href="">Why do I have this issue?</a>'
-			})
+				await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);
 
-		} else {
-			cambiarFormularioValido(false);
+
+				cambiarFormularioValido(true);
+				cambiarProducto({campo: '', valido: ''});
+				cambiarCodigo({campo: '', valido: null});
+				document.ready = document.getElementById("select_categorias").value = '0';
+				cambiarDescripcion({campo: '', valido: null});
+				cambiarPrecio({campo: '', valido: null});
+				cambiarMarca({campo: '', valido: null});
+				imagePreview.src= '';
+				document.ready = document.getElementById("img-uploader").value = "";
+				document.ready = document.getElementById("img-upload-bar").value = '0';
+				document.ready = document.getElementById("img-preview").value = "";
+				document.ready = document.getElementsByClassName("card").item = '';
+				//document.ready = document.getElementsById("contenedorImagen").value = 'null';
+				
+				
+				Swal.fire({
+					icon: 'success',
+					title: '¡Genial!',
+					text: '¡Producto nuevo guardado exitosamente!',
+					//footer: '<a href="">Why do I have this issue?</a>'
+				})
+
+			} else {
+				cambiarFormularioValido(false);
+			}
 		}
-
-	}
 	}
 
 	const handleChange = (e) => {

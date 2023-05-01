@@ -45,18 +45,13 @@ class ofertaController extends Controller
         $oferta->precioventa = $request->input('Precio de Venta(bs)');
         $oferta->save();
          // Retornar una respuesta de éxito
-         return response()->json(['mensaje' => 'Producto creado con éxito'], 201);
+         return response()->json(['mensaje' => 'oferta creada con éxito'], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $oferta = $this->oferta->obtenerAlumnoPorId($id);
-        return view('alumnos.ver', ['alumno' => $alumno]);
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */

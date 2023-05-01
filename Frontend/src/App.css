@@ -126,7 +126,7 @@ body.dark{
     
 }
 .sidebar.close{
-    width: 120px;
+    width: 130px;
 }
 
 /* ===== Reusable code - Here ===== */
@@ -147,7 +147,7 @@ body.dark{
 }
 
 .sidebar .icon{
-    min-width: 60px;
+    min-width: 80px;
     border-radius: 6px;
     height: 100%;
     display: flex;
@@ -188,7 +188,7 @@ opacity: 100;
 }
 /* =========================== */
 #iconobarra{
-    font-size: 35px;
+    font-size: 45px;
     margin-right: 82px;
     align-items:flex-start;
    

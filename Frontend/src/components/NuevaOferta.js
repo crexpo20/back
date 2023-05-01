@@ -8,6 +8,7 @@ import '../css/ventanaImagen.css';
 import '../css/OfertaNueva.css';
 import '../css/estilos.css';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export const NuevaOferta = () => {
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -32,8 +33,7 @@ export const NuevaOferta = () => {
 		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,28})$/, // Letras y espacios, pueden llevar acentos.
 		//marca: /^[a-zA-Z0-9\s]{3,15}$/, //para numeros y letras
 		//codigo: /^\d{1,10}$/, // 1 a 10 numeros.
-		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/
-    , // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
+		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
 	}
 
     /*const handleSubmit = (event) => {
@@ -54,8 +54,23 @@ export const NuevaOferta = () => {
         
         window.location.href = '/home';
       };*/
-      
-	const onSubmit = (e) => {
+  
+      /*const postOferta = async (url, newOferta) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(newProducto),
+            headers: {
+				
+                'Content-Type': 'application/json'
+            }
+			
+        });
+
+        return response;
+      }*/
+
+  
+	const onSubmit = async(e) => {
 		e.preventDefault();
 
 		if(
@@ -66,10 +81,14 @@ export const NuevaOferta = () => {
 			fin != null
 			
 		){
+
+
 			cambiarFormularioValido(true);
-			cambiarProducto({campo: '', valido: ''});
+			cambiarProducto({campo: '', valido: null});
       cambiarDescripcion({campo: '', valido: null});
 			cambiarPrecio({campo: '', valido: null});
+      cambiarInicio("");
+        cambiarFin("");
 			
       Swal.fire({
 				icon: 'success',
@@ -102,35 +121,52 @@ export const NuevaOferta = () => {
         cambiarInicio("");
         cambiarFin("");
         cambiarDescripcion("");
-        window.alert('La oferta se registró con éxito');
-        window.location.href = '/home';
+        
+        Swal.fire({
+          icon: 'success',
+          title: '¡Genial!',
+          text: '¡Oferta guardada exitosamente!',
+          //footer: '<a href="">Why do I have this issue?</a>'
+        })
 
 			// ... //*ñiiñíñíñíñíñíñíñíñíñíñíñííññiñíñíñíñíñíñíñíñíñíníiññíñíñíñííñiññíñíñíñíñíñíiniññíiñíñiñiñiñiñiñiñiññíñí*/ */
 		} else {
 			cambiarFormularioValido(false);
 		}
-      };
+  };
       const handleReset = () => {
   
         if((precio||producto||inicio||fin||descripcion) != ""){
-          const confirmacion = window.confirm('¿Está seguro de que desea realizar esta acción?');
-        if (confirmacion) {
-          window.alert('Acción realizada exitosamente');
-        cambiarProducto("");
-        cambiarPrecio("");
-        cambiarInicio("");
-        cambiarFin("");
-        cambiarDescripcion("");
-        window.location.href = '/home';
-        } else {
-          window.alert('Acción cancelada');
-        }
-        }else{
-          window.location.href = '/home';
-        }
+          Swal.fire({
+            title: '¿Estás seguro de cancelar?',
+            text:"¡No podrás recuperar los datos!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si!',
+            cancelButtonText: '¡No!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                '¡Cancelado!',
+                '¡Acción realizada exitosamente!',
+                'success'
+              )
+              cambiarProducto({campo: '', valido: ''});
+              cambiarPrecio({campo: '', valido: ''});
+              cambiarInicio("");
+              cambiarFin("");
+              cambiarDescripcion({campo: '', valido: ''});
+              window.location.href = '/home';
+            }
+          })
+            } else {
+              window.alert('Acción cancelada');
+            }
         
       };
-
+    
 	return (
     <div class = "home">
         <br/>
@@ -143,7 +179,7 @@ export const NuevaOferta = () => {
           <br/>
 
 		<main>
-			<Formulario action="" onSubmit={handleSubmit}>
+			<Formulario action="" onSubmit={onSubmit}>
 				<Input
 					estado={producto}
 					cambiarEstado={cambiarProducto}
@@ -173,7 +209,7 @@ export const NuevaOferta = () => {
 					tipo="text"
 					label="Descripción*:"
 					name="descripcion"
-					placeholder="Di algo interesante de tu negocio"
+					placeholder="Describe tu oferta"
 					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
@@ -241,5 +277,3 @@ export const NuevaOferta = () => {
         </div>
 	);
 }
- 
-//export default ProductoNuevo;
