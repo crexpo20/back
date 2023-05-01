@@ -27,25 +27,15 @@ class ofertaController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        $rules = [
-            'Producto' => 'required|min:2|max:20',
-            'Precio de Venta(bs)' =>'required|numeric|money',
-            'Inicio de oferta' => 'required|date',
-            'Fin oferta' => 'required|date',
-            'Descripción'=>'required|min:10|max:100',
-        ];
-    
-        $validatedData = $request->validate($rules);
-    */
         $oferta = new oferta();
-        $oferta->descripcion = $request->input('Descripción');
-        $oferta->fechaIni = $request->input('Inicio de oferta');
-        $oferta->fechaFin = $request->input('Fin oferta');
-        $oferta->precioventa = $request->input('Precio de Venta(bs)');
+        $oferta->codprod = $request->input('codprod');
+        $oferta->descripcion = $request->input('descripción');
+        $oferta->fechaIni = $request->input('inicio de oferta');
+        $oferta->fechaFin = $request->input('fin oferta');
+        $oferta->precioventa = $request->input('precioventa');
         $oferta->save();
          // Retornar una respuesta de éxito
-         return response()->json(['mensaje' => 'Producto creado con éxito'], 201);
+         return response()->json(['mensaje' => 'oferta creado con éxito'], 201);
     }
 
     /**
@@ -53,8 +43,8 @@ class ofertaController extends Controller
      */
     public function show(string $id)
     {
-        $oferta = $this->oferta->obtenerAlumnoPorId($id);
-        return view('alumnos.ver', ['alumno' => $alumno]);
+        $oferta =  oferta::find($id);
+        return $oferta;
     }
 
     /**
@@ -65,26 +55,19 @@ class ofertaController extends Controller
         $oferta = oferta::find($id);
 
     if (!is_null($oferta)) {
-
-     
-
     // Actualizar los datos del oferta con los datos del formulario
     $oferta->codprod = $request->input('codprod');
     $oferta->descripcion = $request->input('descripcion');
     $oferta->fechaentrada = $request->input('fechaentrada');
     $oferta->fechavencimiento = $request->input('fechavencimiento');
-    $oferta->precioVenta = $request->input('precioVenta');
-   
-
+    $oferta->precioventa = $request->input('precioVenta');
     // Guardar los cambios en la base de datos
     $oferta->save();
-
     // Retornar una respuesta de éxito
     return response()->json(['mensaje' => 'oferta actualizado con éxito'], 200);
     }
-
     else{
-        return response()->json(['mensaje' => 'Producto no encontrado'], 404);
+        return response()->json(['mensaje' => 'oferta no encontrado'], 404);
     }
     }
 
@@ -99,10 +82,8 @@ class ofertaController extends Controller
             if (!$oferta) {
                return response()->json(['mensaje' => 'oferta no encontrado'], 404);
            }
-   
            // Realiza la eliminación
            $oferta->delete();
-   
            // Retorna una respuesta
            return response()->json(['mensaje' => 'oferta eliminado'], 200);
     }

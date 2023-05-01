@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('producto', function (Blueprint $table) {
+            $table->charset = 'utf8mb4';
             $table->id('codprod');
-            $table->string('producto');
+            $table->string('producto')-> unique();
             $table->string('marca');
             $table->string('descripcion');
             $table->string('precio');

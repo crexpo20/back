@@ -20,16 +20,13 @@ class productosController extends Controller
 
     public function create(Request $request)
     {
+        /*
         // Validar los datos del formulario de creación
-        /*$rules=[
-            'producto' => 'required|min:2|max:30',
-            'marca'=>'required|min:2|max:15',
-            'descripcion'=>'required|min:25|max:100',
-            'precio'=>'required|max:7',
-            'image'=>'required|max:255',
-            'codcat'=>'required | exists:categorias,codcat'
+        $rules=[
+            'producto' => 'unique:producto',
         ];
-        $request->validate($rules);*/
+        $request->validate($rules);
+        */
         // Crear una nueva instancia del modelo producto con los datos del formulario
         $producto = new producto([
             'producto' => $request->input('producto'),
