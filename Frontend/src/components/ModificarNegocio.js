@@ -5,7 +5,10 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/Input';
 //import '../css/OfertaNueva.css';
 import '../css/estilos.css';
+import Swal from 'sweetalert2';
+
 export const ModificarNegocio = () => {
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	const [nombre, cambiarNombre] = useState({campo: '', valido: null});
 	const [direccion, cambiarDireccion] = useState({campo: '', valido: null});
 	const [propietario, cambiarPropietario] = useState({campo: '', valido: null});
@@ -14,6 +17,8 @@ export const ModificarNegocio = () => {
 	const [numero, cambiarNumero] = useState({campo: '', valido: null});
     const [images, setImages] = useState([]);
 	const [formularioValido, cambiarFormularioValido] = useState(null);
+	
+	const imagePreview = document.getElementById('img-preview');
 
 	const expresiones = {
 		direccion: /^[a-zA-Z]{1,2}([a-zA-Z0-9.|,|#\s]{14,48})$/, // Letras, numeros, guion y guion_bajo.
@@ -44,32 +49,68 @@ export const ModificarNegocio = () => {
       };*/
       
 	const onSubmit = (e) => {
-		e.preventDefault();
-
-		if(
-			nombre.valido === 'true' &&
-			direccion.valido === 'true' &&
-			propietario.valido === 'true' &&
-			correo.valido === 'true' &&
-			descripcion.valido === 'true' &&
-			numero.valido === 'true'
-
-		){
-			cambiarFormularioValido(true);
-			cambiarNombre({campo: '', valido: ''});
-			cambiarDireccion({campo: '', valido: null});
-			cambiarPropietario({campo: '', valido: null});
-			cambiarCorreo({campo: '', valido: 'null'});
-			cambiarDescripcion({campo: '', valido: null});
-			cambiarNumero({campo: '', valido: null});
-
-			// ... 
-		} else {
-			cambiarFormularioValido(false);
-		}
-
 		
+		e.preventDefault();
+		console.log(imagePreview.src);
+
+		document.getElementById("img-uploader").enctype = "multipart/form-data";
+		if(imagePreview.src==""){
+			if(
+				nombre.valido === 'true' &&
+				direccion.valido === 'true' &&
+				propietario.valido === 'true' &&
+				correo.valido === 'true' &&
+				descripcion.valido === 'true' &&
+				numero.valido === 'true'
+			){
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'No subiste ninguna imagen...',
+					//footer: '<a href="">Why do I have this issue?</a>'
+				})
+			}else{
+				if(onSubmit){
+					cambiarFormularioValido(false);
+				}
+			}
+		}else{
+			if(
+				nombre.valido === 'true' &&
+				direccion.valido === 'true' &&
+				propietario.valido === 'true' &&
+				correo.valido === 'true' &&
+				descripcion.valido === 'true' &&
+				numero.valido === 'true'
+
+			){
+				cambiarFormularioValido(true);
+				cambiarNombre({campo: '', valido: ''});
+				cambiarDireccion({campo: '', valido: null});
+				cambiarPropietario({campo: '', valido: null});
+				cambiarCorreo({campo: '', valido: 'null'});
+				cambiarDescripcion({campo: '', valido: null});
+				cambiarNumero({campo: '', valido: null});
+				imagePreview.src= '';
+				document.ready = document.getElementById("img-uploader").value = "";
+				document.ready = document.getElementById("img-upload-bar").value = '0';
+				document.ready = document.getElementById("img-preview").value = "";
+				document.ready = document.getElementsByClassName("card").item = '';
+
+				Swal.fire({
+					icon: 'success',
+					title: '¡Genial!',
+					text: '¡Datos guardados exitosamente!',
+					//footer: '<a href="">Why do I have this issue?</a>'
+				})
+
+					// ... 
+			} else {
+				cambiarFormularioValido(false);
+			}
+		}
 	}
+		
 
 	const handleChange = (e) => {
 		setImages((images) => [...images, URL.createObjectURL(e.files[0])]);
@@ -93,13 +134,13 @@ export const ModificarNegocio = () => {
 
 	return (
 	 <div class = "home">
-
+		
         <br/>
 			<head>
 		<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
 		</head>
 			
-			<ContenedorBotonCentrado><h1>Modificar datos del negocio</h1></ContenedorBotonCentrado>
+			<ContenedorBotonCentrado><h1>Datos del negocio</h1></ContenedorBotonCentrado>
 			
 		
 			
@@ -168,6 +209,19 @@ export const ModificarNegocio = () => {
 					leyendaError="El telefono tiene un máximo de 8 caracteres, y empezar con 6 o 7."
 					expresionRegular={expresiones.numero}
 				/>
+				<ContenedorBotonCentrado>	
+						<div class="container">
+							<center>
+								<div class="card" id = "contenedorImagen"  >
+									<img id="img-preview"/>
+										<div class="card-footer" id = "contenedorImagen">
+											<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload'></input>
+											<progress id="img-upload-bar" value="0" max="100" ></progress>
+										</div>
+								</div>
+							</center>
+						</div>
+					</ContenedorBotonCentrado>
 
 				{formularioValido === false && <MensajeError>
 					<p>
@@ -175,12 +229,13 @@ export const ModificarNegocio = () => {
 						<b>Error:</b> Por favor rellena el formulario correctamente.
 					</p>
 				</MensajeError>}
-				<ContenedorBotonCentrado>
+				<center>
 					<Boton id= "guardarP" type="submit"> Guardar </Boton>
 					{formularioValido === true && <MensajeExito>“La información del negocio se ha modificado de forma correctamente.</MensajeExito>}
-				
+					</center>
+					<center>
 					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
-				</ContenedorBotonCentrado>
+					</center>
 				
 			</Formulario>
 			<div>
@@ -191,6 +246,6 @@ export const ModificarNegocio = () => {
            <script src='../elementos/modal.js'></script>
         </div>
 	);
-}
+				}
  
 //export default ProductoNuevo;

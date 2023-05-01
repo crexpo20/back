@@ -52,16 +52,22 @@ export const SideMenu = () => {
                         <a href="#">
                             <NavLink to="/home" >
                               <i id = "iconobarra"><BiHomeHeart/>
+                              <center>
+
                               <a id = "pie">Inicio</a>
+                              </center>
                               </i>
                               
                               <span class="text nav-text">Inicio
                               
                               </span>
+                              
+                                
+
                             </NavLink>
                         </a>
                     </li>
-
+                    <br></br>
                     <li class="nav-link">
                         <a href="#">
                             <NavLink to="/registrarProductoN">
@@ -72,7 +78,7 @@ export const SideMenu = () => {
                             </NavLink>
                         </a>
                     </li>
-
+                    <br></br>
                     <li class="nav-link">
                         <a href="#">
                              <NavLink to="/eliminarProducto">
@@ -83,7 +89,7 @@ export const SideMenu = () => {
                             </NavLink>
                         </a>
                     </li>
-
+                    <br></br>
                     <li class="nav-link">
                         <a href="#">
                         <NavLink to="/listaProducto">
@@ -94,7 +100,7 @@ export const SideMenu = () => {
                             </NavLink>
                         </a>
                     </li>
-
+                    <br></br>
                     <li class="nav-link">
                         <a href="#">
                             < NavLink to="/modificarDatosN" >
@@ -105,7 +111,7 @@ export const SideMenu = () => {
                             </NavLink>
                         </a>
                     </li>
-
+                    <br></br>
                     <li class="nav-link">
                         <a href="#">
                         <NavLink to="/ofertaNueva">

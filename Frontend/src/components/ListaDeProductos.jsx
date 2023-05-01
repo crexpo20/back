@@ -6,15 +6,23 @@ import Button from '../elementos/Button';
 import ModalForm from './ModalForm';
 import Stock from './Stock';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
 export const ListaDeProducto = () => {
-    const items = ["Sprite 3L", "Pepsi 3L", "Fanta 3L","CocaCola 3L"];
-    const [showModal, setShowModal] = useState(false);
+  const [productos, setProductos] = useState([
+    { nombre: "Sprite 3L", cantidad: 10 },
+    { nombre: "Pepsi 3L", cantidad: 15 },
+    { nombre: "Fanta 3L", cantidad: 5 },
+    { nombre: "CocaCola 3L", cantidad: 20 }
+  ]);
+  const [showModal, setShowModal] = useState(false);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
-    const OpenModal = () => {
-       setShowModal(true);
-      };
+  const openModal = (producto) => {
+    setProductoSeleccionado(producto);
+    setShowModal(true);
+  };
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenModal = () => {
       setIsOpen(true);
@@ -23,41 +31,61 @@ export const ListaDeProducto = () => {
     const handleCloseModal = () => {
       setIsOpen(false);
     };
-    const Volver = () => {      window.location.href = '/home';
+
+  const volver = () => {      
+    window.location.href = '/home';
   };
   
-    return (
-      <section class = "home">
-            <div id='lista'>
-            <h1 id='titulo'>Lista de Productos</h1>
-            </div>
-        <div className='row' id='listap'>
-            
-         <div className='col' >
-         
-        <ul>
-        {items.map((item, index) => (
-          <li id='elemento' key={index}>
-            <div className='row'>
-            <div className='col-8'>
-            <h3>{item}</h3>
-            </div>
-            <div className='col-4'>
-            
-            <Button onClick={handleOpenModal} className ='button'/>
-            <ModalForm isOpen={isOpen} onClose={handleCloseModal} />
-            <a onClick={OpenModal} > <AddCircleOutlineIcon/> </a>
-              {showModal && <Stock onClose={() => setShowModal(false)} />}
-           </div>
-           </div>
-          </li>
+  return (
+    <section class="home">
+      <div id='lista'>
+        <h1 id='titulo'>Lista de Productos</h1>
+      </div>
+      <div className='row' id='listap'>
+        <div className='col' >
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Cantidad(uds)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {productos.map((producto, index) => (
+                <tr key={index}>
+                  <td>{producto.nombre}</td>
+                  <td>{producto.cantidad}</td>
+                  <td>
+                    <Button onClick={handleOpenModal} className ='button'/>
+                    <ModalForm isOpen={isOpen} onClose={handleCloseModal} />
+                    <a onClick={() => openModal(producto)}> <AddCircleOutlineIcon/> </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <button id="volverHome" className="btn" onClick={volver}>Volver</button>
+      {showModal && (
+        <Stock
+          isClose={() => setShowModal(false)}
+          producto={productoSeleccionado}
+          actualizarProducto={(producto, cantidad) => {
+            const nuevosProductos = productos.map((p) => {
+              if (p.nombre === producto.nombre) {
+                return { ...p, cantidad: p.cantidad + cantidad };
+              } else {
+                return p;
+              }
+            });
+            setProductos(nuevosProductos);
+          }}
+        />
+      )}
+    </section>
+  );
+};
 
-         ))}
-       </ul> 
-       
-       </div>
-      
-       </div> <button id="volverHome" class="btn" onClick={Volver}>Volver</button>
-       </section>
-    )
-}
+export default ListaDeProducto;

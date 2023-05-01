@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Boton} from '../elementos/MiniForm';
+import '../css/Stock.css';
 
-function Stock({ onClose, producto }) {
+function Stock({ isClose, producto, actualizarProducto }) {
   const [cantidad, setCantidad] = useState(1);
   const [precioCompra, setPrecioCompra] = useState(0);
   const [fechaVencimiento, setFechaVencimiento] = useState('');
@@ -12,7 +14,8 @@ function Stock({ onClose, producto }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onClose();
+    actualizarProducto(producto, cantidad);
+    isClose();
   };
 
   const handleCantidadChange = (event) => {
@@ -26,67 +29,52 @@ function Stock({ onClose, producto }) {
   const handleFechaVencimientoChange = (event) => {
     setFechaVencimiento(event.target.value);
   };
-
   return (
     <div className="modal">
       <div className="modal-content">
-        <header>
-          <h4>{producto}</h4>
+        <header className="modal-header">
+          <h4 className="modal-title">{producto.nombre}</h4>
         </header>
         <form action="" onSubmit={handleSubmit}>
-            
-            <label 
-              htmlFor="cantidad">
-              <b> Cantidad*: </b>
-            </label>
-            <input
-              type="number"
+        <label htmlFor="cantidad actual">Cantidad actual:     {producto.cantidad}</label>
+          <label htmlFor="cantidad">Agregar Cantidad: </label>
+          <input
+            type="number"
+            className="form-control"
+            id="cantidad"
+            name="cantidad"
+            min="1"
+            max="999"
+            required
+            value={cantidad}
+            onChange={handleCantidadChange}
+          />
+          <div  className='col' id= "calendar">
+        
+            <label htmlFor="fechaVencimiento">Fecha de vencimiento*: </label>
+            <input 
+              type="date" 
               className="form-control " 
-              id="cantidad"
-              name="cantidad"
-              min="1"
+              name="fechaVencimiento" 
+              min={formattedDate} 
+              max={maxFecha} 
+              id="fechaVencimiento" 
+              placeholder='fecha-inicio*'
               required 
-              value={cantidad}
+              value={fechaVencimiento} 
               color= "transparent"
               margin = "1"
               border-bottom-color = "#000000"
-              onChange={handleCantidadChange}
-            />
-          
-        <div  className='col' id= "calendar">
-        
-        <label 
-          htmlFor="fechaVencimiento">
-           <b> Fecha de vencimiento*: </b>
-        </label>
-        <input 
-          type="date" 
-          className="form-control " 
-          name="fechaVencimiento" 
-          min={formattedDate} 
-          max={maxFecha} 
-          id="fechaVencimiento" 
-          placeholder='fecha-inicio*'
-          required 
-          value={fechaVencimiento} 
-          color= "transparent"
-          margin = "1"
-          border-bottom-color = "#000000"
-          onChange={handleFechaVencimientoChange} />
-        <br />
-
+              onChange={handleFechaVencimientoChange} />
         </div>
-    
-            <label 
-              htmlFor="precioCompra">
-              <b> Precio de compra*: </b>
-            </label>
+
+            <label htmlFor="precioCompra">Precio de compra*: </label>
             <input
               type="number"
               className="form-control " 
               id="precioCompra"
               name="precioCompra"
-              min="0"
+              min="1.00"
               step="0.01"
               required 
               value={precioCompra}
@@ -95,12 +83,11 @@ function Stock({ onClose, producto }) {
               border-bottom-color = "#000000"
               onChange={handlePrecioCompraChange}
             />
-            <br/>
-            <br/>
-            <div className="button-container">
-              <button type="submit">Enviar</button>
-              <button onClick={onClose}>Cerrar</button>
-            </div>
+
+          <div className="button-container">
+              <Boton id="guardarP" type="submit">Guardar</Boton>
+              <Boton id="borrarP" type="button" onClick={isClose} className="btn mx-5">Cancelar</Boton>
+          </div>
         </form>
       </div>
     </div>

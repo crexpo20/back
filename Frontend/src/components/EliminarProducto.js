@@ -67,7 +67,7 @@ export const EliminarProducto = () => {
      
      <section>
       {productoEliminado ? (
-        <Modal show={productoEliminado} onHide={handleVolver}>
+        <Modal show={productoEliminado} onHide={handleVolver} style={{width:2000}}>
           <Modal.Header >
             
           </Modal.Header>
@@ -111,12 +111,16 @@ export const EliminarProducto = () => {
           </div>
           <div>
       <footer>
+      <center>
       <button type='submit' className='btn btn-primary mx-5' id='Eliminar'>
         Eliminar
       </button>
+      </center>
+      <center>
       <button type='button' onClick={handleReset} id='borrar' className='btn btn-danger mx-5'>
         Cancelar
       </button>
+      </center>
       </footer>
       </div>
     </form>

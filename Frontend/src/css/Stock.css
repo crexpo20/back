@@ -1,0 +1,19 @@
+  .modal-header {
+    position: relative;
+  }
+  
+  .modal-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  h4{
+    font-size: 30px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }

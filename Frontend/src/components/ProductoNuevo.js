@@ -9,11 +9,12 @@ import { Modal } from 'react-bootstrap';
 import configData from "../config/config.json";
 import axios from 'axios';
 import { useFormik, useField, useFormikContext } from "formik";
+import Swal from 'sweetalert2';
 
 
 export const ProductoNuevo = () =>{
 	
-
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	//const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
 	const [open, setOpen] = React.useState(false);
 	const [alertColor, setAlertColor] = useState('');
@@ -27,7 +28,9 @@ export const ProductoNuevo = () =>{
 	const [marca, cambiarMarca] = useState({campo: '', valido: null});
 	const [images, setImages] = useState([]);
 	const [formularioValido, cambiarFormularioValido] = useState(null);
-	
+	const imagePreview = document.getElementById('img-preview');
+	const select_cat = document.getElementById("select_categorias");
+	const img_up = document.getElementById('img-uploader');
     const URL_PRODUCTO = "http://127.0.0.1:8000/api/postProductos";
 	
 	const expresiones = {
@@ -80,15 +83,20 @@ export const ProductoNuevo = () =>{
         },
     });*/
 	// asignacion de variables de entrada a variable de BD
-	const newProducto={
+	/*const newProducto={
 		producto: producto.campo,
 		marca: marca.campo,
 		descripcion: descripcion.campo,
 		precio: precio.campo,
+<<<<<<< HEAD
 		image: "htts.sadfdgw.com",
 		codcat: 5,
+=======
+		image: images.values,
+		codcat: 12,
+>>>>>>> d7b1cb624c2774d7d32e6ca5509acc98e299ab58
 		
-	}
+	}*/
 
 	const postProducto = async (url, newProducto) => {
         const response = await fetch(url, {
@@ -103,49 +111,146 @@ export const ProductoNuevo = () =>{
 
         return response;
     }
-
+	
+	function cod_cat(){
+		if(select_cat.value == "2"){
+			return 2;
+		}else{
+			if(select_cat.value == "3"){
+				return 3;
+			}else{
+				if(select_cat.value == "4"){
+					return 4;
+				}else{
+					if(select_cat.value == "5"){
+						return 5;
+					}else{
+						if(select_cat.value == "6"){
+							return 6;
+						}else{
+							if(select_cat.value == "7"){
+								return 7;
+							}else{
+								if(select_cat.value == "8"){
+									return 8;
+								}else{
+									if(select_cat.value == "9"){
+										return 9;
+									}else{
+										if(select_cat.value == "10"){
+											return 10;
+										}else{
+											if(select_cat.value == "11"){
+												return 11;
+											}else{
+												if(select_cat.value == "12"){
+													return 12;
+												}else{
+													if(select_cat.value == "13"){
+														return 13;
+													}else{
+														if(select_cat.value == "1"){
+															return 1;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}	
+		}
+	}
+	
+	
 	
 	const onSubmit = async(e) => {
 		e.preventDefault();
-		if(
-			producto.valido === 'true' &&
-			codigo.valido === 'true' &&
-			categoria.valido === 'true' &&
-			descripcion.valido === 'true' &&
-			precio.valido === 'true' &&
-			marca.valido === 'true'
+		console.log(imagePreview.src);
 
-		){ /*mismo del controller*/
-			const newProducto={
-				//consul log
-				producto: producto.campo,
-				marca: marca.campo,
-				descripcion: descripcion.campo,
-				precio: precio.campo,
-				image: "htts.sadfdgw.com",
-				codcat: 2285,
+		document.getElementById("img-uploader").enctype = "multipart/form-data";
+		if(imagePreview.src==""){
+				if(
+					producto.valido === 'true' &&
+					codigo.valido === 'true' &&
+					//categoria.valido === 'true' &&
+					descripcion.valido === 'true' &&
+					precio.valido === 'true' &&
+					marca.valido === 'true'
+				){
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'No subiste ninguna imagen...',
+					//footer: '<a href="">Why do I have this issue?</a>'
+				})
+				}else{
+					if(onSubmit){
+						cambiarFormularioValido(false);
+					}
+				}
+			}else{
+
+			
+			//e.preventDefault();
+			//console.log(imagePreview.src);
+			if(
+				producto.valido === 'true' &&
+				codigo.valido === 'true' &&
+				//categoria.valido === 'true' &&
+				descripcion.valido === 'true' &&
+				precio.valido === 'true' &&
+				marca.valido === 'true' &&
+				document.getElementById("select_categorias").value != '0'
 				
+
+			){ /*mismo del controller*/
+				const newProducto={
+					//consul log
+					producto: producto.campo,
+					marca: marca.campo,
+					descripcion: descripcion.campo,
+					precio: precio.campo,
+					image: imagePreview.src,
+					codcat: cod_cat(),
+					
+				}
+				/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
+				console.log("Response:------> " + respuestaJson.status);*/
+			
+				await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);
+
+
+				cambiarFormularioValido(true);
+				cambiarProducto({campo: '', valido: ''});
+				cambiarCodigo({campo: '', valido: null});
+				document.ready = document.getElementById("select_categorias").value = '0';
+				cambiarDescripcion({campo: '', valido: null});
+				cambiarPrecio({campo: '', valido: null});
+				cambiarMarca({campo: '', valido: null});
+				imagePreview.src= '';
+				document.ready = document.getElementById("img-uploader").value = "";
+				document.ready = document.getElementById("img-upload-bar").value = '0';
+				document.ready = document.getElementById("img-preview").value = "";
+				document.ready = document.getElementsByClassName("card").item = '';
+				//document.ready = document.getElementsById("contenedorImagen").value = 'null';
+				
+				
+				Swal.fire({
+					icon: 'success',
+					title: '¡Genial!',
+					text: '¡Producto nuevo guardado exitosamente!',
+					//footer: '<a href="">Why do I have this issue?</a>'
+				})
+
+			} else {
+				cambiarFormularioValido(false);
 			}
-			/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
-			console.log("Response:------> " + respuestaJson.status);
-         */
-			await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);
-
-
-			cambiarFormularioValido(true);
-			cambiarProducto({campo: '', valido: ''});
-			cambiarCodigo({campo: '', valido: null});
-			cambiarCategoria({campo: '', valido: null});
-			cambiarDescripcion({campo: '', valido: null});
-			cambiarPrecio({campo: '', valido: null});
-			cambiarMarca({campo: '', valido: null});
-            
-			window.alert('¡Producto guardado exitosamente!');
-		} else {
-			cambiarFormularioValido(false);
 		}
-
-		
 	}
 
 	const handleChange = (e) => {
@@ -165,6 +270,7 @@ export const ProductoNuevo = () =>{
 		cambiarDescripcion("");
 		cambiarPrecio("");
 		cambiarMarca("");
+		document.ready = document.getElementById("select_categorias").value = '0';
 		window.location.href = '/home';
 	  };
 
@@ -219,133 +325,146 @@ export const ProductoNuevo = () =>{
 	function borrar() {
         //document.getElementById("comprobantePago").value = "";
         cambiarProducto("");
-		cambiarCodigo("");
+		//cambiarCodigo("");
 		cambiarCategoria("");
 		cambiarDescripcion("");
 		cambiarPrecio("");
 		cambiarMarca("");
     }
 
+	function myFunction(){
+		document.getElementById("img-uploader").enctype = "multipart/form-data";
+	}
 	return (
-     <center>
+    <center>
 		<head>
 		<meta http-equiv="Access-Control-Allow-Origin" content="http://localhost:3000/"/>
 		
 		</head>
-	 <div class="home">
+		<div class="home">
 	 
-	 			
-        <br/>
-		<head>
-		<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
-		</head>	
+			<head>
+			<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
+			</head>	
 			<ContenedorBotonCentrado><h1>Registro de Producto</h1></ContenedorBotonCentrado>
 			
-		
-			
-          <br/>
-
-		<main>
-			<Formulario action="" onSubmit={onSubmit}>
-				<Input
-					estado={producto}
-					cambiarEstado={cambiarProducto}
-					tipo="text"
-					label="Producto*:"
-					placeholder="Cereal en caja 500gr"
-					name="producto"
-					leyendaError="El nombre debe contener de 2 a 20 caracteres entre números, letras y espacios."
-					expresionRegular={expresiones.producto}
-				/>
-				<Input
-					estado={codigo}
-					cambiarEstado={cambiarCodigo}
-					tipo="text"
-					label="Código*:"
-					placeholder="283755"
-					name="codigo"
-					leyendaError="El código solo puede contener números enteros positivos y un máximo de 10 dígitos."
-					expresionRegular={expresiones.codigo}
-				/>
-				<Input
-					estado={categoria}
-					cambiarEstado={cambiarCategoria}
-					tipo="text"
-					label="Categoría*:"
-					name="categoria"
-					leyendaError="La categoría solo debe ser una de las propuestas."
-					expresionRegular={expresiones.categoria}
-				/>
-				
-				<Input
-					estado={descripcion}
-					cambiarEstado={cambiarDescripcion}
-					tipo="text"
-					label="Descripción*:"
-					name="descripcion"
-					placeholder="Di algo interesante de tu producto"
-					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
-					expresionRegular={expresiones.descripcion}
-				/>
-				<Input
-					estado={precio}
-					cambiarEstado={cambiarPrecio}
-					tipo="text"
-					label="Precio de venta:*"
-					name="precio"
-					placeholder="23.00"
-					leyendaError="El precio solo puede contener números enteros o si se quiere ingresar un número decimal se puede poner un carácter especial (.) y dos decimales."
-					expresionRegular={expresiones.precio}
-				/>
-				<Input
-					estado={marca}
-					cambiarEstado={cambiarMarca}
-					tipo="text"
-					label="Marca*:"
-					placeholder="Pil andina"
-					name="marca"
-					leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
-					expresionRegular={expresiones.marca}
-				/>
-
-			     	
-			    <div class="container">
+          	<br/>
         
-       				<div class="card">
-            			<img id="img-preview"/>
-            				<div class="card-footer">
-                				<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload' required ></input>
-                				<progress id="img-upload-bar" value="0" max="100"></progress>
-           					</div>
-        			</div>
+			<main>
+				<Formulario action="" onSubmit={onSubmit}>
+					<Input
+						estado={producto}
+						cambiarEstado={cambiarProducto}
+						tipo="text"
+						label="Producto*:"
+						placeholder="Cereal en caja 500gr"
+						name="producto"
+						leyendaError="El nombre debe contener de 2 a 20 caracteres entre números, letras y espacios."
+						expresionRegular={expresiones.producto}
+					/>
+					<Input
+						estado={codigo}
+						cambiarEstado={cambiarCodigo}
+						tipo="text"
+						label="Código*:"
+						placeholder="283755"
+						name="codigo"
+						leyendaError="El código solo puede contener números enteros positivos y un máximo de 10 dígitos."
+						expresionRegular={expresiones.codigo}
+					/>
+					<div>
+						<label id = "label_cat"><b>
+							Categoría*:
+						</b></label>
 
-    			</div>
+						<select name="select" id = "select_categorias"
 
-				{formularioValido === false && <MensajeError>
-					<p>
-						<FontAwesomeIcon icon={faExclamationTriangle}/>
-						<b>Error:</b> Por favor rellena el formulario correctamente.
-					</p>
-				
-				</MensajeError>}
-				<ContenedorBotonCentrado>
-					<Boton id= "guardarP" type="submit" onClick={onSubmit}> Guardar </Boton>
-				
-					<Boton id= "borrarP" type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
-				</ContenedorBotonCentrado>
-				
-			</Formulario>
+						>
+							<option  id = "valor_inicial" value="0" disabled selected>Seleccione la categoría:</option>
+
+							<option value="1">Abarrotes</option>
+							<option value="2">Bebidas</option>
+							<option value="3">Bebidas Alcoholicas</option>
+							<option value="4">Cuidado personal</option>
+							<option value="5">Enlatados</option>
+							<option value= "6">Farmacos</option>
+							<option value="7">Fiambres y embutidos</option>
+							<option value="8">Golosinas</option>
+							<option value="9">Limpieza del hogar</option>
+							<option value="10">Lacteos</option>
+							<option value="11">Panaderia</option>
+							<option value="12">Snacks</option>
+							<option value="13">Varios</option>
+						</select>
+					</div>
+
+					
+					<Input
+						estado={descripcion}
+						cambiarEstado={cambiarDescripcion}
+						tipo="text"
+						label="Descripción*:"
+						name="descripcion"
+						placeholder="Di algo interesante de tu producto"
+						leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
+						expresionRegular={expresiones.descripcion}
+					/>
+					<Input
+						estado={precio}
+						cambiarEstado={cambiarPrecio}
+						tipo="text"
+						label="Precio de venta:*"
+						name="precio"
+						placeholder="23.00"
+						leyendaError="El precio solo puede contener números enteros o si se quiere ingresar un número decimal se puede poner un carácter especial (.) y dos decimales."
+						expresionRegular={expresiones.precio}
+					/>
+					<Input
+						estado={marca}
+						cambiarEstado={cambiarMarca}
+						tipo="text"
+						label="Marca*:"
+						placeholder="Pil andina"
+						name="marca"
+						leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
+						expresionRegular={expresiones.marca}
+					/>
 			
-			<div>
-				
-				</div>
+					<ContenedorBotonCentrado>	
+						<div class="container">
+							<center>
+								<div class="card" id = "contenedorImagen"  >
+									<img id="img-preview"/>
+										<div class="card-footer" id = "contenedorImagen">
+											<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload'></input>
+											<progress id="img-upload-bar" value="0" max="100" ></progress>
+										</div>
+								</div>
+							</center>
+						</div>
+					</ContenedorBotonCentrado>
 
-	
-		</main>
-		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-		
-       </div>
-		</center>
+					{formularioValido === false && <MensajeError>
+						<p>
+							<FontAwesomeIcon icon={faExclamationTriangle}/>
+							<b>Error:</b> Por favor rellena el formulario correctamente.
+						</p>
+					
+					</MensajeError>}
+						<center>
+						<Boton id= "guardarP" type="submit" onClick={onSubmit} s> Guardar </Boton>
+						</center>
+						<center>
+						<Boton id= "borrarP"  type="button" onClick={handleReset} className="btn mx-5"> Cancelar </Boton>
+						</center>
+					
+				</Formulario>
+				
+			</main>
+			<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+			
+   		</div>
+	</center>
 	);
 }
  

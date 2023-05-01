@@ -1059,3 +1059,4 @@ final class Styles
         return $text;
     }
 }
+

@@ -38,6 +38,7 @@ const GrupoInput = styled.div`
 	z-index: 90;
 `;
 
+
 const Input = styled.input`
 	width: 100%;
 	background: #faf7f0;
@@ -113,23 +114,23 @@ const ContenedorTerminos = styled.div`
 `;
 
 const ContenedorBotonCentrado = styled.div`
-	background: #faf7f0;
+	background: ;
 	display: block;
 	direction: ltr;
 	grid-auto-flow: row;
 	flex-direction: row;
 	align-items: center;
 	grid-column: span 2;
-
-	@media (max-width: 800px){
-		grid-column: span 1;
-	}
+	text-align:center;
+	width:100%;
+	
 `;
 
 const Boton = styled.button`
+
 	height: 45px;
 	line-height: 45px;
-	width: 30%;
+	width: 50%;
 	background: #000;
 	color: #fff;
 	font-weight: bold; 
@@ -137,7 +138,7 @@ const Boton = styled.button`
 	border-radius: 3px;
 	cursor: pointer;
 	transition: .1s ease all;
-	padding: 16px 32px;
+	
 	text-align:center;
 	&:hover {
 		box-shadow: 3px 0px 30px rgba(163,163,163, 1);
@@ -177,5 +178,6 @@ export {
 	ContenedorBotonCentrado,
 	Boton,
 	MensajeExito,
-	MensajeError
+	MensajeError,
+    
 };
