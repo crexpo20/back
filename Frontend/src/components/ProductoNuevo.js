@@ -10,10 +10,12 @@ import configData from "../config/config.json";
 import axios from 'axios';
 import { useFormik, useField, useFormikContext } from "formik";
 import Swal from 'sweetalert2';
+import cors from 'cors';
 
 
 export const ProductoNuevo = () =>{
 	
+
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	//const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
 	const [open, setOpen] = React.useState(false);
@@ -88,17 +90,12 @@ export const ProductoNuevo = () =>{
 		marca: marca.campo,
 		descripcion: descripcion.campo,
 		precio: precio.campo,
-<<<<<<< HEAD
-		image: "htts.sadfdgw.com",
-		codcat: 5,
-=======
 		image: images.values,
 		codcat: 12,
->>>>>>> d7b1cb624c2774d7d32e6ca5509acc98e299ab58
 		
 	}*/
 
-	const postProducto = async (url, newProducto) => {
+	/*const postProducto = async (url, newProducto) => {
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(newProducto),
@@ -110,7 +107,7 @@ export const ProductoNuevo = () =>{
         });
 
         return response;
-    }
+    }*/
 	
 	function cod_cat(){
 		if(select_cat.value == "2"){
@@ -169,6 +166,7 @@ export const ProductoNuevo = () =>{
 	
 	
 	const onSubmit = async(e) => {
+		
 		e.preventDefault();
 		console.log(imagePreview.src);
 
@@ -195,7 +193,6 @@ export const ProductoNuevo = () =>{
 				}
 			}else{
 
-			
 			//e.preventDefault();
 			//console.log(imagePreview.src);
 			if(
@@ -207,7 +204,6 @@ export const ProductoNuevo = () =>{
 				marca.valido === 'true' &&
 				document.getElementById("select_categorias").value != '0'
 				
-
 			){ /*mismo del controller*/
 				const newProducto={
 					//consul log
@@ -219,13 +215,73 @@ export const ProductoNuevo = () =>{
 					codcat: cod_cat(),
 					
 				}
-				/*const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
-				console.log("Response:------> " + respuestaJson.status);*/
-			
-				await axios.post("http://127.0.0.1:8000/api/postProductos", newProducto);
 
+		    	const postProducto = async (url, newProducto) => {
+					const response = await fetch(url, {
 
-				cambiarFormularioValido(true);
+						method: 'POST',
+						body: JSON.stringify(newProducto),
+						headers: {
+						  'Access-Control-Allow-Origin': '*',
+						  'Content-Type': 'application/json',
+						}
+						//withCredentials: true,
+						//credentials: 'same-origin',
+				  
+						//method: 'POST',
+						
+						/*headers: {
+							
+							
+							'Access-Control-Allow-Origin': '*',
+							'Access-Control-Allow-Methods': 'POST, GET',
+							'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+							'Content-Type': 'multipart/form-data, aplication/json'
+							
+						}*/
+						
+					});
+					return response;
+				}
+				
+				const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
+				console.log("Response:------> " + respuestaJson.status);
+			   
+				if( respuestaJson.status === 500){
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: 'El producto ' + producto.campo + ' ya se encuentra registrado, intenta con otro nombre ',
+						//footer: '<a href="">Why do I have this issue?</a>'
+					})
+
+				}else{
+					cambiarFormularioValido(true);
+					cambiarProducto({campo: '', valido: ''});
+					cambiarCodigo({campo: '', valido: null});
+					document.ready = document.getElementById("select_categorias").value = '0';
+					cambiarDescripcion({campo: '', valido: null});
+					cambiarPrecio({campo: '', valido: null});
+					cambiarMarca({campo: '', valido: null});
+					imagePreview.src= '';
+					document.ready = document.getElementById("img-uploader").value = "";
+					document.ready = document.getElementById("img-upload-bar").value = '0';
+					document.ready = document.getElementById("img-preview").value = "";
+					document.ready = document.getElementsByClassName("card").item = '';
+
+					//document.ready = document.getElementsById("contenedorImagen").value = 'null';
+					
+					Swal.fire({
+						icon: 'success',
+						title: '¡Genial!',
+						text: '¡Producto nuevo guardado exitosamente!',
+						//footer: '<a href="">Why do I have this issue?</a>'
+					})
+				}
+				/*await axios.post(URL_PRODUCTO, newProducto);*/
+				
+				
+				/*cambiarFormularioValido(true);
 				cambiarProducto({campo: '', valido: ''});
 				cambiarCodigo({campo: '', valido: null});
 				document.ready = document.getElementById("select_categorias").value = '0';
@@ -237,6 +293,10 @@ export const ProductoNuevo = () =>{
 				document.ready = document.getElementById("img-upload-bar").value = '0';
 				document.ready = document.getElementById("img-preview").value = "";
 				document.ready = document.getElementsByClassName("card").item = '';
+
+
+
+
 				//document.ready = document.getElementsById("contenedorImagen").value = 'null';
 				
 				
@@ -246,8 +306,8 @@ export const ProductoNuevo = () =>{
 					text: '¡Producto nuevo guardado exitosamente!',
 					//footer: '<a href="">Why do I have this issue?</a>'
 				})
-
-			} else {
+				*/
+			}else{
 				cambiarFormularioValido(false);
 			}
 		}
@@ -336,6 +396,7 @@ export const ProductoNuevo = () =>{
 		document.getElementById("img-uploader").enctype = "multipart/form-data";
 	}
 	return (
+	
     <center>
 		<head>
 		<meta http-equiv="Access-Control-Allow-Origin" content="http://localhost:3000/"/>
@@ -429,8 +490,7 @@ export const ProductoNuevo = () =>{
 						leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
 						expresionRegular={expresiones.marca}
 					/>
-			
-					<ContenedorBotonCentrado>	
+					<ContenedorBotonCentrado>
 						<div class="container">
 							<center>
 								<div class="card" id = "contenedorImagen"  >
@@ -442,8 +502,8 @@ export const ProductoNuevo = () =>{
 								</div>
 							</center>
 						</div>
-					</ContenedorBotonCentrado>
-
+					
+						</ContenedorBotonCentrado>
 					{formularioValido === false && <MensajeError>
 						<p>
 							<FontAwesomeIcon icon={faExclamationTriangle}/>
@@ -467,4 +527,3 @@ export const ProductoNuevo = () =>{
 	</center>
 	);
 }
- 

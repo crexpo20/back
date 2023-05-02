@@ -608,7 +608,8 @@ body.dark .home .text{
 {
     width: 100%;
 }
-
-
+#flexCheckDefault:checked {
+    background-color: rgb(130, 9, 160);
+    }
 
 /*----------select categorias-----------*/
