@@ -11,7 +11,8 @@ class lotesController extends Controller
 
     public function index()
     {
-    
+        $lotes = Lote::all();
+        return response()->json($lotes);
     }
     
     /**
