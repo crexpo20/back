@@ -39,11 +39,11 @@ export const SideMenu = ({ toggleNavbar }) => {
                     <i src="../images/logo.png"></i>
                     <span class="name">TITA</span>
                     <span class="profession">SuperMarket</span>
-                    <a onClick={toggleNavbar}><BsPersonCircle /></a>
+                    
                 </div>
                
             </div>
-
+            <a  className='bx ' onClick={toggleNavbar}><BsPersonCircle /></a>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
 
