@@ -1,0 +1,41 @@
+.nav-container {
+    display: flex; /* Esto permite que los elementos dentro del contenedor se alineen horizontalmente */
+    justify-content: space-between; /* Esto alinea el contenido del contenedor en los extremos izquierdo y derecho */
+    align-items: center; /* Esto alinea verticalmente el contenido del contenedor en el centro */
+    height: max-content;
+    width: 100%; /* Esto define la altura del contenedor */
+    padding: 0px; /* Esto agrega un poco de espacio entre el borde del contenedor y su contenido */
+     /* Esto define el color de fondo del contenedor */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Esto agrega una sombra al contenedor */
+  }
+
+  .menu-linksCliente {
+    display: flex;
+    flex-direction: row; /* Esto cambia la dirección de flexión a horizontal */
+    justify-content: flex-start; /* Esto alinea los elementos de la lista a la izquierda */
+    align-items: center; /* Esto alinea verticalmente los elementos de la lista en el centro */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .name {
+    font-size: 2rem; /* Esto aumenta el tamaño de la fuente a 2 veces el tamaño predeterminado */
+    margin-left: 20px;/* Esto hace que el texto sea más audaz */
+  }
+  
+  .super {
+    font-size: 2rem; /* Esto aumenta el tamaño de la fuente a 1.2 veces el tamaño predeterminado */
+    margin-left: 20px; /* Esto agrega un poco de espacio entre los elementos "TITA" y "SuperMarket" */
+  }
+  .market {
+    font-size: 2rem; /* Esto aumenta el tamaño de la fuente a 1.2 veces el tamaño predeterminado */
+    margin-left: 20px; /* Esto agrega un poco de espacio entre los elementos "TITA" y "SuperMarket" */
+  }
+  .icono {
+    font-size: 2rem; /* Esto aumenta el tamaño de la fuente a 1.2 veces el tamaño predeterminado */
+    margin-left: 1000px; /* Esto agrega un poco de espacio entre los elementos "TITA" y "SuperMarket" */
+    
+}
+  
+  
+  
