@@ -15,7 +15,7 @@ class categoria extends Model
     public $timestamps = false;
 
     public function productos(){
-        return $this->hasMany(productos::class,'codcat');
+        return $this->hasMany(producto::class,'codcat');
     }
     
 }
