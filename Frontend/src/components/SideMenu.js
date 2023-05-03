@@ -11,7 +11,9 @@ import {MdSell} from "react-icons/md"
 import {BiHomeHeart} from "react-icons/bi"
 import { FaStore } from "react-icons/fa" ;   
 import { TiThMenu } from "react-icons/ti";
-export const SideMenu = () => {
+import { BsPersonCircle } from "react-icons/bs";
+
+export const SideMenu = ({ toggleNavbar }) => {
 
   return (
     <html lang="en">
@@ -37,7 +39,9 @@ export const SideMenu = () => {
                     <i src="../images/logo.png"></i>
                     <span class="name">TITA</span>
                     <span class="profession">SuperMarket</span>
+                    <a onClick={toggleNavbar}><BsPersonCircle /></a>
                 </div>
+               
             </div>
 
             <i class='bx bx-chevron-right toggle'></i>
@@ -48,6 +52,7 @@ export const SideMenu = () => {
 
 
                 <ul class="menu-links">
+                
                     <li class="nav-link">
                         <a href="#">
                             <NavLink to="/home" >
