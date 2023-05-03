@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 class lote extends Model
 {
     use HasFactory;
     protected $table = 'lote';
-    protected $primaryKey = 'codlote';
-    protected $fillable = ['codprod','fechaentrada','fechavencimiento','cantidad'];
+    protected $fillable = ['codprod','fechaentrada','fechavencimiento','preciocompra','cantidad'];
     public $timestamps = false;
 
-    public function lote(){
-        return $this->hasOne(producto::class,'codprod');
+    public function producto(){
+        return $this->belongsTo(producto::class,'codprod');
     }
-
-
 }

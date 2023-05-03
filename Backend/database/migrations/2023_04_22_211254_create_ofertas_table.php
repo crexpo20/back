@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lote', function (Blueprint $table) {
-            $table->string('codlote', 5)->primary();
-            $table->integer('codprod');
+        Schema::create('oferta', function (Blueprint $table) {
+            $table->id('codoferta');
+            $table->unsignedBigInteger('codprod');
             $table->foreign('codprod')->references('codprod')->on('producto');
-            $table->date('fechaentrada');
-            $table->date('fechavencimiento');
-            $table->unsignedInteger('cantidad');
+            $table->string('descripcion');
+            $table->date('fechaini');
+            $table->date('fechafin');
+            $table->decimal('precioventa', 10, 2);
+
+
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lote');
+        Schema::dropIfExists('oferta');
     }
 };
