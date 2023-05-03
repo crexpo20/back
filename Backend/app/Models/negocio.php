@@ -10,7 +10,7 @@ class negocio extends Model
     use HasFactory;
     protected $table = 'negocio';
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre','direccion','numero','propietario','descripcion','correo'];
+    protected $fillable = ['nombrenegocio','direccion','nombrepropietario','correo','descripcion','telefono'];
     public $timestamps = false;
 
        

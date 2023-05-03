@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->date('fechaini');
             $table->date('fechafin');
-            $table->string('precioventa');
+            $table->decimal('precioventa', 10, 2);
 
 
         });

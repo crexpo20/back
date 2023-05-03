@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('codprod')->references('codprod')->on('producto');
             $table->date('fechaentrada');
             $table->date('fechavencimiento');
+            $table->decimal('preciocompra', 10, 2);
             $table->integer('cantidad');
         });
     }
