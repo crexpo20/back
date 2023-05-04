@@ -14,7 +14,7 @@ class producto extends Model
     public $timestamps = false;
 
         public function categoria(){
-            return $this->belongsTo(categorias::class,'codcat');
+            return $this->belongsTo(categoria::class,'codcat');
         }
         
 }
