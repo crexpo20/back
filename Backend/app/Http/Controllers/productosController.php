@@ -93,7 +93,7 @@ public function update(Request $request, $id)
     // Actualizar los datos del producto con los datos del formulario
     $producto->producto = $request->input('producto');
     $producto->marca = $request->input('marca');
-    $producto->descripcion = $request->input('descripcion');
+    $producto->desc = $request->input('desc');
     $producto->precio = $request->input('precio');
     $producto->image = $request->input('image');
     $producto->codcat = $request->input('codcat');
