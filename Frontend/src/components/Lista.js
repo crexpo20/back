@@ -35,13 +35,16 @@ class Lista extends Component{
             console.log(error);
         });
     }
+    handleReset = () => {
+        window.location.href = '/home';
+    }
     render(){
         return(
             <div class="home">
                 <br></br>
                 <ContenedorBotonCentrado><h1>Productos registrados</h1></ContenedorBotonCentrado>
-                <table className="table">
-                    <thead className="thead-dark">
+                <table className="table" style={{marginRight:80}}>
+                    <thead className="thead-dark" style={{marginRight:80}}>
                         <br></br>
                         <tr>
                         <th scope='col'>Producto</th>
@@ -62,12 +65,10 @@ class Lista extends Component{
                         }
                     </tbody>
                 </table>
-                <center>
-					<Boton id= "guardarP" type="submit" > Guardar </Boton>
-				</center>
-				<center>
-					<Boton id= "borrarP"  type="button" className="btn mx-5"> Cancelar </Boton>
-				</center>
+                <ContenedorBotonCentrado>
+				
+                <Boton id= "cancel"  type="button" className="btn" onClick={this.handleReset}> Volver </Boton>
+                </ContenedorBotonCentrado>
             </div>
            
         

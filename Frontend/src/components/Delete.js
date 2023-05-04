@@ -29,16 +29,40 @@ class Delete extends Component{
             console.log(error);
         });
     }
-
-    deleteProducto = async(codprod) => {
+    deleteP = async(codprod)=>{
         await axios.delete('http://127.0.0.1:8000/api/delProductos/ '+ codprod);
         this.getProductos();
     }
 
+    deleteProducto = async(codprod) => {
+        Swal.fire({
+            title: '¿Estas seguro de eliminar esto?',
+            text: 'No podras recuperarlo más adelante',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                 this.deleteP(codprod)
+              Swal.fire(
+                '¡Eliminado!',
+                'El o los producto(s) seleccionado fueron eliminados correctamente.',
+                'success'
+              )
+            }
+         })
+
+
+
+        
+    }
+
     onSubmit = async(e) => {
-        var miCheck = document.querySelectorAll('.form-check-input');
-        if(miCheck.checked == 'true'){
-            Swal.fire({
+        //var miCheck = document.getElementById('form-check').checked;
+        //if(miCheck){
+            /*Swal.fire({
                 title: '¿Estas seguro de eliminar esto?',
                 text: 'No podras recuperarlo más adelante',
                 icon: 'warning',
@@ -47,24 +71,20 @@ class Delete extends Component{
                 cancelButtonColor: '#d33',
                 confirmButtonText: '¡Si!'
               }).then((result) => {
-                if (result.isConfirmed) {
-                    this.deleteProducto();
+                if (result.isConfirmed) {*/
+                    this.deleteProducto(e);
                   Swal.fire(
                     '¡Eliminado!',
                     'El o los producto(s) seleccionado fueron eliminados correctamente.',
                     'success'
                   )
-                    
-                }
-              })
+               // }
+             // })
         }
-    }
+   // }
 
-    handlereset = () => {
-        var miC = document.getElementById('flexCheckDefault')
-        if(miC.checked){
-            //checked==false;
-        }
+    handleReset = () => {
+        window.location.href = '/home';
     }
 
     render(){
@@ -84,29 +104,21 @@ class Delete extends Component{
                         {
                             this.state.productos.map(product=>
                                 <tr key={product.id}>
-                                    <th>{product.codprod}</th>
-                                    <th>{product.producto}</th>
+                                    <th id="products">{product.codprod}</th>
+                                    <th id="products">{product.producto}</th>
                                         
                                         <th>
-                                           <ContenedorBotonCentrado>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                                    <label class="form-check-label"  for="flexCheckDefault"> 
-                                                    </label>
-                                                </div>
-                                            </ContenedorBotonCentrado>
+                                        <Boton id= "eliminar" type="submit" onClick={()=>this.deleteProducto(product.codprod)}> Eliminar </Boton>
                                         </th>
                                 </tr>
                             )
                         }
                     </tbody>
                 </table>
-                <center>
-					<Boton id= "guardarP" type="submit" onClick={this.onSubmit()}> Eliminar </Boton>
-				</center>
-				<center>
-					<Boton id= "borrarP"  type="button" className="btn mx-5"> Cancelar </Boton>
-				</center>
+                <ContenedorBotonCentrado>
+				
+					<Boton id= "cancel"  type="button" className="btn" onClick={this.handleReset}> Volver </Boton>
+                    </ContenedorBotonCentrado>
             </div>
            
         
