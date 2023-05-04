@@ -21,6 +21,7 @@ import {EliminarP} from './components/EliminarP';
 import {HomeCliente} from './components/HomeCliente';
 import {default as Delete} from './components/Delete';
 import {default as Lista} from './components/Lista';
+import {default as Ofer} from './components/Ofer'
 import "./elementos/modal.js"
 import React, { useState } from "react";
 function App() {
@@ -41,7 +42,7 @@ function App() {
            <Route exact path="/eliminarProducto" element={<Delete/>}/>
            <Route exact path="/listaProducto" element={<Lista/>}/>
            <Route exact path="/modificarDatosN" element={<ModificarNegocio/>}/>
-           <Route exact path="/ofertaNueva" element={<NuevaOferta/>}/>
+           <Route exact path="/ofertaNueva" element={<Ofer/>}/>
            <Route exact path="/registrarProductoN" element={<ProductoNuevo/>}/>
            <Route exact path="*" element={<ErrorNotFound/>}/>
            

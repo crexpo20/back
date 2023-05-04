@@ -459,3 +459,49 @@ body{
     transition: .1s ease all;
 }
 
+#cancel{
+   
+    background-color:#A6A9B6;
+    border: none;
+    color: white;
+    height: 30px;
+	line-height: 5px;
+    width: 20%;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    justify-content: center;
+    display: flexbox;
+    font-size: 19px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: .1s ease all;
+}
+
+#eliminar{
+    background-color: #6754fad3;
+    border: none;
+    color: white;
+    height: 30px;
+	line-height: 5px;
+    width: 20%;
+    padding: 5px 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    display: flexbox;
+    font-size: 19px;
+    margin: 4px 2px;
+    cursor: pointer;;
+    border: none;
+    transition: .1s ease all;
+    border-radius: 30px;
+}
+
+#eliminar :hover {
+    box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+#products {
+    font-size: 19px;
+}
