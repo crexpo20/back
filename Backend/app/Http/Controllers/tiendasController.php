@@ -36,7 +36,8 @@ class tiendasController extends Controller
             'numero' => $request->input('numero'),
             'propietario' => $request->input('propietario'),
             'descripcion' => $request->input('descripcion'),
-            'correo' => $request->input('correo')
+            'correo' => $request->input('correo'),
+            'image' => $request->input('image')
         ]);
     
         // Guardar el nuevo producto en la base de datos
