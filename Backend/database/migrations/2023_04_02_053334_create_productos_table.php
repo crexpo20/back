@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('producto')-> unique();
             $table->string('marca');
             $table->string('descripcion');
-            $table->decimal('precioventa', 10, 2);
+            $table->decimal('precio', 10, 2);
             $table->string('image');
             $table->integer('codcat');
             $table->foreign('codcat')->references('codcat')->on('categoria');
