@@ -108,17 +108,18 @@ class Delete extends Component{
                                     <th id="products">{product.producto}</th>
                                         
                                         <th>
-                                        <Boton id= "eliminar" type="submit" onClick={()=>this.deleteProducto(product.codprod)}> Eliminar </Boton>
+                                        <Boton id= "nuevo" type="submit" onClick={()=>this.deleteProducto(product.codprod)}> Eliminar </Boton>
                                         </th>
                                 </tr>
                             )
                         }
                     </tbody>
                 </table>
+                <div id= "pos">
                 <ContenedorBotonCentrado>
-				
-					<Boton id= "cancel"  type="button" className="btn" onClick={this.handleReset}> Volver </Boton>
-                    </ContenedorBotonCentrado>
+				    <Boton id= "cancel"  type="button" className="btn" onClick={this.handleReset}> Volver </Boton>
+                </ContenedorBotonCentrado>
+             </div>
             </div>
            
         

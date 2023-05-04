@@ -99,6 +99,9 @@ body{
 #botonbarra{
     color: #ffffff;
 }
+
+
+
 body.dark{
     --body-color: #18191a;
     --sidebar-color: #242526;
@@ -601,12 +604,18 @@ body.dark .home .text{
 #form_RP{
     border: #000000;
 }
+ #titulo{
+    position: fixed;
+    
+    left: 50%;
+    transform: translate(-50%,-50%);
 
+ }
 
 #guardarP,
 #borrarP
 {
-    width: 100%;
+    
 }
 #flexCheckDefault:checked {
     background-color: rgb(130, 9, 160);

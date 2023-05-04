@@ -42,7 +42,7 @@ function App() {
            <Route exact path="/eliminarProducto" element={<Delete/>}/>
            <Route exact path="/listaProducto" element={<Lista/>}/>
            <Route exact path="/modificarDatosN" element={<ModificarNegocio/>}/>
-           <Route exact path="/ofertaNueva" element={<Ofer/>}/>
+           <Route exact path="/ofertaNueva" element={<NuevaOferta/>}/>
            <Route exact path="/registrarProductoN" element={<ProductoNuevo/>}/>
            <Route exact path="*" element={<ErrorNotFound/>}/>
            

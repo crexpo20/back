@@ -97,6 +97,19 @@ export const ModificarNegocio = () => {
 				document.ready = document.getElementById("img-preview").value = "";
 				document.ready = document.getElementsByClassName("card").item = '';
 
+				const newNegocio={
+					//consul log
+					nombre: nombre.campo,
+					direccion: direccion.campo,
+					propietario: propietario.campo,
+					correo: correo.campo,
+					descripcion: descripcion.campo,
+					numero: numero.campo,
+					image: imagePreview.src,
+				}
+
+
+
 				Swal.fire({
 					icon: 'success',
 					title: '¡Genial!',
