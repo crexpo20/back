@@ -10,7 +10,11 @@ class tiendasController extends Controller
     
     public function index()
     {
-     
+      // Obtener todos los producto de la base de datos
+      $tienda = tienda::all();
+
+      // Retornar los producto como respuesta
+      return response()->json(['tienda' => $tienda], 200);
     }
 
     /**
@@ -18,16 +22,7 @@ class tiendasController extends Controller
      */
     public function create()
     {
-        $tienda = new tienda();
-        $tienda-> codcat = "td001";
-        $tienda-> nombre->input('Nombre');
-        $tienda-> direccion->input('Dirección');
-        $tienda-> Numero->input('Numero');
-        $tienda-> propietario->input('Nombre del propietario');
-        $tienda-> Descripcion->input('Descripción');
-        $tienda-> correo->input('Correo electrónico');
-        // Guarda el usuario en la base de datos
-        $tienda->save();
+
     }
     
     /**
@@ -35,9 +30,20 @@ class tiendasController extends Controller
      */
     public function store(Request $request)
     {
-        $tienda = new tienda ($request->all());
+        $tienda = new tienda([
+            'nombre' => $request->input('nombre'),
+            'direccion' => $request->input('direccion'),
+            'numero' => $request->input('numero'),
+            'propietario' => $request->input('propietario'),
+            'descripcion' => $request->input('descripcion'),
+            'correo' => $request->input('correo')
+        ]);
+    
+        // Guardar el nuevo producto en la base de datos
         $tienda->save();
-        return $tienda;
+    
+        // Retornar una respuesta de éxito
+        return response()->json(['mensaje' => 'tienda guardada con exito'], 201);
     }
 
     /**
