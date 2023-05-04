@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('oferta', function (Blueprint $table) {
             $table->id('codoferta');
-            $table->unsignedBigInteger('codprod');
+            $table->integer('codprod');
             $table->foreign('codprod')->references('codprod')->on('producto');
-            $table->string('descripcion');
+            $table->string('desc');
             $table->date('fechaini');
             $table->date('fechafin');
             $table->decimal('precioventa', 10, 2);

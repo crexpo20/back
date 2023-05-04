@@ -32,7 +32,7 @@ class tiendasController extends Controller
     {
         $tienda = new tienda([
             'nombre' => $request->input('nombre'),
-            'direccion' => $request->input('direccion'),
+            'dir' => $request->input('dir'),
             'numero' => $request->input('numero'),
             'propietario' => $request->input('propietario'),
             'descripcion' => $request->input('descripcion'),

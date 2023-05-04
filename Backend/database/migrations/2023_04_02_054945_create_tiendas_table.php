@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('tienda', function (Blueprint $table) {
             $table->id('codtienda');
             $table->string('nombre');
-            $table->string('direccion');
-            $table->string('Numero');
+            $table->string('dir');
+            $table->string('numero');
             $table->string('propietario');
-            $table->string('Descripcion');
+            $table->string('descripcion');
             $table->string('correo');
 
         });

@@ -27,15 +27,16 @@ class ofertaController extends Controller
      */
     public function store(Request $request)
     {
-        $oferta = new oferta();
-        $oferta->codprod = $request->input('codprod');
-        $oferta->descripcion = $request->input('descripción');
-        $oferta->fechaIni = $request->input('inicio de oferta');
-        $oferta->fechaFin = $request->input('fin oferta');
-        $oferta->precioventa = $request->input('precioventa');
+        $oferta = new oferta([
+            'codprod' => $request->input('codprod'),
+            'desc' => $request->input('desc'),
+            'fechaini' => $request->input('fechaini'),
+            'fechafin' => $request->input('fechafin'),
+            'precioventa' => $request->input('precioventa')
+        ]);
+        
         $oferta->save();
-         // Retornar una respuesta de éxito
-         return response()->json(['mensaje' => 'oferta creado con éxito'], 201);
+        return response()->json(['mensaje' => 'Oferta creado con éxito'], 201);
     }
 
     /**
@@ -58,9 +59,9 @@ class ofertaController extends Controller
     // Actualizar los datos del oferta con los datos del formulario
     $oferta->codprod = $request->input('codprod');
     $oferta->descripcion = $request->input('descripcion');
-    $oferta->fechaentrada = $request->input('fechaentrada');
-    $oferta->fechavencimiento = $request->input('fechavencimiento');
-    $oferta->precioventa = $request->input('precioVenta');
+    $oferta->fechaini = $request->input('fechaini');
+    $oferta->fechafin = $request->input('fechafin');
+    $oferta->precioventa = $request->input('precioventa');
     // Guardar los cambios en la base de datos
     $oferta->save();
     // Retornar una respuesta de éxito
