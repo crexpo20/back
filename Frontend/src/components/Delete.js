@@ -29,6 +29,7 @@ class Delete extends Component{
             console.log(error);
         });
     }
+
     deleteP = async(codprod)=>{
         await axios.delete('http://127.0.0.1:8000/api/delProductos/ '+ codprod);
         this.getProductos();

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { ContenedorBotonCentrado } from "../elementos/Formularios";
+import Input from '../components/Input';
+import { ContenedorBotonCentrado, Formulario } from "../elementos/Formularios";
 
 class Ofer extends Component{
     constructor(props){
@@ -8,8 +9,7 @@ class Ofer extends Component{
         this.state={
             productos:[]
         }
-
- 
+       this.componentDidMount();
         
         this.getProductos = this.getProductos.bind(this);
     }
@@ -26,20 +26,25 @@ class Ofer extends Component{
         }).catch((error)=>{
             console.log(error);
         });
+
     }
+
     render(){
         return(
-            <div className="home">
-                <ContenedorBotonCentrado>
-                <div className="form-group">
-                      <select name = "productos" className="form-control" style={{width:500}}>
-                        {this.state.productos.map(elemeto=>{
-                            <option key = {elemeto.id} value={elemeto.id}>{elemeto.producto}</option>
-                        })}
+            
+            <div class = "home">
+                <div class="formulario__grupo" id="grupo__usuario">
+                <label for="correo" class="formulario__label">Seleccione el producto</label>
+                <div>
+                    <select name = "select" style={{width:500}}>
+                        {this.state.productos.map(elemeto=>(
+                            
+                            <option key = {elemeto.id} value={elemeto.codprod}>{elemeto.producto}</option>
+                        ))}
                       </select>
-                </div>
-                </ContenedorBotonCentrado>
-            </div>
+                      </div>
+                      </div>
+                      </div>
         )
     }
 }

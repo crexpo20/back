@@ -8,6 +8,7 @@ import '../css/ventanaImagen.css';
 import '../css/OfertaNueva.css';
 import '../css/estilos.css';
 import Swal from 'sweetalert2';
+import {default as Ofer} from './Ofer'
 import axios from 'axios';
 
 export const NuevaOferta = () => {
@@ -173,7 +174,8 @@ export const NuevaOferta = () => {
     <div class = "home">
         <br/>
 			
-			
+			<br></br>
+      <br></br>
 			<ContenedorBotonCentrado><h1>Registro de Oferta Nueva</h1></ContenedorBotonCentrado>
 			
 		
