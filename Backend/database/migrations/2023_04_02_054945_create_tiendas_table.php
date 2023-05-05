@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('propietario');
             $table->string('descripcion');
             $table->string('correo');
+            $table->string('image');
 
         });
     }

@@ -66,3 +66,11 @@ Route::post('/postOferta', [ofertaController::class,'store']);
 Route::delete('/delOferta/{id}', [ofertaController::class,'destroy']);
 Route::put('/putOferta/{id}', [ofertaController::class,'update']);
 
+//RUTAS PARA AGREGAR STOCK(LOTE)
+
+Route::get('/getStock',[lotesController::class,'index']);
+Route::post('/postStock', [lotesController::class,'store']);
+Route::delete('/delStock/{id}',[lotesController::class,'destroy']);
+Route::put('/putStock/{id}', [lotesController::class,'update']);
+
+
