@@ -21,7 +21,7 @@ class Delete extends Component{
     }
 
     getProductos=async()=>{
-        await axios.get('http://127.0.0.1:8000/api/getProductos')
+        await axios.get('http://191.101.18.162:8000/api/getProductos')
         .then(res=>{
             this.setState({productos: res.data.producto});
             console.log(res.data.producto)
@@ -31,7 +31,7 @@ class Delete extends Component{
     }
 
     deleteP = async(codprod)=>{
-        await axios.delete('http://127.0.0.1:8000/api/delProductos/ '+ codprod);
+        await axios.delete('http://191.101.18.162:8000/api/delProductos/ '+ codprod);
         this.getProductos();
     }
 

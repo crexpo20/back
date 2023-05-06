@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lote', function (Blueprint $table) {
-            $table->id('codlote');
+        Schema::create('stock', function (Blueprint $table) {
+            $table->id('codstock');
             $table->integer('codprod');
             $table->foreign('codprod')->references('codprod')->on('producto');
             $table->date('fechaentrada');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lote');
+        Schema::dropIfExists('stock');
     }
 };

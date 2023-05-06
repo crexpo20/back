@@ -57,7 +57,7 @@ export const ModificarNegocio = () => {
       };*/
 
 	/*const getNegocio = async() => {
-        await axios.get('http://127.0.0.1:8000/api/getTiendas')
+        await axios.get('http://191.101.18.162:8000/api/getTiendas')
         .then(res=>{
             this.setState({negocio : res.data.negocio});
             console.log(res.data.negocio)
@@ -67,7 +67,7 @@ export const ModificarNegocio = () => {
     }*/
 
 	const getNegocio = async() => {
-        await axios.get('http://127.0.0.1:8000/api/getTiendas')
+        await axios.get('http://191.101.18.162:8000/api/getTiendas')
         .then(res => {
           this?.setState([res.data.tienda]);
           const data = res.data

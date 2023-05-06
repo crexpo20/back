@@ -17,7 +17,7 @@ export const ProductoNuevo = () =>{
 	
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	//const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
+	//const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://191.101.18.162/api/api_productos";
 	const [open, setOpen] = React.useState(false);
 	const [alertColor, setAlertColor] = useState('');
 	const [alertContent, setAlertContent] = useState('');
@@ -33,7 +33,7 @@ export const ProductoNuevo = () =>{
 	const imagePreview = document.getElementById('img-preview');
 	const select_cat = document.getElementById("select_categorias");
 	const img_up = document.getElementById('img-uploader');
-    const URL_PRODUCTO = "http://127.0.0.1:8000/api/postProductos";
+    const URL_PRODUCTO = "http://191.101.18.162:8000/api/postProductos";
 	
 	const expresiones = {
 		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{9,98})$/, // Letras, numeros, guion y guion_bajo.

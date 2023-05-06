@@ -27,7 +27,7 @@ import { ProductoNuevo } from './ProductoNuevo';
 
 
     const getProductos=async()=>{
-      await Axios.get('http://127.0.0.1:8000/api/getProductos')
+      await Axios.get('http://191.101.18.162:8000/api/getProductos')
       .then(res=>{
         this.setState([res.data]);
         console.log(res.data);
