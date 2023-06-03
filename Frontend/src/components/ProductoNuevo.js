@@ -17,7 +17,7 @@ export const ProductoNuevo = () =>{
 	
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	//const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://127.0.0.1:8000/api/api_productos";
+	//const PRODUCTOS_URL = configData.PRODUCTOS_API_URL || "http://31.220.21.237:8000/api/api_productos";
 	const [open, setOpen] = React.useState(false);
 	const [alertColor, setAlertColor] = useState('');
 	const [alertContent, setAlertContent] = useState('');
@@ -33,13 +33,14 @@ export const ProductoNuevo = () =>{
 	const imagePreview = document.getElementById('img-preview');
 	const select_cat = document.getElementById("select_categorias");
 	const img_up = document.getElementById('img-uploader');
-    const URL_PRODUCTO = "http://127.0.0.1:8000/api/postProductos";
+    const URL_PRODUCTO = "http://31.220.21.237:8000/api/postProductos";
+	
 	
 	const expresiones = {
 		descripcion: /^[a-zA-Z]{1,2}([a-zA-Z0-9-|_|!|#|%|(|)|,|.\s]{9,98})$/, // Letras, numeros, guion y guion_bajo.
 		producto: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,28})$/, // Letras y espacios, pueden llevar acentos.
 		marca: /^[a-zA-Z]{1,2}([a-zA-Z0-9\s]{1,13})$/, //para numeros y letras
-		codigo: /^\d{1,10}$/, // 1 a 10 numeros.
+		codigo: /^([a-zA-Z0-9\s]{1,13})$/, //para numeros y letras
 		precio:/^(?!0(\.0{1,2})?$)(0|[1-9][0-9]{0,3})(\.[0-9]{1,2})?$/, // Numeros decimales, de uno a cuatro antes el punto y solo dos decimales despues.
 		categoria: /^[a-zA-Z]{1,2}([a-zA-ZÀ-ÿ0-9\s]{1,18})$/, // Letras y espacios, pueden llevar acentos.
 	}
@@ -174,7 +175,6 @@ export const ProductoNuevo = () =>{
 		if(imagePreview.src==""){
 				if(
 					producto.valido === 'true' &&
-					codigo.valido === 'true' &&
 					//categoria.valido === 'true' &&
 					descripcion.valido === 'true' &&
 					precio.valido === 'true' &&
@@ -197,7 +197,6 @@ export const ProductoNuevo = () =>{
 			//console.log(imagePreview.src);
 			if(
 				producto.valido === 'true' &&
-				codigo.valido === 'true' &&
 				//categoria.valido === 'true' &&
 				descripcion.valido === 'true' &&
 				precio.valido === 'true' &&
@@ -209,13 +208,16 @@ export const ProductoNuevo = () =>{
 					//consul log
 					producto: producto.campo,
 					marca: marca.campo,
-					descripcion: descripcion.campo,
+					desc: descripcion.campo,
 					precio: precio.campo,
 					image: imagePreview.src,
 					codcat: cod_cat(),
+					stock: 0,
+                                        estado:0,
 					
 				}
-
+				
+                
 		    	const postProducto = async (url, newProducto) => {
 					const response = await fetch(url, {
 
@@ -245,9 +247,10 @@ export const ProductoNuevo = () =>{
 				}
 				
 				const respuestaJson = await postProducto(URL_PRODUCTO, newProducto);
+
 				console.log("Response:------> " + respuestaJson.status);
 			   
-				if( respuestaJson.status === 500){
+				if( respuestaJson.status === 409){
 					Swal.fire({
 						icon: 'error',
 						title: 'Oops...',
@@ -258,7 +261,6 @@ export const ProductoNuevo = () =>{
 				}else{
 					cambiarFormularioValido(true);
 					cambiarProducto({campo: '', valido: ''});
-					cambiarCodigo({campo: '', valido: null});
 					document.ready = document.getElementById("select_categorias").value = '0';
 					cambiarDescripcion({campo: '', valido: null});
 					cambiarPrecio({campo: '', valido: null});
@@ -325,7 +327,6 @@ export const ProductoNuevo = () =>{
 	const handleReset = () => {
 
 		cambiarProducto("");
-		cambiarCodigo("");
 		cambiarCategoria("");
 		cambiarDescripcion("");
 		cambiarPrecio("");
@@ -402,8 +403,10 @@ export const ProductoNuevo = () =>{
 		<meta http-equiv="Access-Control-Allow-Origin" content="http://localhost:3000/"/>
 		
 		</head>
-		<div class="home">
-	 
+		<br></br>
+		<body class="homeFormRP">
+			
+		<br></br>
 			<head>
 			<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
 			</head>	
@@ -423,16 +426,7 @@ export const ProductoNuevo = () =>{
 						leyendaError="El nombre debe contener de 2 a 20 caracteres entre números, letras y espacios."
 						expresionRegular={expresiones.producto}
 					/>
-					<Input
-						estado={codigo}
-						cambiarEstado={cambiarCodigo}
-						tipo="text"
-						label="Código*:"
-						placeholder="283755"
-						name="codigo"
-						leyendaError="El código solo puede contener números enteros positivos y un máximo de 10 dígitos."
-						expresionRegular={expresiones.codigo}
-					/>
+					
 					<div>
 						<label id = "label_cat"><b>
 							Categoría*:
@@ -459,17 +453,17 @@ export const ProductoNuevo = () =>{
 						</select>
 					</div>
 
-					
 					<Input
-						estado={descripcion}
-						cambiarEstado={cambiarDescripcion}
-						tipo="text"
-						label="Descripción*:"
-						name="descripcion"
-						placeholder="Di algo interesante de tu producto"
-						leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
-						expresionRegular={expresiones.descripcion}
+						estado={marca}
+						cambiarEstado={cambiarMarca}
+						tipo="text"	í
+						label="Marca*:"
+						placeholder="Pil andina"
+						name="marca"
+						leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
+						expresionRegular={expresiones.marca}
 					/>
+					
 					<Input
 						estado={precio}
 						cambiarEstado={cambiarPrecio}
@@ -480,20 +474,25 @@ export const ProductoNuevo = () =>{
 						leyendaError="El precio solo puede contener números enteros o si se quiere ingresar un número decimal se puede poner un carácter especial (.) y dos decimales."
 						expresionRegular={expresiones.precio}
 					/>
+					<ContenedorBotonCentrado>
 					<Input
-						estado={marca}
-						cambiarEstado={cambiarMarca}
+						estado={descripcion}
+						cambiarEstado={cambiarDescripcion}
 						tipo="text"
-						label="Marca*:"
-						placeholder="Pil andina"
-						name="marca"
-						leyendaError="La marca solo debe tener caracteres numéricos y letras, y entre 2 a 15 caracteres."
-						expresionRegular={expresiones.marca}
+						label="Descripción*:"
+						name="descripcion"
+						placeholder="Di algo interesante de tu producto"
+						leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
+						expresionRegular={expresiones.descripcion}
 					/>
+						</ContenedorBotonCentrado>
 					<ContenedorBotonCentrado>
 						<div class="container">
 							<center>
+								<label><b>Imagen*:</b></label>
+								<br></br>
 								<div class="card" id = "contenedorImagen"  >
+									
 									<img id="img-preview"/>
 										<div class="card-footer" id = "contenedorImagen">
 											<input accept="image/png,image/jpg" type="file" id="img-uploader" className='img-upload'></input>
@@ -523,7 +522,7 @@ export const ProductoNuevo = () =>{
 			</main>
 			<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 			
-   		</div>
+   		</body>
 	</center>
 	);
 }

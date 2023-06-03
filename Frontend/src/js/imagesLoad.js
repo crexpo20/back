@@ -107,7 +107,7 @@ imageUploader?.addEventListener('change', async (e) => {
 
 if(imageUploader){
     console.log("ADIOS");
-    imageUploader.addEventListener('change',  );
+    imageUploader?.addEventListener('change',  );
     
 }*/
 

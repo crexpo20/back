@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'cliente',
+        'passwords' => 'clientes',
     ],
 
     /*
@@ -34,11 +34,18 @@ return [
     | Supported: "session"
     |
     */
-
+/*
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+    ],
+*/
+    'guards' => [
+        'cliente' => [
+            'driver' => 'session',
+            'provider' => 'clientes',
         ],
     ],
 
@@ -59,7 +66,7 @@ return [
     |
     */
 
-    'providers' => [
+  /*  'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
@@ -69,6 +76,14 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+    ],
+*/
+    'providers' => [
+        
+        'clientes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\cliente::class,
+        ],
     ],
 
     /*
@@ -85,7 +100,7 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
+/*
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -94,6 +109,15 @@ return [
             'throttle' => 60,
         ],
     ],
+*/
+'passwords' => [
+        'clientes' => [
+        'provider' => 'clientes',
+        'table' => 'password_resets',
+        'expire' => 60,
+        'throttle' => 60,
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------

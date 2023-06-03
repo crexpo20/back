@@ -1,5 +1,5 @@
 //Ejecutar función en el evento click
-/*document.getElementById("btn_open").addEventListener("click", open_close_menu);
+/*document?.getElementById("btn_open").addEventListener("click", open_close_menu);
 */
 //Declaramos variables
 var side_menu = document.getElementById("menu_side");
@@ -22,7 +22,7 @@ var body = document.getElementById("body");
 
 //Haciendo el menú responsive(adaptable)
 
-/*window.addEventListener("resize", function(){
+/*window?.addEventListener("resize", function(){
 
     if (window.innerWidth > 760){
 

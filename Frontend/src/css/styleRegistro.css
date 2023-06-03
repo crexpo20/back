@@ -17,7 +17,7 @@
     padding-top: 30px;
 }
 
-.diseÃ±oCuadroRegistro {
+.diseñoCuadroRegistro {
     background-color: transparent;
     width: 200px;
     padding-left: 10px;
@@ -31,7 +31,7 @@
     padding-top: 5px;
 }
 
-.diseÃ±oCuadroRegistro:focus {
+.diseñoCuadroRegistro:focus {
     background-color: transparent;
     color: #ffffff;
     border: 0;

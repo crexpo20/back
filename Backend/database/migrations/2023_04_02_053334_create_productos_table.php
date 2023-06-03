@@ -12,15 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('producto', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
+            
             $table->id('codprod');
             $table->string('producto')-> unique();
             $table->string('marca');
-            $table->string('descripcion');
+            $table->string('desc');
             $table->decimal('precio', 10, 2);
             $table->string('image');
+            $table->integer('stock');
             $table->integer('codcat');
             $table->foreign('codcat')->references('codcat')->on('categoria');
+	    $table->integer('estado');
 
 
         });

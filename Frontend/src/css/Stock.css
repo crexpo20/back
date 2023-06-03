@@ -1,10 +1,36 @@
-  .modal-header {
+    .modal-header {
     position: relative;
   }
+  #cantidad{
+    width: 20%;
+    heigth: 15%; 
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    font-size: inherit;
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+  }
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ .stocki{
+  position: fixed;
+  top: 50%;
+  left: 73%;
+  transform: translate(-50%, -35%);
+  height: 90%;
+  width: 70%;
+ }
   
   .modal-title {
-    position: absolute;
+    position: relative;
     top: 0;
+    margin: 0px;
+    padding: 0px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -15,5 +41,49 @@
   .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 4rem;
+    
   }
+  .modal-content{
+    display: flex;
+    position: relative;
+   font-size: 30px;
+   padding: 0px;
+   margin: 0px;
+   
+  }
+  #botones{
+    transform: translateX(5%)
+  }
+  .formulario{
+    margin-top: 10px;
+  }
+  .agregar{
+    margin-top: 10px;
+  }
+ #menos{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #4b4a5c;
+  cursor: pointer;
+
+ }
+ .texto{
+  margin-left: 57px;
+ }
+ .texto1{
+  margin-left: 8px;
+ }
+ #mas{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #4b4a5c;
+  cursor: pointer;
+  margin-left: 15px;
+ }
+
+#espacio{
+    width:15px;
+}
+
+

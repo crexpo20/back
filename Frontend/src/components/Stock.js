@@ -1,44 +1,92 @@
-import React, { useState } from "react";
+import React, { Component,useState } from "react";
 import { Boton} from '../elementos/MiniForm';
 import '../css/Stock.css';
 import {Modal} from 'react-bootstrap';
-
-function Stock({ isClose, producto, actualizarProducto }) {
-  const [cantidad, setCantidad] = useState(1);
-  const [precioCompra, setPrecioCompra] = useState(0);
-  const [fechaVencimiento, setFechaVencimiento] = useState('');
-
-  const today = new Date();
-  const formattedDate = today.toISOString().slice(0, 10);
-  const hoy = new Date();
-  const maxFecha = new Date(hoy.getFullYear() + 1, hoy.getMonth(), hoy.getDate()).toISOString().split('T')[0];
-
-  const handleSubmit = (event) => {
+import axios from 'axios';
+import {AiOutlineLine } from "react-icons/ai";
+import {AiOutlinePlus} from "react-icons/ai";
+class Stock extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+        stockActual:this.props.producto.stock,
+        cantidad:0,
+        id:this.props.producto.codprod,
+       
+    }
+    this.updateProducto = this.updateProducto.bind(this);
+    
+}
+componentDidMount(){
+  
+  this.updateProducto();
+ 
+}
+updateProducto = async () => {
+  await axios
+    .put('http://31.220.21.237:8000/api/putProductos/'+this.props.producto.codprod, {
+      'producto':this.props.producto.producto,
+      'marca':this.props.producto.marca,
+      'desc':this.props.producto.desc,
+      'precio':this.props.producto.precio,
+      'image':this.props.producto.image,
+      'codcat':this.props.producto.codcat,
+      'stock': this.props.producto.stock + this.state.cantidad,
+      'estado':this.props.producto.estado,
+      
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+   handleSubmit = async (event) => {
     event.preventDefault();
-    actualizarProducto(producto, cantidad);
-    isClose();
-  };
+    
+    await this.updateProducto();
+    this.props.isClose();
+    window.location.reload()
+  }
+   increment = () =>{
+    
+    this.setState({cantidad:this.state.cantidad+1});
+  }
 
-  const handleCantidadChange = (event) => {
-    setCantidad(parseInt(event.target.value));
+   decrement = () => {
+    if (this.state.cantidad > 0) {
+      this.setState({cantidad:this.state.cantidad-1});
+    }
+  }
+   handleCantidadChange = (event) => {
+   
+    this.setState({cantidad: parseInt(event.target.value)});
   };
-
-  const handlePrecioCompraChange = (event) => {
-    setPrecioCompra(parseFloat(event.target.value));
-  };
-
-  const handleFechaVencimientoChange = (event) => {
-    setFechaVencimiento(event.target.value);
-  };
+  render(){
+    const { isClose, producto } = this.props;
+   
   return (
-    <div className="modal">
+    <div >
+    <div className="stocki">
       <div className="modal-content">
-      <Modal.Header closeButton onClick={isClose}>
-          <h4 className="modal-title">{producto.nombre}</h4>
+      <Modal.Header >
+         
+          <h4 className="modal-title" >{producto.producto}</h4>
+          
         </Modal.Header>
-        <form action="" onSubmit={handleSubmit}>
-        <label htmlFor="cantidad actual">Cantidad actual:     {producto.cantidad}</label>
-          <label htmlFor="cantidad">Agregar Cantidad: </label>
+        <form action="" onSubmit={this.handleSubmit} className="formulario">
+        <div className="d-flex  align-items-center">
+        <div>Cantidad actual:</div> 
+         <div className="texto">{this.state.stockActual} </div>
+         <div className="texto1"> unidades</div>
+        </div>
+        
+          <div className="d-flex  align-items-center">
+          <label htmlFor="cantidad"className="agregar">Agregar Cantidad: </label>
+          
+          <a id="menos" onClick={this.decrement}><AiOutlineLine/></a>
+          
           <input
             type="number"
             className="form-control"
@@ -47,52 +95,28 @@ function Stock({ isClose, producto, actualizarProducto }) {
             min="1"
             max="999"
             required
-            value={cantidad}
-            onChange={handleCantidadChange}
+            value={this.state.cantidad}
+            onChange={this.handleCantidadChange}
           />
-          <div  className='col' id= "calendar">
+         
+          <a onClick={this.increment}><AiOutlinePlus/></a>
+          </div>
         
-            <label htmlFor="fechaVencimiento">Fecha de vencimiento*: </label>
-            <input 
-              type="date" 
-              className="form-control " 
-              name="fechaVencimiento" 
-              min={formattedDate} 
-              max={maxFecha} 
-              id="fechaVencimiento" 
-              placeholder='fecha-inicio*'
-              required 
-              value={fechaVencimiento} 
-              color= "transparent"
-              margin = "1"
-              border-bottom-color = "#000000"
-              onChange={handleFechaVencimientoChange} />
-        </div>
 
-            <label htmlFor="precioCompra">Precio de compra*: </label>
-            <input
-              type="number"
-              className="form-control " 
-              id="precioCompra"
-              name="precioCompra"
-              min="1.00"
-              step="0.01"
-              required 
-              value={precioCompra}
-              color= "transparent"
-              margin = "1"
-              border-bottom-color = "#000000"
-              onChange={handlePrecioCompraChange}
-            />
+           
 
-          <div className="button-container">
+          <div className="button-container" id="botones">
+            <br></br>
+            
               <Boton id="guardarP" type="submit">Guardar</Boton>
               <Boton id="borrarP" type="button" onClick={isClose} className="btn mx-5">Cancelar</Boton>
           </div>
         </form>
       </div>
     </div>
+    </div>
   );
+  }
 }
 
 export default Stock;

@@ -13,83 +13,75 @@ class productosController extends Controller
     {
         // Obtener todos los producto de la base de datos
         $producto = producto::all();
+        //$categoria = categoria::all();
 
+         // Retornar los productos como respuesta
+         return $producto;
         // Retornar los producto como respuesta
-        return response()->json(['producto' => $producto], 200);
+        //return response()->json(['producto' => $producto], 200);
     }
 
-    public function create(Request $request)
+    public function show($id)
     {
-        /*
-        // Validar los datos del formulario de creaciÃ³n
-        $rules=[
-            'producto' => 'unique:producto',
-        ];
-        $request->validate($rules);
-        */
-        // Crear una nueva instancia del modelo producto con los datos del formulario
-        $producto = new producto([
-            'producto' => $request->input('producto'),
-            'marca' => $request->input('marca'),
-            'descripcion' => $request->input('descripcion'),
-            'precio' => $request->input('precio'),
-            'image' => $request->input('image'),
-            'codcat' => $request->input('codcat')
-        ]);
+        // Buscar el producto en la base de datos por su ID
+        $producto = producto::find($id);
 
-        // Guardar el nuevo producto en la base de datos
-        $producto->save();
+        // Verificar si el producto. existe
+        if (!$producto) {
+            return response()->json(['mensaje' => 'Producto no encontrado'], 404);
+        }
 
-        // Retornar una respuesta de Ã©xito
-        return response()->json(['mensaje' => 'Producto creado con Ã©xito'], 201);
+        // Retornar el producto como respuesta
+        return response()->json(['producto' => $producto], 200);
     }
 
 
     public function store(Request $request)
 {
-    // el problema esta en tus reglas, solo controlas con las reglas, 
-    //no le mandas ni una respuesta y por eso hay un error 500, tinene que mandar algo si o si
-    //utiliza return response
-    // Validar los datos del formulario de creaciÃ³n
-    /*$rules=[
-        'producto' => 'required|min:2|max:30',
-        'marca'=>'required|min:2|max:15',
-        'descripcion'=>'required|min:25|max:100',
-        'precio'=>'required|max:7',
-        'image'=>'required|max:255',
-        'codcat'=>'required | exists:categorias,codcat'
-    ];
-    $request->validate($rules);
-    */
-    //
-    // Crear una nueva instancia del modelo producto con los datos del formulario
-    //sin las reglas se pudo hacer el insert de datos
+   /* //console.log("Este es un mensaje entro a store 1");
     $producto = new producto([
         'producto' => $request->input('producto'),
         'marca' => $request->input('marca'),
-        'descripcion' => $request->input('descripcion'),
+        'desc' => $request->input('desc'),
         'precio' => $request->input('precio'),
         'image' => $request->input('image'),
-        'codcat' => $request->input('codcat')
+        'codcat' => $request->input('codcat'),
+        'stock' => $request ->input('stock')
     ]);
 
     // Guardar el nuevo producto en la base de datos
     $producto->save();
 
-    // Retornar una respuesta de Ã©xito
-    return response()->json(['mensaje' => 'Producto creado con Ã©xito'], 201);
+    // Retornar una respuesta de éxito
+    return response()->json(['mensaje' => 'Producto creado con éxito'], 201);
+    */
+    $producto = strtolower($request->input('producto'));
+    $count = producto::whereRaw('LOWER(producto) ilike ?', ["{$producto}%"])
+    ->count();
+    if ($count > 0) {
+        return response()->json(['mensaje' => 'El producto ya existe'], 409);
+    } else {
+        $producto = new producto([
+        'producto' => $request->input('producto'),
+        'marca' => $request->input('marca'),
+        'desc' => $request->input('desc'),
+        'precio' => $request->input('precio'),
+        'image' => $request->input('image'),
+        'codcat' => $request->input('codcat'),
+        'stock' => $request ->input('stock'),
+        'estado' => $request ->input('estado')
+        ]);
+        $producto->save();
+        return response()->json(['mensaje' => 'Producto creado con éxito'], 201);
+    }
+    
 }
 
 public function update(Request $request, $id)
 {
     
     // Buscar el producto existente en la base de datos por su ID
-    $producto = producto::find($id);
-
-    if (!is_null($producto)) {
-
-     //$producto->update($request->all());
-
+    $producto = producto::findorfail($id);
     // Actualizar los datos del producto con los datos del formulario
     $producto->producto = $request->input('producto');
     $producto->marca = $request->input('marca');
@@ -97,30 +89,26 @@ public function update(Request $request, $id)
     $producto->precio = $request->input('precio');
     $producto->image = $request->input('image');
     $producto->codcat = $request->input('codcat');
-
+    $producto->stock = $request->input('stock');
+    $producto->estado = $request->input('estado');
     // Guardar los cambios en la base de datos
     $producto->save();
 
-    // Retornar una respuesta de Ã©xito
-    return response()->json(['mensaje' => 'Producto actualizado con Ã©xito'], 200);
-       
-    }
-    else{
-        return response()->json(['mensaje' => 'Producto no encontrado'], 404);
-    }
+    // Retornar una respuesta de éxito
+    return response()->json(['mensaje' => 'Producto actualizado con éxito'], 200);
   }
 
     
         public function destroy(string $id)
     {
-          // Encuentra la categorÃ­a por su ID
+          // Encuentra la categoría por su ID
         $producto = producto::find($id);
-         // Verifica si la categorÃ­a existe
+         // Verifica si la categoría existe
          if (!$producto) {
             return response()->json(['mensaje' => 'Producto no encontrado'], 404);
         }
 
-        // Realiza la eliminaciÃ³n
+        // Realiza la eliminación
         $producto->delete();
 
         // Retorna una respuesta
@@ -128,4 +116,5 @@ public function update(Request $request, $id)
     }
 
 
+   
 }

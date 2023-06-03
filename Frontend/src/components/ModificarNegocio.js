@@ -22,6 +22,9 @@ export const ModificarNegocio = () => {
     const [images, setImages] = useState([]);
 	const [formularioValido, cambiarFormularioValido] = useState(null);
 	const [negocio, setNegocio] = useState([]);
+	const tienda = [];
+	const URL_NEGOCIO = "http://31.220.21.237:8000/api/postTiendas";
+	const endpoint = "http://31.220.21.237:8000/api/getTiendas";
 	
 	const imagePreview = document.getElementById('img-preview');
 
@@ -66,31 +69,61 @@ export const ModificarNegocio = () => {
         });
     }*/
 
-	const getNegocio = async() => {
+	/*const getNegocio = async() => {
         await axios.get('http://127.0.0.1:8000/api/getTiendas')
         .then(res => {
-          this?.setState([res.data.tienda]);
-          const data = res.data
+          this?.setState({negocio: res.data});
+          //const data = res.data
           console.log(res.data);
-          setNegocio(data)
+          //setNegocio(data)
         }).catch((error) => {
           console.log(error);    
         });
-    };
+
+		if(negocio.length === 0){
+			console.log("no hay");
+		}else{
+			console.log("fine");
+		}
+    };*/
+
+	/*const getTienda=async()=>{
+        await axios.get('http://127.0.0.1:8000/api/getTiendas')
+        .then(res=>{
+            this?.setState({tienda: res.data});
+            console.log(res.data.tienda)
+        }).catch((error)=>{
+            console.log(error);
+        });
+
+		if(negocio.length == 0){
+			console.log("no hay");
+		}else{
+			console.log("fine");
+		}
+    }*/
+
+	const getTienda = async () => {
+		await axios.get(endpoint).then((response) => {
+			const data = response.data.tienda;
+			console.log(data)
+			setNegocio(data)
+		})
+	}
 
 	useEffect( ()=>{
-        getNegocio();
+        //getNegocio();
+		getTienda();
     }, []);
 
-
+	
+	
+	/*const saludo = 'ho0la';
 	const Negocio = () => {
-		getNegocio();
-		direccion = negocio;
-		//direccion = direccion.dir;
-	}
+		
+	}*/
 	
 	const onSubmit = (e) => {
-		
 		e.preventDefault();
 		console.log(imagePreview.src);
 
@@ -125,38 +158,113 @@ export const ModificarNegocio = () => {
 				numero.valido === 'true'
 
 			){
-				cambiarFormularioValido(true);
-				cambiarNombre({campo: '', valido: ''});
-				cambiarDireccion({campo: '', valido: null});
-				cambiarPropietario({campo: '', valido: null});
-				cambiarCorreo({campo: '', valido: 'null'});
-				cambiarDescripcion({campo: '', valido: null});
-				cambiarNumero({campo: '', valido: null});
-				imagePreview.src= '';
-				document.ready = document.getElementById("img-uploader").value = "";
-				document.ready = document.getElementById("img-upload-bar").value = '0';
-				document.ready = document.getElementById("img-preview").value = "";
-				document.ready = document.getElementsByClassName("card").item = '';
 
-				const newNegocio={
+				const newNego={
 					//consul log
 					nombre: nombre.campo,
-					direccion: direccion.campo,
-					propietario: propietario.campo,
-					correo: correo.campo,
-					descripcion: descripcion.campo,
+					dir: direccion.campo,
 					numero: numero.campo,
+					propietario: propietario.campo,
+					descripcion: descripcion.campo,
+					correo: correo.campo,
 					image: imagePreview.src,
 				}
+				if(negocio.length == 0){
+					console.log("esta vacioooooo");
 
+					const postNegocio = async (url, newNego) => {
+						const response = await fetch(url, {
+	
+							method: 'POST',
+							body: JSON.stringify(newNego),
+							headers: {
+							  'Access-Control-Allow-Origin': '*',
+							  'Content-Type': 'application/json',
+							}
+							//withCredentials: true,
+							//credentials: 'same-origin',
+					  
+							//method: 'POST',
+							
+							/*headers: {
+								
+								
+								'Access-Control-Allow-Origin': '*',
+								'Access-Control-Allow-Methods': 'POST, GET',
+								'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+								'Content-Type': 'multipart/form-data, aplication/json'
+								
+							}*/
+							
+						});
+						return response;
+					}
+					
+					const respuestaJson = postNegocio(URL_NEGOCIO, newNego);
+	
+					console.log("Response:------> " + respuestaJson.status);
 
+					cambiarFormularioValido(true);
+					cambiarNombre({campo: '', valido: ''});
+					cambiarDireccion({campo: '', valido: null});
+					cambiarPropietario({campo: '', valido: null});
+					cambiarCorreo({campo: '', valido: 'null'});
+					cambiarDescripcion({campo: '', valido: null});
+					cambiarNumero({campo: '', valido: null});
+					imagePreview.src= '';
+					document.ready = document.getElementById("img-uploader").value = "";
+					document.ready = document.getElementById("img-upload-bar").value = '0';
+					document.ready = document.getElementById("img-preview").value = "";
+					document.ready = document.getElementsByClassName("card").item = '';
 
-				Swal.fire({
+					Swal.fire({
 					icon: 'success',
 					title: '¡Genial!',
-					text: '¡Datos actualizados exitosamente!',
+					text: '¡Datos guardados exitosamente!',
 					//footer: '<a href="">Why do I have this issue?</a>'
-				})
+					})
+
+				}else{
+					
+					console.log("ando ready");
+
+					const putNegocio = async (codtienda) => {
+						await axios.put('http://127.0.0.1:8000/api/putTiendas/'+ codtienda, newNego)
+						.then((res) => {
+							console.log(res.data);
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+						//getNegocio();
+						getTienda();
+					}
+
+					const Json = putNegocio(14, newNego);
+
+					console.log("Response:------> " + Json.status);
+
+					cambiarFormularioValido(true);
+					cambiarNombre({campo: '', valido: ''});
+					cambiarDireccion({campo: '', valido: null});
+					cambiarPropietario({campo: '', valido: null});
+					cambiarCorreo({campo: '', valido: 'null'});
+					cambiarDescripcion({campo: '', valido: null});
+					cambiarNumero({campo: '', valido: null});
+					imagePreview.src= '';
+					document.ready = document.getElementById("img-uploader").value = "";
+					document.ready = document.getElementById("img-upload-bar").value = '0';
+					document.ready = document.getElementById("img-preview").value = "";
+					document.ready = document.getElementsByClassName("card").item = '';
+
+					Swal.fire({
+						icon: 'success',
+						title: '¡Genial!',
+						text: '¡Datos actualizados exitosamente!',
+						//footer: '<a href="">Why do I have this issue?</a>'
+					})
+					
+				}
 
 					// ... 
 			} else {
@@ -200,11 +308,12 @@ export const ModificarNegocio = () => {
 		console.log(negocio);
 	}*/
 	return (
-	 <div class = "home">
+		
+	 <div class = "homeFormMD">
 		
         <br/>
 			<head>
-		<meta http-equiv="Access-Control-Allow-Origin" content="*"></meta>
+			<meta http-equiv="Access-Control-Allow-Origin" content="http://localhost:3000/"/>
 		</head>
 			
 			<ContenedorBotonCentrado><h1>Modificar datos del negocio</h1></ContenedorBotonCentrado>
@@ -214,15 +323,15 @@ export const ModificarNegocio = () => {
           <br/>
 
 		<main>
-			<Formulario action="" onSubmit={onSubmit}>
+			<Formulario action="" onSubmit={onSubmit} onReset={Formulario.reload}>
 				<Input
 					estado={nombre}
 					cambiarEstado={cambiarNombre}
 					tipo="text"
 					label="Nombre del negocio*:"
-					placeholder="Super de todos"
+					placeholder= ""
 					name="nombre"
-					//value= "negocio.nombre"
+					//value= {direccion.campo}
 					leyendaError="El nombre del negocio solo puede contener letras, números y espacios, y de 2 a 30 caracteres."
 					expresionRegular={expresiones.nombre}
 				/>
@@ -275,7 +384,7 @@ export const ModificarNegocio = () => {
 					label="Teléfono*:"
 					placeholder="75982610"
 					name="numero"
-					leyendaError="El telefono tiene un máximo de 8 caracteres, y empezar con 6 o 7."
+					leyendaError="El teléfono tiene un máximo de 8 caracteres, y empezar con 6 o 7."
 					expresionRegular={expresiones.numero}
 				/>
 				<ContenedorBotonCentrado>	
@@ -299,7 +408,7 @@ export const ModificarNegocio = () => {
 					</p>
 				</MensajeError>}
 				<center>
-					<Boton id= "guardarP" type="submit"> Guardar </Boton>
+					<Boton id= "guardarP" type="submit" onClick={onSubmit}> Guardar </Boton>
 					{formularioValido === true && <MensajeExito>“La información del negocio se ha modificado de forma correctamente.</MensajeExito>}
 					</center>
 					<center>
@@ -309,12 +418,12 @@ export const ModificarNegocio = () => {
 			</Formulario>
 			<div>
 				
-				</div>
+			</div>
 		</main>
 		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
            <script src='../elementos/modal.js'></script>
         </div>
 	);
-				}
+}
  
 //export default ProductoNuevo;

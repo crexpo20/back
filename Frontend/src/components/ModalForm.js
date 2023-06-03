@@ -140,7 +140,7 @@ function ModalForm({ isOpen, onClose }) {
 					label="Descripción*:"
 					name="descripcion"
 					placeholder="Di algo interesante de tu negocio"
-					leyendaError="La descripcion debe ser de 10 a 100 caracteres, y contener letras, numeros y caracteres especiales como ser: _ - ! % ()"
+					leyendaError="La descripción debe ser de 10 a 100 caracteres, y contener letras, números y caracteres especiales como ser: _ - ! % ()"
 					expresionRegular={expresiones.descripcion}
 				/>
 				<Input

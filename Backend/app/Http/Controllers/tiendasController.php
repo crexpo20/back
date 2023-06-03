@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\tienda;
+use App\models\;
 use Illuminate\Support\Facades\DB;
 class tiendasController extends Controller
 {
@@ -11,9 +11,7 @@ class tiendasController extends Controller
     public function index()
     {
       // Obtener todos los producto de la base de datos
-      $tienda = tienda::all();
-
-      // Retornar los producto como respuesta
+      $tienda=tienda::all();
       return response()->json(['tienda' => $tienda], 200);
     }
 

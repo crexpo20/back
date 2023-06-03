@@ -15,10 +15,8 @@ class ofertaController extends Controller
     {
        // Obtener todos las ofertas de la base de datos
        $oferta = oferta::all();
-
-       // Retornar los oferta como respuesta
-       return response()->json(['ofeta' => $oferta], 200);
-    }
+	return $oferta;
+     }
 
    
 
@@ -32,11 +30,15 @@ class ofertaController extends Controller
             'desc' => $request->input('desc'),
             'fechaini' => $request->input('fechaini'),
             'fechafin' => $request->input('fechafin'),
-            'precioventa' => $request->input('precioventa')
+            'precioventa' => $request->input('precioventa'),
+	    'precioanterior' =>$request->input('precioanterior'),
+            'estado'=>$request->input('estado'),
+            'nombre'=>$request->input('nombre'),
+            'image'=>$request->input('image')
         ]);
         
         $oferta->save();
-        return response()->json(['mensaje' => 'Oferta creado con Ã©xito'], 201);
+        return response()->json(['mensaje' => 'Oferta creado con éxito'], 201);
     }
 
     /**
@@ -58,14 +60,18 @@ class ofertaController extends Controller
     if (!is_null($oferta)) {
     // Actualizar los datos del oferta con los datos del formulario
     $oferta->codprod = $request->input('codprod');
-    $oferta->descripcion = $request->input('descripcion');
+    $oferta->desc = $request->input('desc');
     $oferta->fechaini = $request->input('fechaini');
     $oferta->fechafin = $request->input('fechafin');
     $oferta->precioventa = $request->input('precioventa');
+    $oferta->precioventa = $request->input('precioanterior');
+    $oferta->estado = $request->input('estado');
+    $oferta->nombre = $request->input('nombre');
+    $oferta->image = $request->input('image');
     // Guardar los cambios en la base de datos
     $oferta->save();
-    // Retornar una respuesta de Ã©xito
-    return response()->json(['mensaje' => 'oferta actualizado con Ã©xito'], 200);
+    // Retornar una respuesta de éxito
+    return response()->json(['mensaje' => 'oferta actualizado con éxito'], 200);
     }
     else{
         return response()->json(['mensaje' => 'oferta no encontrado'], 404);
@@ -77,13 +83,13 @@ class ofertaController extends Controller
      */
     public function destroy(string $id)
     {
-            // Encuentra la categorÃ­a por su ID
+            // Encuentra la categoría por su ID
             $oferta = oferta::find($id);
-            // Verifica si la categorÃ­a existe
+            // Verifica si la categoría existe
             if (!$oferta) {
                return response()->json(['mensaje' => 'oferta no encontrado'], 404);
            }
-           // Realiza la eliminaciÃ³n
+           // Realiza la eliminación
            $oferta->delete();
            // Retorna una respuesta
            return response()->json(['mensaje' => 'oferta eliminado'], 200);

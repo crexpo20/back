@@ -1,0 +1,24 @@
+#loginF{
+    margin-top: -600px;
+    margin-left: 28rem;
+}
+
+.rere{
+    color: #b278ff;
+    background-color: transparent;
+    border-style:solid;
+    border-color: transparent;
+    border-width: 8px;
+    border-radius: 8px;
+    
+}
+
+.rere:hover{
+    color: #7e28f0;
+    background-color: transparent;
+    border-style:solid;
+    border-color: transparent;
+    border-width: 8px;
+    border-radius: 8px;
+    
+}

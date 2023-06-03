@@ -1,0 +1,163 @@
+/* Agrega los estilos al modal */
+.vista{
+  position: fixed;
+  top: 55%;
+  left: 77%;
+  transform: translate(-50%, -35%);
+  height: 80%;
+  width: 90%;
+ }
+
+ .vista-content{
+  display: flex;
+  position: relative;
+  font-size: 30px;
+  padding: 0px;
+  margin: 0px;
+  width:50%;
+  height: 70%;
+  max-height:'100%';
+  max-width:'100%';
+  padding: 20px;
+  overflow-y: auto;
+  background: radial-gradient(white, rgb(171, 163, 163));
+  background-color:#cbcaca;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border-style:double;
+  border-color: rgb(144, 143, 143);
+
+}
+ 
+ .vista-content .close {
+  color: #24577d;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.vista-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  /* Estilos para la imagen */
+  .vista-content img {
+    width: 230px; /* Ajusta el tama o seg n tus necesidades */
+    margin-right: 15px; /* Espacio entre la imagen y los dem s elementos */
+  }
+  
+  /* Estilos para los elementos de la derecha */
+  .vista-content div {
+    flex-grow: 1;
+  }
+  
+  .vista-content h4 {
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: bold;
+
+  }
+  
+  .vista-content h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+
+  }
+
+.vista-content h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .vista-content p {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .vista-content option {
+    font-size: 20px;
+  }
+
+  .vista-content select {
+    font-size: 20px;
+  }
+
+#pa{
+text-decoration: line-through;
+}
+  
+  /* Estilos espec ficos para el bot n */
+  #agregar{
+    background-color: #bcb3b3;
+    border: none;
+    color: white;
+    height: 30px;
+	  line-height: 30px;
+    width: auto;
+    padding: 10px 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: .1s ease all;
+    white-space: nowrap; /* Asegura que el texto se mantenga en una sola l nea */
+    overflow: hidden; /* Oculta cualquier contenido que exceda el ancho del bot n */
+    text-overflow: ellipsis;
+}
+
+/* Prueba boton */
+
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 10em 0 0 0 var(--hover);
+}
+
+.slide {
+  
+  --hover: #534fcc;
+}
+
+/*css de los labels*/
+
+#boli{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #4b4a5c;
+  cursor: default;
+}
+
+#desc{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #4b4a5c;
+  cursor: default;
+  overflow-wrap: break-word;
+  width: 370px;
+}
+
+#canti{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #4b4a5c;
+  cursor: default;
+}
+
+#titulillo{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  color: #000000;
+  cursor: default;
+  width: 370px;
+  overflow-wrap: break-word;
+}

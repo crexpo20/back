@@ -1,26 +1,115 @@
-import React from 'react'
-import cliente from '../images/Vista.jpg'
-import user from '../images/userImage.png'
+import React , {Component, useState}from "react";
+import axios from "axios";
+import { Boton } from "../elementos/Formularios";
+import VistaDetallada from "./VistaDetallada";
 
-export const HomeCliente = () => {
-  
-  
+class HomeCliente extends  Component{
+    
+    constructor(props){
+        super(props);
+        this.state={
+            productos:[],
+            showModal:false,
+            productoSelec:"",
+            cantidad:0,
+            codigoP:-1,
+            hoveredCard: false,
+            hoveredCardIndex: -1
 
-  return (
-    <div className= "home" >
-                <center>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
+        }
+        this.getProductos = this.getProductos.bind(this);
+        
+    }
+    
+    componentDidMount(){
+        this.getProductos();
+       
+    }
+
+    getProductos=async()=>{
+        await axios.get('http://31.220.21.237:8000/api/getProductos')
+        .then(res=>{
+            this.setState({productos: res.data});
+            console.log(res.data)
+        }).catch((error)=>{
+            console.log(error);
+        });
+    }
+    
+    handleReset = () => {
+        window.location.href = '/home';
+    }
+    
+    openModal = (producto) => {
+        this.setState({ showModal: true, productoSelec: producto });
+    }
+    
+    closeModal = () => {
+        this.setState({ showModal: false });
+    }
+
+    handleCardMouseEnter = (index) => {
+        this.setState({ hoveredCardIndex: index });
+    };
+      
+    handleCardMouseLeave = () => {
+        this.setState({ hoveredCardIndex: -1 });
+    };
+
+    render(){
+        return(
+            <div>
+            <body id="bodyCard">
                 
-                <div className="card-body">
-                    <h5 className="card-title">BIENVENIDDO A MICROMARKET TITA</h5> 
-                </div>
-                <div style={{position: "absolute", top: 0, right: 0}}>
-               
-                </div>
-                </center>
-    </div>
-  )
+                <br></br>
+                
+                {
+                    this.state.productos?.sort((o1, o2) =>{
+                        if(o1.producto < o2.producto){
+                            return -1;
+                        }else{
+                            if(o1.producto > o2.producto){
+                                return 1;
+                            }else{
+                                return 0;
+                            }
+                        }
+                    })
+                    .map((product, index) => (
+                    <div class="producto" id="tarjetas" 
+                    onMouseEnter={() => this.handleCardMouseEnter(index)}
+                    onMouseLeave={this.handleCardMouseLeave}
+                    onClick={() => this.openModal(product,product.codprod)}>
+                    <center>
+                        <div >
+                    <center>
+                        <h2 id="labelTi">{product.producto}</h2>
+                        <img  src={product.image}/>
+                        <p id="precioH">Bs. {product.precio} </p>
+                        <Boton type="button" id="borrarP" className="btn"
+                        style={{display:this.state.hoveredCardIndex === index ? "block" : "none"}}
+                        > Ver </Boton>
+                    </center>
+                    </div>
+                    </center>
+                    </div>
+                    ))
+                }  
+                <div>
+                {this.state.showModal && (
+                                            <VistaDetallada
+                                                isClose={this.closeModal}
+                                                producto={this.state.productoSelec}
+                                                codigo={this.codigoP}
+                                            />
+                                            )}
+                </div>            
+            </body>
+                  </div>      
+        )
+    }
 }
+export default HomeCliente;
+
+
+

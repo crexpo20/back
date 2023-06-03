@@ -7,11 +7,11 @@ import {Component } from 'react';
 export const EliminarP = () => {
     const [productos, cambiarProductos] = useState([]);
 
-    const endpoint = 'http://127.0.0.1:8000/api/getProductos';
+    const endpoint = 'http://31.220.21.237:8000/api/getProductos';
 
 
     /*const getProducto = async() => {
-        await axios.get('http://127.0.0.1:8000/api/getProductos')
+        await axios.get('http://31.220.21.237:8000/api/getProductos')
         .then(res => {
           this?.setState([res.data]);
           const data = res.data

@@ -61,4 +61,7 @@ table {
   tbody{
     font-size: 30px;
   }
-  
+  .stock{
+   transform: scale(180%);
+   color: black;
+  }

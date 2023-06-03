@@ -1,0 +1,20 @@
+p{
+    margin-top: 10px;
+    font-size: 13px;
+    color: rgb(183, 0, 255);
+  }
+
+  #img-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .modpro{
+    position: fixed;
+    top: 50%;
+    left: 73%;
+    transform: translate(-50%, -35%);
+    height: 140%;
+    width: 70%;
+   }
